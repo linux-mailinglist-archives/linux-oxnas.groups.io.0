@@ -1,110 +1,208 @@
-Return-Path: <bounce+16102+57+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+58+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from web01.groups.io (web01.groups.io [66.175.222.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 55C4D7A8B9
-	for <lists+linux-oxnas@lfdr.de>; Tue, 30 Jul 2019 14:38:41 +0200 (CEST)
-X-Received: from heliosphere.sirena.org.uk (heliosphere.sirena.org.uk [172.104.155.198])
- by groups.io with SMTP; Tue, 30 Jul 2019 05:34:29 -0700
-X-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-	by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-	(Exim 4.92)
-	(envelope-from <broonie@sirena.org.uk>)
-	id 1hsRKk-0007Qu-Ca; Tue, 30 Jul 2019 12:34:26 +0000
-X-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-	id 8BEEC2742D06; Tue, 30 Jul 2019 13:34:25 +0100 (BST)
-Date: Tue, 30 Jul 2019 13:34:25 +0100
-From: Mark Brown <broonie@kernel.org>
-To: khilman@baylibre.com, Neil Armstrong <narmstrong@baylibre.com>
-Cc: kernel-build-reports@lists.linaro.org,
-	linux-arm-kernel@lists.infradead.org, linux-next@vger.kernel.org,
-	linux-oxnas@groups.io
-Subject: Re: [linux-oxnas] next/master boot: 265 boots: 17 failed, 184 passed with 64 offline (next-20190730)
-Message-ID: <20190730123425.GB4264@sirena.org.uk>
-References: <5d403574.1c69fb81.14163.65d3@mx.google.com>
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECBFAF6F2
+	for <lists+linux-oxnas@lfdr.de>; Wed, 11 Sep 2019 09:34:36 +0200 (CEST)
+X-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
+ by groups.io with SMTP; Wed, 11 Sep 2019 00:34:33 -0700
+X-Received: by mail-wm1-f67.google.com with SMTP id n10so2201281wmj.0
+        for <linux-oxnas@groups.io>; Wed, 11 Sep 2019 00:34:32 -0700 (PDT)
+X-Gm-Message-State: APjAAAV+pbP4IrXvcJBegNFfhk0irEeiXksq54d/rjY4xMtJuzjLuD5Y
+	mBoYpiHltoGh4MmNzyGoBtUEcw==
+X-Google-Smtp-Source: APXvYqxxDvRVKQaWLplVyw8RxLikPJkEefVhJ7vX1GPMo2oDLkeZWy4Fj5QkFLqrwRhYintC8OnwBA==
+X-Received: by 2002:a1c:ca02:: with SMTP id a2mr2835861wmg.127.1568187271380;
+        Wed, 11 Sep 2019 00:34:31 -0700 (PDT)
+X-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id d193sm3518079wmd.0.2019.09.11.00.34.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 11 Sep 2019 00:34:30 -0700 (PDT)
+Subject: Re: [linux-oxnas] [PATCH 4/7] dt-bindings: chosen: Add clocksource and clockevent selection
+To: Claudiu Beznea <claudiu.beznea@microchip.com>, daniel.lezcano@linaro.org,
+ robh+dt@kernel.org, mark.rutland@arm.com, linux@armlinux.org.uk,
+ nsekhar@ti.com, bgolaszewski@baylibre.com, monstr@monstr.eu,
+ john@phrozen.org, ralf@linux-mips.org, paul.burton@mips.com,
+ jhogan@kernel.org, lftan@altera.com, tglx@linutronix.de,
+ vgupta@synopsys.com, marc.zyngier@arm.com, patrice.chotard@st.com,
+ mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
+ wahrenst@gmx.net, f.fainelli@gmail.com, rjui@broadcom.com,
+ sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ linus.walleij@linaro.org, shc_work@mail.ru, kgene@kernel.org,
+ krzk@kernel.org, ysato@users.sourceforge.jp, liviu.dudau@arm.com,
+ sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, shawnguo@kernel.org,
+ s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+ linux-imx@nxp.com, baohua@kernel.org, nicolas.ferre@microchip.com,
+ alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
+ baruch@tkos.co.il, u.kleine-koenig@pengutronix.de, guoren@kernel.org,
+ kaloz@openwrt.org, khalasa@piap.pl, ssantosh@kernel.org, vz@mleia.com,
+ slemieux.tyco@gmail.com, khilman@baylibre.com, avifishman70@gmail.com,
+ tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
+ yuenn@google.com, benjaminfair@google.com, afaerber@suse.de,
+ manivannan.sadhasivam@linaro.org, agross@kernel.org, palmer@sifive.com,
+ aou@eecs.berkeley.edu, heiko@sntech.de, orsonzhai@gmail.com,
+ baolin.wang@linaro.org, zhang.lyra@gmail.com, maxime.ripard@bootlin.com,
+ wens@csie.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
+ linux@prisktech.co.nz, john.stultz@linaro.org, sboyd@kernel.org,
+ matthias.bgg@gmail.com
+Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ nios2-dev@lists.rocketboards.org, linux-snps-arc@lists.infradead.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-rpi-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ uclinux-h8-devel@lists.sourceforge.jp, linux-amlogic@lists.infradead.org,
+ openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
+ linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
+ linux-riscv@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org
+References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
+ <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
+From: "Neil Armstrong" <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <81da473f-54d7-2a00-61ec-9351cdfcaaf3@baylibre.com>
+Date: Wed, 11 Sep 2019 09:34:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <5d403574.1c69fb81.14163.65d3@mx.google.com>
-X-Cookie: Times approximate.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
 Precedence: Bulk
 List-Unsubscribe: <https://groups.io/g/linux-oxnas/unsub>
 Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,broonie@kernel.org
-Content-Type: multipart/signed; micalg=pgp-sha512;
-	protocol="application/pgp-signature"; boundary="yEPQxsgoJgBvi8ip"
-Content-Disposition: inline
+Reply-To: linux-oxnas@groups.io,narmstrong@baylibre.com
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1564490319;
- bh=ndcfCsU9y3RlifdXBKACbafHymLfdCg1FCRyDzTMAqI=;
+ q=dns/txt; s=20140610; t=1568187274;
+ bh=416hYzYsdWOh06h7v7RyvCTkZYOOXtaL1eF+lJ71zx4=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=AJAZ831mFbfD0FLUFkG7iqre1kTR6ytK8LHKp5ZLjl3JcQrH11NY8M8rNINEoVRZF3v
- TUsi2JvFjen9VobqCq+BIS2NdNfI4mYM76lI9x6126Swb439CWmFA5XFzcraUUz8tNy5w
- f27SnppXcSuw5BFv+EJCwXzcRkX4P1VjLVI=
+ b=GmPLnYzpDDibTVsJlwhNMdbDhUMNKc1jK6OQzv8keN4J8vXphnUMvUDU2ME7TXUjhi2
+ MlK+zYtiyw+RPXTqS6EolAH1QcZVK8AT2JPR2DIKPWWiEsNEjOA+vnqfW4926uzGShf78
+ ZlW4veyqHCDoWk9l5DRLhRSg4p2jkewNDb4=
 
---yEPQxsgoJgBvi8ip
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-On Tue, Jul 30, 2019 at 05:17:56AM -0700, kernelci.org bot wrote:
+On 10/09/2019 15:47, Claudiu Beznea wrote:
+> From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> 
+> Some timer drivers may behave either as clocksource or clockevent
+> or both. Until now, in case of platforms with multiple hardware
+> resources of the same type, the drivers were chosing the first
+> registered hardware resource as clocksource/clockevent and the
+> next one as clockevent/clocksource. Other were using different
+> compatibles (one for each functionality, although its about the
+> same hardware). Add DT bindings to be able to choose the
+> functionality of a timer.
+> 
+> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> ---
+>  Documentation/devicetree/bindings/chosen.txt | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+> index 45e79172a646..aad3034cdbdf 100644
+> --- a/Documentation/devicetree/bindings/chosen.txt
+> +++ b/Documentation/devicetree/bindings/chosen.txt
+> @@ -135,3 +135,23 @@ e.g.
+>  		linux,initrd-end = <0x82800000>;
+>  	};
+>  };
+> +
+> +linux,clocksource and linux,clockevent
+> +--------------------------------------
+> +
+> +Those nodes have a timer property. This property is a phandle to the timer to be
+> +chosen as the clocksource or clockevent. This is only useful when the platform
+> +has multiple identical timers and it is not possible to let linux make the
+> +correct choice.
+> +
+> +/ {
+> +	chosen {
+> +		linux,clocksource {
+> +			timer = <&timer0>;
+> +		};
+> +
+> +		linux,clockevent {
+> +			timer = <&timer1>;
+> +		};
+> +	};
+> +};
+> 
 
-> Boot Failures Detected:
->=20
-> arm:
->     oxnas_v6_defconfig:
->         gcc-8:
->             ox820-cloudengines-pogoplug-series-3: 1 failed lab
+Why not in aliases ?
 
-For some time now -next and mainline have been failing to boot on
-Pogoplug 3 with the oxnas_v6_defconfig, the kernel seems to start fine
-but fails to parse the ramdisk it's passed:
+aliases {
+    clocksource0 = &timer0;
+    clockevent0 = &timer1;
+};
 
-08:50:02.086589  <6>[    7.719854] IP-Config: Complete:
-08:50:02.087213  <6>[    7.723330]      device=3Deth0, hwaddr=3D0a:a2:89:2=
-7:10:1b, ipaddr=3D10.201.4.144, mask=3D255.255.0.0, gw=3D10.201.0.1
-08:50:02.087413  <6>[    7.733409]      host=3D10.201.4.144, domain=3D, ni=
-s-domain=3D(none)
-08:50:02.088056  <6>[    7.739499]      bootserver=3D10.201.1.1, rootserve=
-r=3D10.201.1.1, rootpath=3D
-08:50:02.088248  <6>[    7.739504]      nameserver0=3D10.201.1.1
-08:50:02.129966  <5>[    7.752025] RAMDISK: Couldn't find valid RAM disk i=
-mage starting at 0.
-08:50:02.130381  <4>[    7.759616] List of all partitions:
-08:50:02.131333  <4>[    7.763363] 0100           65536 ram0=20
+since we can have multiple of each, we should not limit ourselves to 1 clkevent
+and 1 clksource.
 
-Possibly an issue with the ramdisk getting overwritten or something?
+In the aliases case, each driver would expose both capabilities, and the core would select
+what to enable.
 
-Full details for today's -next can be seen here:
+Neil
 
-	https://kernelci.org/boot/id/5d4004bb59b51489d631b28d/
-
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+-=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
 
-View/Reply Online (#57): https://groups.io/g/linux-oxnas/message/57
-Mute This Topic: https://groups.io/mt/32653331/1808289
+View/Reply Online (#58): https://groups.io/g/linux-oxnas/message/58
+Mute This Topic: https://groups.io/mt/34100981/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub  [lists+linux-oxnas@lfd=
-r.de]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+Unsubscribe: https://groups.io/g/linux-oxnas/unsub  [lists+linux-oxnas@lfdr.de]
+-=-=-=-=-=-=-=-=-=-=-=-
 
-
---yEPQxsgoJgBvi8ip
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AOVAACgkQJNaLcl1U
-h9ALMgf/UsXvdF4Sayi9hNUwwm0wCOJ9dB1n8L76v9DjPI1cN8MvrF+3M3HS7M7S
-6jNyB7dFoxrMILacFV4Co45NcBMF+ZgeJjPcWDHpF/vwj0XsV8d2C9aIvdLpqdVy
-Jh65+wIkFnTPWhrjTzFUxAlWclv/6i7ZBBe42oC79SInfsieyNH5V1OMoO01XI7i
-CyTqDXmbQL72Nmp2r5jCi/SwrC5Sh1xYWVFynDoyGVZieOr8oQOIsRyaDzqAj+nc
-Zqw0nmzkVJzkBYqqSs+P4IaD5BKrWUwiofTMspxnAPXt8X5K57GfXvgswGxBNvhE
-4ut4elXlKKD4+AwZAiwwAe05rE3iCA==
-=+oW9
------END PGP SIGNATURE-----
-
---yEPQxsgoJgBvi8ip--
