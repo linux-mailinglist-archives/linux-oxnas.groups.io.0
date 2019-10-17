@@ -1,61 +1,40 @@
-Return-Path: <bounce+16102+58+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+59+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from web01.groups.io (web01.groups.io [66.175.222.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6ECBFAF6F2
-	for <lists+linux-oxnas@lfdr.de>; Wed, 11 Sep 2019 09:34:36 +0200 (CEST)
-X-Received: from mail-wm1-f67.google.com (mail-wm1-f67.google.com [209.85.128.67])
- by groups.io with SMTP; Wed, 11 Sep 2019 00:34:33 -0700
-X-Received: by mail-wm1-f67.google.com with SMTP id n10so2201281wmj.0
-        for <linux-oxnas@groups.io>; Wed, 11 Sep 2019 00:34:32 -0700 (PDT)
-X-Gm-Message-State: APjAAAV+pbP4IrXvcJBegNFfhk0irEeiXksq54d/rjY4xMtJuzjLuD5Y
-	mBoYpiHltoGh4MmNzyGoBtUEcw==
-X-Google-Smtp-Source: APXvYqxxDvRVKQaWLplVyw8RxLikPJkEefVhJ7vX1GPMo2oDLkeZWy4Fj5QkFLqrwRhYintC8OnwBA==
-X-Received: by 2002:a1c:ca02:: with SMTP id a2mr2835861wmg.127.1568187271380;
-        Wed, 11 Sep 2019 00:34:31 -0700 (PDT)
-X-Received: from [192.168.1.62] (176-150-251-154.abo.bbox.fr. [176.150.251.154])
-        by smtp.gmail.com with ESMTPSA id d193sm3518079wmd.0.2019.09.11.00.34.27
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AFA6DAD23
+	for <lists+linux-oxnas@lfdr.de>; Thu, 17 Oct 2019 14:50:19 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id t3FaYY1809624xJwWwbu8LJr; Thu, 17 Oct 2019 05:50:17 -0700
+X-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+ by mx.groups.io with SMTP id smtpd.web12.1486.1571316616343465293
+ for <linux-oxnas@groups.io>;
+ Thu, 17 Oct 2019 05:50:16 -0700
+X-Received: by mail-wr1-f67.google.com with SMTP id p14so2219525wro.4
+        for <linux-oxnas@groups.io>; Thu, 17 Oct 2019 05:50:16 -0700 (PDT)
+X-Gm-Message-State: AfA5Q5Ol4RH9HC7D2GNUidTnx1808289AA=
+X-Google-Smtp-Source: APXvYqzY10mWaWtCCPqEAXcSMAub3xs46hBV9aGzbS+5eDEfN9vTf0Xy9czErg656gVrmD5xr8cEuw==
+X-Received: by 2002:a5d:6651:: with SMTP id f17mr3012347wrw.175.1571316614652;
+        Thu, 17 Oct 2019 05:50:14 -0700 (PDT)
+X-Received: from [192.168.1.62] (wal59-h01-176-150-251-154.dsl.sta.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id h17sm1890100wmb.33.2019.10.17.05.50.12
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 11 Sep 2019 00:34:30 -0700 (PDT)
-Subject: Re: [linux-oxnas] [PATCH 4/7] dt-bindings: chosen: Add clocksource and clockevent selection
-To: Claudiu Beznea <claudiu.beznea@microchip.com>, daniel.lezcano@linaro.org,
- robh+dt@kernel.org, mark.rutland@arm.com, linux@armlinux.org.uk,
- nsekhar@ti.com, bgolaszewski@baylibre.com, monstr@monstr.eu,
- john@phrozen.org, ralf@linux-mips.org, paul.burton@mips.com,
- jhogan@kernel.org, lftan@altera.com, tglx@linutronix.de,
- vgupta@synopsys.com, marc.zyngier@arm.com, patrice.chotard@st.com,
- mcoquelin.stm32@gmail.com, alexandre.torgue@st.com, eric@anholt.net,
- wahrenst@gmx.net, f.fainelli@gmail.com, rjui@broadcom.com,
- sbranden@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
- linus.walleij@linaro.org, shc_work@mail.ru, kgene@kernel.org,
- krzk@kernel.org, ysato@users.sourceforge.jp, liviu.dudau@arm.com,
- sudeep.holla@arm.com, lorenzo.pieralisi@arm.com, shawnguo@kernel.org,
- s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
- linux-imx@nxp.com, baohua@kernel.org, nicolas.ferre@microchip.com,
- alexandre.belloni@bootlin.com, ludovic.desroches@microchip.com,
- baruch@tkos.co.il, u.kleine-koenig@pengutronix.de, guoren@kernel.org,
- kaloz@openwrt.org, khalasa@piap.pl, ssantosh@kernel.org, vz@mleia.com,
- slemieux.tyco@gmail.com, khilman@baylibre.com, avifishman70@gmail.com,
- tmaimon77@gmail.com, tali.perry1@gmail.com, venture@google.com,
- yuenn@google.com, benjaminfair@google.com, afaerber@suse.de,
- manivannan.sadhasivam@linaro.org, agross@kernel.org, palmer@sifive.com,
- aou@eecs.berkeley.edu, heiko@sntech.de, orsonzhai@gmail.com,
- baolin.wang@linaro.org, zhang.lyra@gmail.com, maxime.ripard@bootlin.com,
+        Thu, 17 Oct 2019 05:50:14 -0700 (PDT)
+Subject: Re: [linux-oxnas] [PATCH -next 15/30] pinctrl: oxnas: use devm_platform_ioremap_resource() to simplify code
+To: YueHaibing <yuehaibing@huawei.com>, linus.walleij@linaro.org,
+ manivannan.sadhasivam@linaro.org, afaerber@suse.de, f.fainelli@gmail.com,
+ rjui@broadcom.com, sbranden@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com, jesper.nilsson@axis.com,
+ lars.persson@axis.com, ludovic.desroches@microchip.com,
+ nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com, baruch@tkos.co.il
+Cc: linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@axis.com,
+ linux-oxnas@groups.io, linux-renesas-soc@vger.kernel.org,
+ linux-arm-msm@vger.kernel.org, linux-tegra@vger.kernel.org, vz@mleia.com,
+ geert+renesas@glider.be, daniel@zonque.org, haojian.zhuang@gmail.com,
  wens@csie.org, thierry.reding@gmail.com, jonathanh@nvidia.com,
- linux@prisktech.co.nz, john.stultz@linaro.org, sboyd@kernel.org,
- matthias.bgg@gmail.com
-Cc: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
- nios2-dev@lists.rocketboards.org, linux-snps-arc@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com,
- linux-rpi-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
- uclinux-h8-devel@lists.sourceforge.jp, linux-amlogic@lists.infradead.org,
- openbmc@lists.ozlabs.org, linux-oxnas@groups.io,
- linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
- linux-riscv@lists.infradead.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, linux-mediatek@lists.infradead.org
-References: <1568123236-767-1-git-send-email-claudiu.beznea@microchip.com>
- <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
+ agross@kernel.org
+References: <20191017122640.22976-1-yuehaibing@huawei.com>
+ <20191017122640.22976-16-yuehaibing@huawei.com>
 From: "Neil Armstrong" <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -108,12 +87,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <81da473f-54d7-2a00-61ec-9351cdfcaaf3@baylibre.com>
-Date: Wed, 11 Sep 2019 09:34:27 +0200
+Message-ID: <2b343ef8-45ac-e7a0-91cc-879980593b27@baylibre.com>
+Date: Thu, 17 Oct 2019 14:50:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-In-Reply-To: <1568123236-767-5-git-send-email-claudiu.beznea@microchip.com>
+In-Reply-To: <20191017122640.22976-16-yuehaibing@huawei.com>
 Precedence: Bulk
 List-Unsubscribe: <https://groups.io/g/linux-oxnas/unsub>
 Sender: linux-oxnas@groups.io
@@ -125,83 +104,53 @@ Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1568187274;
- bh=416hYzYsdWOh06h7v7RyvCTkZYOOXtaL1eF+lJ71zx4=;
+ q=dns/txt; s=20140610; t=1571316617;
+ bh=4uWuxtHObHGhfR700bGSAKSq9ju/aHHurfoYmAVou+s=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=GmPLnYzpDDibTVsJlwhNMdbDhUMNKc1jK6OQzv8keN4J8vXphnUMvUDU2ME7TXUjhi2
- MlK+zYtiyw+RPXTqS6EolAH1QcZVK8AT2JPR2DIKPWWiEsNEjOA+vnqfW4926uzGShf78
- ZlW4veyqHCDoWk9l5DRLhRSg4p2jkewNDb4=
+ b=NhiNZTtfJ9FJ9ulRi7r/i5CoFxhUF3xO0IhfOmMHUW1kksiGYzAEM1gisIoTXHUkxcP
+ orP9W1RPPXKSHewbZKUDBJcRBh+6gct6Y3cZAalScAhW57537RqxD0quPOdi3SX1y5+Uo
+ ivPfW3hivsvJQfjOgbHsGaLouNm4IAKbJ/Y=
 
-Hi,
-
-On 10/09/2019 15:47, Claudiu Beznea wrote:
-> From: Alexandre Belloni <alexandre.belloni@bootlin.com>
+On 17/10/2019 14:26, YueHaibing wrote:
+> Use devm_platform_ioremap_resource() to simplify the code a bit.
+> This is detected by coccinelle.
 > 
-> Some timer drivers may behave either as clocksource or clockevent
-> or both. Until now, in case of platforms with multiple hardware
-> resources of the same type, the drivers were chosing the first
-> registered hardware resource as clocksource/clockevent and the
-> next one as clockevent/clocksource. Other were using different
-> compatibles (one for each functionality, although its about the
-> same hardware). Add DT bindings to be able to choose the
-> functionality of a timer.
-> 
-> Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
+> Signed-off-by: YueHaibing <yuehaibing@huawei.com>
 > ---
->  Documentation/devicetree/bindings/chosen.txt | 20 ++++++++++++++++++++
->  1 file changed, 20 insertions(+)
+>  drivers/pinctrl/pinctrl-oxnas.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
-> index 45e79172a646..aad3034cdbdf 100644
-> --- a/Documentation/devicetree/bindings/chosen.txt
-> +++ b/Documentation/devicetree/bindings/chosen.txt
-> @@ -135,3 +135,23 @@ e.g.
->  		linux,initrd-end = <0x82800000>;
->  	};
->  };
-> +
-> +linux,clocksource and linux,clockevent
-> +--------------------------------------
-> +
-> +Those nodes have a timer property. This property is a phandle to the timer to be
-> +chosen as the clocksource or clockevent. This is only useful when the platform
-> +has multiple identical timers and it is not possible to let linux make the
-> +correct choice.
-> +
-> +/ {
-> +	chosen {
-> +		linux,clocksource {
-> +			timer = <&timer0>;
-> +		};
-> +
-> +		linux,clockevent {
-> +			timer = <&timer1>;
-> +		};
-> +	};
-> +};
+> diff --git a/drivers/pinctrl/pinctrl-oxnas.c b/drivers/pinctrl/pinctrl-oxnas.c
+> index 40dc125..674b7b5 100644
+> --- a/drivers/pinctrl/pinctrl-oxnas.c
+> +++ b/drivers/pinctrl/pinctrl-oxnas.c
+> @@ -1196,7 +1196,6 @@ static int oxnas_gpio_probe(struct platform_device *pdev)
+>  	struct oxnas_gpio_bank *bank;
+>  	unsigned int id, ngpios;
+>  	int irq, ret;
+> -	struct resource *res;
+>  	struct gpio_irq_chip *girq;
+>  
+>  	if (of_parse_phandle_with_fixed_args(np, "gpio-ranges",
+> @@ -1220,8 +1219,7 @@ static int oxnas_gpio_probe(struct platform_device *pdev)
+>  
+>  	bank = &oxnas_gpio_banks[id];
+>  
+> -	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> -	bank->reg_base = devm_ioremap_resource(&pdev->dev, res);
+> +	bank->reg_base = devm_platform_ioremap_resource(pdev, 0);
+>  	if (IS_ERR(bank->reg_base))
+>  		return PTR_ERR(bank->reg_base);
+>  
 > 
 
-Why not in aliases ?
-
-aliases {
-    clocksource0 = &timer0;
-    clockevent0 = &timer1;
-};
-
-since we can have multiple of each, we should not limit ourselves to 1 clkevent
-and 1 clksource.
-
-In the aliases case, each driver would expose both capabilities, and the core would select
-what to enable.
-
-Neil
+Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
 
-View/Reply Online (#58): https://groups.io/g/linux-oxnas/message/58
-Mute This Topic: https://groups.io/mt/34100981/1808289
+View/Reply Online (#59): https://groups.io/g/linux-oxnas/message/59
+Mute This Topic: https://groups.io/mt/34701824/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub  [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
