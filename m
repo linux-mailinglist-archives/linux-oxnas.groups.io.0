@@ -1,122 +1,105 @@
-Return-Path: <bounce+16102+72+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+70+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from web01.groups.io (web01.groups.io [66.175.222.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3A6518E391
+	by mail.lfdr.de (Postfix) with ESMTPS id E12E118E390
 	for <lists+linux-oxnas@lfdr.de>; Sat, 21 Mar 2020 19:03:42 +0100 (CET)
-X-Received: by 127.0.0.2 with SMTP id bJRvYY1809624xBNj90bGdI8; Sat, 21 Mar 2020 11:03:41 -0700
-X-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
- by mx.groups.io with SMTP id smtpd.web10.8166.1584799504197914387
+X-Received: by 127.0.0.2 with SMTP id uYFnYY1809624xwkPYTsimSR; Sat, 21 Mar 2020 11:03:41 -0700
+X-Received: from mout-u-204.mailbox.org (mout-u-204.mailbox.org [91.198.250.253])
+ by mx.groups.io with SMTP id smtpd.web10.8818.1584801587677418194
  for <linux-oxnas@groups.io>;
- Sat, 21 Mar 2020 07:05:04 -0700
-X-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+ Sat, 21 Mar 2020 07:39:48 -0700
+X-Received: from smtp2.mailbox.org (smtp2.mailbox.org [IPv6:2001:67c:2050:105:465:1:2:0])
+	(using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
 	(No client certificate requested)
-	by mail.kernel.org (Postfix) with ESMTPSA id 916B320757;
-	Sat, 21 Mar 2020 14:05:03 +0000 (UTC)
-X-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-	by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-	(Exim 4.92)
-	(envelope-from <maz@kernel.org>)
-	id 1jFekH-00EVV7-Sn; Sat, 21 Mar 2020 14:05:02 +0000
+	by mout-u-204.mailbox.org (Postfix) with ESMTPS id 48l3FY4BMnzQkJl;
+	Sat, 21 Mar 2020 15:39:45 +0100 (CET)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+X-Received: from smtp2.mailbox.org ([80.241.60.241])
+	by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173]) (amavisd-new, port 10030)
+	with ESMTP id exzjPqbLDL-R; Sat, 21 Mar 2020 15:39:42 +0100 (CET)
+From: Sungbo Eo <mans0n@gorani.run>
+To: Neil Armstrong <narmstrong@baylibre.com>,
+	Rob Herring <robh+dt@kernel.org>,
+	Mark Rutland <mark.rutland@arm.com>,
+	linux-arm-kernel@lists.infradead.org,
+	linux-oxnas@groups.io,
+	devicetree@vger.kernel.org,
+	linux-kernel@vger.kernel.org
+Cc: Sungbo Eo <mans0n@gorani.run>
+Subject: [linux-oxnas] [PATCH] ARM: dts: oxnas: Fix clear-mask property
+Date: Sat, 21 Mar 2020 23:36:53 +0900
+Message-Id: <20200321143653.2412823-1-mans0n@gorani.run>
 MIME-Version: 1.0
-Date: Sat, 21 Mar 2020 14:05:01 +0000
-From: Marc Zyngier <maz@kernel.org>
-To: Sungbo Eo <mans0n@gorani.run>
-Cc: linux-oxnas@groups.io, Linus Walleij <linus.walleij@linaro.org>, Thomas
- Gleixner <tglx@linutronix.de>, Jason Cooper <jason@lakedaemon.net>,
- linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, Neil
- Armstrong <narmstrong@baylibre.com>, Daniel Golle <daniel@makrotopia.org>
-Subject: Re: [linux-oxnas] [PATCH] irqchip/versatile-fpga: Apply clear-mask earlier
-In-Reply-To: <20200321133842.2408823-1-mans0n@gorani.run>
-References: <20200321133842.2408823-1-mans0n@gorani.run>
-Message-ID: <4c8b67a7912b2863db99ff4e765fdb8b@kernel.org>
-X-Sender: maz@kernel.org
-User-Agent: Roundcube Webmail/1.3.10
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: mans0n@gorani.run, linux-oxnas@groups.io, linus.walleij@linaro.org, tglx@linutronix.de, jason@lakedaemon.net, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, narmstrong@baylibre.com, daniel@makrotopia.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: Bulk
 List-Unsubscribe: <https://groups.io/g/linux-oxnas/unsub>
 Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,maz@kernel.org
-X-Gm-Message-State: WMwKL59L6rHxioBaBBP6aBvex1808289AA=
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
+Reply-To: linux-oxnas@groups.io,mans0n@gorani.run
+X-Gm-Message-State: A2aVCmN1ZkkYoaUDcexUzcNhx1808289AA=
+Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
  q=dns/txt; s=20140610; t=1584813821;
- bh=9CWMa1GJK+2ZfOXfV1Lu5uMF0MznXb4BtJ1UCQrk1Jc=;
- h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=XelDUB16R9p8vxFjdtgLCUrToYAV1B3MO3jsp2J4U5d8+BeBir6Xzt3wANDnpkSp6f3
- oKPxbMzqGkVd1vXcrEoSwgZH8reC9oKrxq1slUnQpKCfCqgzC7jgjW63tZqIC6KRWepVw
- qMeHCX5QaEji5GnBavv4Gva6i9ypjp6ytEc=
+ bh=xO+eJuS5/mxd0SCzMZrAbp0A9fnhlR1ImexQJv6zq0U=;
+ h=Cc:Date:From:Reply-To:Subject:To;
+ b=ER2E1EqaDSZzjJSG7qTMyqRCx3GpovDB70eij4jLFQ/QAVQj6QNfoqXDwGgaaiA01BK
+ ON7gDZBvLy4v4KIW9UMg6MF+7INSrnN32xGdLjxdxTpwlV4jSnyFij47PB8hlsqy+S/l8
+ z6bBtNjUQqKhltYiTnFK9K5zoqD/x972oCo=
 
-On 2020-03-21 13:38, Sungbo Eo wrote:
-> Clear its own IRQs before the parent IRQ get enabled, so that the
-> remaining IRQs do not accidentally interrupt the parent IRQ controller.
-> 
-> This patch also fixes a reboot bug on OX820 SoC, where the remaining
-> rps-timer IRQ raises a GIC interrupt that is left pending. After that,
-> the rps-timer IRQ is cleared during driver initialization, and there's
-> no IRQ left in rps-irq when local_irq_enable() is called, which evokes
-> an error message "unexpected IRQ trap".
-> 
-> Fixes: bdd272cbb97a ("irqchip: versatile FPGA: support cascaded
-> interrupts from DT")
-> Signed-off-by: Sungbo Eo <mans0n@gorani.run>
-> Cc: Neil Armstrong <narmstrong@baylibre.com>
-> Cc: Daniel Golle <daniel@makrotopia.org>
-> ---
->  drivers/irqchip/irq-versatile-fpga.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-versatile-fpga.c
-> b/drivers/irqchip/irq-versatile-fpga.c
-> index 70e2cfff8175..f1386733d3bc 100644
-> --- a/drivers/irqchip/irq-versatile-fpga.c
-> +++ b/drivers/irqchip/irq-versatile-fpga.c
-> @@ -212,6 +212,9 @@ int __init fpga_irq_of_init(struct device_node 
-> *node,
->  	if (of_property_read_u32(node, "valid-mask", &valid_mask))
->  		valid_mask = 0;
-> 
-> +	writel(clear_mask, base + IRQ_ENABLE_CLEAR);
-> +	writel(clear_mask, base + FIQ_ENABLE_CLEAR);
-> +
->  	/* Some chips are cascaded from a parent IRQ */
->  	parent_irq = irq_of_parse_and_map(node, 0);
->  	if (!parent_irq) {
-> @@ -221,9 +224,6 @@ int __init fpga_irq_of_init(struct device_node 
-> *node,
-> 
->  	fpga_irq_init(base, node->name, 0, parent_irq, valid_mask, node);
-> 
-> -	writel(clear_mask, base + IRQ_ENABLE_CLEAR);
-> -	writel(clear_mask, base + FIQ_ENABLE_CLEAR);
-> -
->  	/*
->  	 * On Versatile AB/PB, some secondary interrupts have a direct
->  	 * pass-thru to the primary controller for IRQs 20 and 22-31 which 
-> need
+Disable all rps-irq interrupts during driver initialization to prevent
+an accidental interrupt on GIC.
 
-You're on a roll! ;-) Queued for 5.7.
+Fixes: 84316f4ef141 ("ARM: boot: dts: Add Oxford Semiconductor OX810SE dt=
+si")
+Fixes: 38d4a53733f5 ("ARM: dts: Add support for OX820 and Pogoplug V3")
+Signed-off-by: Sungbo Eo <mans0n@gorani.run>
+---
+ arch/arm/boot/dts/ox810se.dtsi | 4 ++--
+ arch/arm/boot/dts/ox820.dtsi   | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
 
-Thanks,
+diff --git a/arch/arm/boot/dts/ox810se.dtsi b/arch/arm/boot/dts/ox810se.d=
+tsi
+index 9f6c2b660ed3..0755e5864c4a 100644
+--- a/arch/arm/boot/dts/ox810se.dtsi
++++ b/arch/arm/boot/dts/ox810se.dtsi
+@@ -323,8 +323,8 @@ intc: interrupt-controller@0 {
+ 					interrupt-controller;
+ 					reg =3D <0 0x200>;
+ 					#interrupt-cells =3D <1>;
+-					valid-mask =3D <0xFFFFFFFF>;
+-					clear-mask =3D <0>;
++					valid-mask =3D <0xffffffff>;
++					clear-mask =3D <0xffffffff>;
+ 				};
+=20
+ 				timer0: timer@200 {
+diff --git a/arch/arm/boot/dts/ox820.dtsi b/arch/arm/boot/dts/ox820.dtsi
+index c9b327732063..90846a7655b4 100644
+--- a/arch/arm/boot/dts/ox820.dtsi
++++ b/arch/arm/boot/dts/ox820.dtsi
+@@ -240,8 +240,8 @@ intc: interrupt-controller@0 {
+ 					reg =3D <0 0x200>;
+ 					interrupts =3D <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
+ 					#interrupt-cells =3D <1>;
+-					valid-mask =3D <0xFFFFFFFF>;
+-					clear-mask =3D <0>;
++					valid-mask =3D <0xffffffff>;
++					clear-mask =3D <0xffffffff>;
+ 				};
+=20
+ 				timer0: timer@200 {
+--=20
+2.25.2
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
 
-View/Reply Online (#72): https://groups.io/g/linux-oxnas/message/72
-Mute This Topic: https://groups.io/mt/72451155/1808289
+View/Reply Online (#70): https://groups.io/g/linux-oxnas/message/70
+Mute This Topic: https://groups.io/mt/72451154/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub  [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
