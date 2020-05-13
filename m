@@ -1,30 +1,28 @@
-Return-Path: <bounce+16102+82+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+85+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from web01.groups.io (web01.groups.io [66.175.222.12])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3ABDF1CEF03
-	for <lists+linux-oxnas@lfdr.de>; Tue, 12 May 2020 10:24:20 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id uh3HYY1809624xEETpzYBG5d; Tue, 12 May 2020 01:24:18 -0700
-X-Received: from mail-wm1-f66.google.com (mail-wm1-f66.google.com [209.85.128.66])
- by mx.groups.io with SMTP id smtpd.web12.1944.1589271856756312629
+	by mail.lfdr.de (Postfix) with ESMTPS id 17ABD1D0DA1
+	for <lists+linux-oxnas@lfdr.de>; Wed, 13 May 2020 11:55:12 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id UMMOYY1809624xGhm2TpMf8i; Wed, 13 May 2020 02:55:11 -0700
+X-Received: from mail-wr1-f67.google.com (mail-wr1-f67.google.com [209.85.221.67])
+ by mx.groups.io with SMTP id smtpd.web10.2764.1589363710256426224
  for <linux-oxnas@groups.io>;
- Tue, 12 May 2020 01:24:17 -0700
-X-Received: by mail-wm1-f66.google.com with SMTP id h4so20727983wmb.4
-        for <linux-oxnas@groups.io>; Tue, 12 May 2020 01:24:16 -0700 (PDT)
-X-Gm-Message-State: eBXZRK9M8VN8Dx4HCNGkSb5Ax1808289AA=
-X-Google-Smtp-Source: APiQypJ0DLBuWu1HvqfbYEN3n8HZFeHzl+W4A9F19tgwxnNvxKs0OG0tNRp7DYla2i/EalNuykPoWA==
-X-Received: by 2002:a1c:5988:: with SMTP id n130mr25724011wmb.187.1589271855004;
-        Tue, 12 May 2020 01:24:15 -0700 (PDT)
+ Wed, 13 May 2020 02:55:10 -0700
+X-Received: by mail-wr1-f67.google.com with SMTP id l17so6522585wrr.4
+        for <linux-oxnas@groups.io>; Wed, 13 May 2020 02:55:10 -0700 (PDT)
+X-Gm-Message-State: PwSwePbiwnDjvke0zI0yvUpBx1808289AA=
+X-Google-Smtp-Source: APiQypIqIh6JNa2ZJqhjFMWK41zu9sJ+C7IAdP7pjDtsVyuTJOHTETnYZiD3VBTsbCpkO4T0WptDww==
+X-Received: by 2002:a5d:5492:: with SMTP id h18mr29087427wrv.35.1589363708645;
+        Wed, 13 May 2020 02:55:08 -0700 (PDT)
 X-Received: from ?IPv6:2a01:e35:2ec0:82b0:4460:3fd3:382:4a71? ([2a01:e35:2ec0:82b0:4460:3fd3:382:4a71])
-        by smtp.gmail.com with ESMTPSA id x1sm12699020wrt.86.2020.05.12.01.24.13
+        by smtp.gmail.com with ESMTPSA id k5sm24881492wrx.16.2020.05.13.02.55.07
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 12 May 2020 01:24:14 -0700 (PDT)
-Subject: Re: [linux-oxnas] [PATCH] ARM: oxnas: make ox820_boot_secondary static
-To: Ma Feng <mafeng.ma@huawei.com>, linux@armlinux.org.uk
-Cc: linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io,
- linux-kernel@vger.kernel.org
-References: <1589247973-29728-1-git-send-email-mafeng.ma@huawei.com>
+        Wed, 13 May 2020 02:55:07 -0700 (PDT)
 From: "Neil Armstrong" <narmstrong@baylibre.com>
+Subject: [linux-oxnas] [GIT PULL] oxnas fixes for 5.7
+To: soc@kernel.org, arm@kernel.org
+Cc: linux-oxnas@groups.io, linux-arm-kernel@lists.infradead.org
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
  GTjuhvbleoQ5Cxjr+v+1ARGCH46MxFP5DwauzPekwJUD5QKZlaw/bURTLmS2id5wWi3lqVH4
@@ -75,12 +73,11 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <799e6df7-7698-f2a7-e8eb-fd491c1cad8f@baylibre.com>
-Date: Tue, 12 May 2020 10:24:13 +0200
+Message-ID: <95bf4813-93a1-735d-1d27-2cbe59986845@baylibre.com>
+Date: Wed, 13 May 2020 11:55:06 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.4.1
 MIME-Version: 1.0
-In-Reply-To: <1589247973-29728-1-git-send-email-mafeng.ma@huawei.com>
 Precedence: Bulk
 List-Unsubscribe: <https://groups.io/g/linux-oxnas/unsub>
 Sender: linux-oxnas@groups.io
@@ -88,54 +85,50 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,narmstrong@baylibre.com
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=windows-1252
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1589271858;
- bh=SLOrNG/pvinKOUp5U/vaUcg+D9Ru/DQaj5xENHqcUd4=;
+ q=dns/txt; s=20140610; t=1589363711;
+ bh=HSTOoSJy6A4ExhV7bUb2qRCN5yBMJ4KgLUmc5ZMlQVM=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=DUfMg5s3EBIMqUGWSX77s/bqiovWNLmLtL7QJnxv2vRqIERtLBTupfA+BXlPhjYp6Jb
- TUIRs7HArqiXMwK469WfJuzwtIr9+CeBoa1ltty4Tp8D8veDj95w8Yp5AM360smER+Y6t
- efc9bKqEHdQAKe93g6tTdz5hf0FJCgyoZkA=
+ b=ulGnkJNmUfv/baW73MCiz0VE6Kl/lgJelTJ9zRIT7rVw+yGwC6gn/UiXp5p8ioZP589
+ D1XvpWmlxA9Q9dh6S6tSglczAtGOP+eNMaCqjbVlwNwJBdrPJhZlfqFl/cLOkcff7fbE2
+ lKKGgXRchkRMadtcti8NIupImvZT+ooBLPY=
 
-On 12/05/2020 03:46, Ma Feng wrote:
-> Fix sparse warning:
-> 
-> arch/arm/mach-oxnas/platsmp.c:30:12: warning: symbol 'ox820_boot_secondary' was
-> not declared. Should it be static?
-> 
-> Reported-by: Hulk Robot <hulkci@huawei.com>
-> Signed-off-by: Ma Feng <mafeng.ma@huawei.com>
-> ---
->  arch/arm/mach-oxnas/platsmp.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/mach-oxnas/platsmp.c b/arch/arm/mach-oxnas/platsmp.c
-> index ab35275..f0a50b9 100644
-> --- a/arch/arm/mach-oxnas/platsmp.c
-> +++ b/arch/arm/mach-oxnas/platsmp.c
-> @@ -27,7 +27,8 @@ static void __iomem *gic_cpu_ctrl;
->  #define GIC_CPU_CTRL			0x00
->  #define GIC_CPU_CTRL_ENABLE		1
-> 
-> -int __init ox820_boot_secondary(unsigned int cpu, struct task_struct *idle)
-> +static int __init ox820_boot_secondary(unsigned int cpu,
-> +		struct task_struct *idle)
->  {
->  	/*
->  	 * Write the address of secondary startup into the
-> --
-> 2.7.4
-> 
+Hi,
 
-Acked-by: Neil Armstrong <narmstrong@baylibre.com>
+Simple fix for mach-oxnas SMP code fixing a sparse warning.
+
+Neil
+
+The following changes since commit 8f3d9f354286745c751374f5f1fcafee6b3f3136:
+
+  Linux 5.7-rc1 (2020-04-12 12:35:55 -0700)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/narmstrong/linux-oxnas.git tags/arm-soc-fixes-for-5.7
+
+for you to fetch changes up to bd84dff0217414d9f9b829a3b75b2487aff857b7:
+
+  ARM: oxnas: make ox820_boot_secondary static (2020-05-12 10:29:33 +0200)
+
+----------------------------------------------------------------
+- mach-oxnas: make ox820_boot_secondary static to fix sparse warning
+
+----------------------------------------------------------------
+Ma Feng (1):
+      ARM: oxnas: make ox820_boot_secondary static
+
+ arch/arm/mach-oxnas/platsmp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
 
-View/Reply Online (#82): https://groups.io/g/linux-oxnas/message/82
-Mute This Topic: https://groups.io/mt/74154564/1808289
+View/Reply Online (#85): https://groups.io/g/linux-oxnas/message/85
+Mute This Topic: https://groups.io/mt/74177956/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub  [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
