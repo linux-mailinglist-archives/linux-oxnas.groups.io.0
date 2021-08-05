@@ -1,64 +1,26 @@
-Return-Path: <bounce+16102+110+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+111+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB7A3E4567
-	for <lists+linux-oxnas@lfdr.de>; Mon,  9 Aug 2021 14:09:01 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id Q2amYY1809624xu1oBgGIGWR; Mon, 09 Aug 2021 05:08:59 -0700
-X-Received: from mx2.hcg.gr (mx2.hcg.gr [84.205.254.49])
- by mx.groups.io with SMTP id smtpd.web09.2524.1628123123278331389
+	by mail.lfdr.de (Postfix) with ESMTPS id C9F813E4561
+	for <lists+linux-oxnas@lfdr.de>; Mon,  9 Aug 2021 14:08:56 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id WT7UYY1809624xVXZScBDXTB; Mon, 09 Aug 2021 05:08:55 -0700
+X-Received: from pre5.presidentsummit2021.info (pre5.presidentsummit2021.info [46.173.211.125])
+ by mx.groups.io with SMTP id smtpd.web12.5564.1628145575349980262
  for <linux-oxnas@groups.io>;
- Wed, 04 Aug 2021 17:25:25 -0700
-X-AuditID: ac138d0e-cc4f570000000c92-ee-610b2fe3121e
-X-Received: from newmail.hcg.gr (Unknown_Domain [172.18.2.10])
-	(using TLS with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(Client did not present a certificate)
-	by mx2.hcg.gr (Symantec Messaging Gateway) with SMTP id A5.AD.03218.3EF2B016; Thu,  5 Aug 2021 03:25:07 +0300 (EEST)
-To: undisclosed-recipients:;
-X-Received: from localhost (localhost [127.0.0.1])
-	by newmail.hcg.gr (Postfix) with ESMTP id 5F4E73805FC1EF;
-	Thu,  5 Aug 2021 03:24:39 +0300 (EEST)
-X-Received: from newmail.hcg.gr ([127.0.0.1])
-	by localhost (newmail.hcg.gr [127.0.0.1]) (amavisd-new, port 10032)
-	with ESMTP id DRi4iomngX2F; Thu,  5 Aug 2021 03:24:39 +0300 (EEST)
-X-Received: from localhost (localhost [127.0.0.1])
-	by newmail.hcg.gr (Postfix) with ESMTP id D9BE1380668EDF;
-	Thu,  5 Aug 2021 03:23:03 +0300 (EEST)
-X-Virus-Scanned: amavisd-new at newmail.hcg.gr
-X-Received: from newmail.hcg.gr ([127.0.0.1])
-	by localhost (newmail.hcg.gr [127.0.0.1]) (amavisd-new, port 10026)
-	with ESMTP id hqxanQnO1tT8; Thu,  5 Aug 2021 03:23:03 +0300 (EEST)
-X-Received: from newmail.hcg.gr (localhost [127.0.0.1])
-	by newmail.hcg.gr (Postfix) with ESMTP id 14F6B380645435;
-	Thu,  5 Aug 2021 03:20:57 +0300 (EEST)
-Date: Thu, 5 Aug 2021 03:20:57 +0300 (EEST)
-From: =?utf-8?B?zp/Ooc6mzpXOkc6jIM6jzpTOn86TzprOn86j?= <sdogkos@hcg.gr>
-Reply-To: linux-oxnas@groups.io,sdogkos@hcg.gr
-Message-ID: <1197470670.3589936.1628122857058.JavaMail.zimbra@hcg.gr>
-Subject: [linux-oxnas] spende
+ Wed, 04 Aug 2021 23:39:35 -0700
+X-Received: from presidentsummit2021.info (127.0.0.1) by pre2.presidentsummit2021.info id h1e3qfi19tkr for <linux-oxnas@groups.io>; Thu, 5 Aug 2021 09:39:32 +0300 (envelope-from <olivillerbusiness21-linux+2Doxnas=groups.io@gmail.com>)
+To: linux-oxnas@groups.io
+Subject: Re: [linux-oxnas] Client information
+Message-ID: <8e8610720c5e6c3da39dbd2f3ffef057@presidentsummit2021.info>
+Date: Thu, 05 Aug 2021 06:10:09 +0000
+From: "Olivia Miller" <olivia.millerbusiness21@gmail.com>
+Reply-To: linux-oxnas@groups.io,olivia.millerbusiness21@gmail.com
 MIME-Version: 1.0
-X-Originating-IP: [172.18.2.10]
-Thread-Index: eAmz6pto+r6lT1bd1jmsrOfbbxJctw==
-Thread-Topic: spende
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0xTVxzHd3pvz71Wyy6lzjNAyUh8DANsRuWXbCEz03njZkbiQqbRYIE7
-	UBC0gIEZJ2wqjwg6HsqrtKxSYOhcGQ8FHVBhk8cQmNlwAkNbQGyxpIiVl46mm/Ofk8/5fr/n
-	+8svOSwl02B39kBMvKCMUUR7Ywl9SSaS+Br9lyreeTa+CfJvDFPQ259Dgf0bK4aB0RYEw3U1
-	NFjzPGCuPx9Dy7UCBnLmryOYTKkQQUZnhhgGW/soeN6hp6D463oG9GdZmLu9sNiRXYXg4pCa
-	gu/6zmP4uzEFQedMFQVDF+6JQTVdgOFZiQXDw+6SRe2yCsOFySIEcwabGGpLuhEYKyYYqLTl
-	0mC6n4Whq6kSQ/OTbymwzmwBW5YYjNXTNOT0aTDktXVj+PHSJA2pZjOGhuYUBlRz5zDM1jxC
-	YOkZouFGs56GTGsZBlNbLgWnZ3UYyocbmA828NcKBxn+9pUZxGurmzCvqU7g1el2EX8+uwPz
-	RpWe4e+0p9G88UwX5k+2Toj5HwbHaL5psJTmb04vHvdPFlC89vq4iFfnFouD5Hsk74cL0QeO
-	Ckr/wP2SSHPutPjwjEtig+EMnYzypRloCUu4jSQt205nIAkr40pF5KmhRuQw5JwnURUZxU4j
-	D5GJ0j8Y56UOkYWiR/il0/gkDzm7/EijQUW9TGk7H/9bXIjI/C9XGEeK5taT9jw7djDmtpOs
-	8luUg2WLr0d/ql1klpVy20h6DnGgG/c6udsc60hIOVfSXmCiHTLF7SaZ9w46x3qRO60DYodM
-	uJ2kfVbuXMCP2BscmzlYTi4W6ahzSF74SlHh/0UOmeLWkvmSPsrJ64mu1Ew5I2uI7pT3q7IG
-	4e+R5FDiBr/IsAi/CGU1cnxit0yXq2jEMu1nQCIWGRBhKW+5NEwrUcik4YqkLwVlbIgyIVqI
-	MyAPlvZeIdX4JO6XcRGKeCFKEA4Lyv9cEbvEPVm0yiS0Td1dfajZPrIvbCpNHbD51w7/Qo/A
-	j9PPvigjrst7O00VvSt/f7pjzMUrxiN41/EPVzd9vjG5QBNdVz/wwKqtXNl2RLlMf8wm/epB
-	qP7N9GVvLA+9ql+67u3SXWtvxVenekXtjdP7MkFhRtf0nerPzOqHJ4Le8zwRqP/IkvRiwr/8
-	571Hiw3jUXJ3PmHPwlSgxi28P+5yyFbZyEFdSKqAnouO75v3eWyrx/lH3gqtaVy3+ZMexemb
-	CbotuZ9afNXbx/i/qopsteHHmIXs0WBzDwMjr1WwXp6zymDX2K4hq+9vPfMrwpA2M6DnVMC2
-	L8p28EJS06pNa/60mHJaDFt3h3jTcZGKd30oZZziHzlnHvgzBAAA
+X-Mailer-LID: 3,1,2
+X-Mailer-RecptId: 23461
+X-Mailer-SID: 4
+X-Mailer-Sent-By: 1
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -67,89 +29,169 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-X-Gm-Message-State: TRdcOlzkbNN3F6lRkAjQE6mrx1808289AA=
-Content-Type: multipart/alternative; 
-	boundary="=_610ad82c-2fb2-4882-9530-d521b7d26296"
+X-Gm-Message-State: qB7s8yJYII3CiBWV0byliXBdx1808289AA=
+Content-Type: multipart/alternative; charset="UTF-8"; boundary="b1_813c84d37423a6b8fb0fed88f687dd05"
+Content-Transfer-Encoding: 8bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1628510939;
- bh=Wr0RX1J4NU9SJOBhHdkAZX8/arPc0xq6V/bOhqfr7WY=;
+ q=dns/txt; s=20140610; t=1628510935;
+ bh=wlzukjjr9aAOmPbCEr6em5zsunhJ46FZztQ/83Q9N+A=;
  h=Content-Type:Date:From:Reply-To:Subject:To;
- b=jsFNWKB9eWyYrZXM7g7awTe0vjCHwFmnEQmqP+a43jwxj6GjUV4TXaZJJrmiyuu7z8u
- hWRWaNdwRl8MSiagaR4jJTVLdrvExmrMtKM3JZJcOJxpaBOCuVogKHCNI4MsoDbrr0pS5
- ueIvaC6GMd5BjEsz+cg9KyJ5UJHNFGfbr9E=
+ b=rQVFKmaFSjiBgOx11s8eR4JW0NNXl957YZgdq0o3+6Yvpd77KqumNefw2QHW55INf/K
+ EWPdjbnTRGUuTb3RkH4ktehF4jO1gV/Q2jlVXQ+rIt46WmMacg5GcnFiQujFSmRgC+yoI
+ 8TFSbt0pGSZWT3MdFWYEfqq48J2oGnYFySw=
 
---=_610ad82c-2fb2-4882-9530-d521b7d26296
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+--b1_813c84d37423a6b8fb0fed88f687dd05
+Content-Type: text/plain; format=flowed; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-
-
-Hallo! Hallo!! Hallo!!!=20
-
-Herzlichen Gl=C3=BCckwunsch, Ihre E-Mail wurde gl=C3=BCcklicherweise ausgew=
-=C3=A4hlt und Sie haben 2 Millionen Euro aus dem laufenden Safra-Entwicklun=
-gsprogramm gewonnen.=20
-Kontaktieren Sie die unten stehende E-Mail, um Ihre 2.000.000,00 Euro einzu=
-fordern.=20
-
-E-Mail: vickysafra40@gmail.com=20
+Your email client cannot read this email.
+To view it online, please go here:
+https://presidentsummit2021.info/emm/display.php?M=23461&C=e392d33736a860ca684b7c0bd78e5d38&S=4&L=1&N=1
 
 
-___________________________________________________________________________=
-_____=20
+To stop receiving these
+emails:https://presidentsummit2021.info/emm/unsubscribe.php?M=23461&C=e392d33736a860ca684b7c0bd78e5d38&L=1&N=4
 
 
-Hello! Hello!! Hello!!!=20
-
-Congratulations your email was luckily selected and you have won 2 million =
-euros from the ongoing Safra Development program.=20
-Contact the email below to claim your 2,000,000.00 euros.=20
-
-Email: vickysafra40@gmail.com=20
-
-
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+-=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#110): https://groups.io/g/linux-oxnas/message/110
-Mute This Topic: https://groups.io/mt/84766656/1808289
+View/Reply Online (#111): https://groups.io/g/linux-oxnas/message/111
+Mute This Topic: https://groups.io/mt/84766654/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
-de]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
+-=-=-=-=-=-=-=-=-=-=-=-
 
 
 
---=_610ad82c-2fb2-4882-9530-d521b7d26296
-Content-Type: text/html; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+--b1_813c84d37423a6b8fb0fed88f687dd05
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 
-<div style=3D""><div><br/></div><div><br/></div><div data-marker=3D"__SIG_P=
-RE__">Hallo! Hallo!! Hallo!!!<br/><br/>Herzlichen Gl=C3=BCckwunsch, Ihre E-=
-Mail wurde gl=C3=BCcklicherweise ausgew=C3=A4hlt und Sie haben 2 Millionen =
-Euro aus dem laufenden Safra-Entwicklungsprogramm gewonnen.<br/>Kontaktiere=
-n Sie die unten stehende E-Mail, um Ihre 2.000.000,00 Euro einzufordern.<br=
-/><br/>E-Mail: vickysafra40@gmail.com<br/><br/><br/>_______________________=
-_________________________________________________________<br/><br/><br/>Hel=
-lo! Hello!! Hello!!!<br/><br/>Congratulations your email was luckily select=
-ed and you have won 2 million euros from the ongoing Safra Development prog=
-ram.<br/>Contact the email below to claim your 2,000,000.00 euros.<br/><br/=
->Email: vickysafra40@gmail.com</div></div>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<span><span><span><span lang="EN-US"><span><span>Are you interested to
+purchase 100,000 contact details at $1,000 in excel file with 95% accuracy
+guarantee?<br />Would you like to see a sample of the
+file?</span></span></span></span></span></span><span></span><ol>
+<li><span><span><span><span lang="EN-US"><span><span>CEOs, owners,
+Presidents and MDs email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Home owners, Apartment
+owners, Building owner email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>High net worth
+individuals/investors email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Architects and
+interior designers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span>Trader/investors email
+list</span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-GB"><span>Fortune 500 companies
+decision makers email list</span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Event and Meeting
+planners, organizers, and exhibitors email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Engineers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Purchasing and
+Procurement Managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Physicians, Doctors,
+Nurses, Dentists, Therapists email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>CIO, CTO, CISO,
+VP/Director/Manager of IT, IT Compliance, IT Risk, BI, Cloud, Database and
+IT Security managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>CFO, Controller,
+VP/Director/Manager of Finance, Accounts Payable, Accounts Receivable,
+Audit managers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>VP/Director/Manager of
+Customer Service and Customer Success managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Telecom managers, VOIP
+managers, Cloud architect, Cloud managers, Storage managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Pharmacist and
+pharmacy owners email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Oil, Gas and utility
+industry decision makers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>New &amp; Used Car
+Dealers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Marketing, social
+media, demand generation, Lead generation decision makers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Manufacturing Industry
+decision makers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Logistics, shipping,
+and supply chain managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>ISV/VARs/Resellers
+email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Individual insuranc
+agents email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>HR, Training, Learning
+&amp; Development, Employee Benefits, Talent Acquisition, Recruiting
+decision makers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Hospitals, clinics,
+private practices, Pharmaceutical and biotechnology company's top decision
+makers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Health, environment
+&amp; Safety managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Government decision
+makers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>General and corporate
+counsels email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Fleet managers,
+Trucking company owners email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Financial
+planner/advisors email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Facilities, office and
+maintenance managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Education industry
+executives email list - Principals, Dean, Admins and teachers from Schools,
+Colleges and Universities</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>E-commerce or online
+retailers email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Data scientist, Data
+Analytics and Database Administrators email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>CPA and Bookkeepers
+email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Compliance and Risk
+Management managers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Commercial property
+owners email list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Builders, property
+developers and construction industry decision makers email
+list</span></span></span></span></span></span></li>
+<li><span><span><span><span lang="EN-US"><span><span>Attorneys and Lawyers
+email list</span></span></span></span></span></span></li>
+</ol><span><span><span><span lang="EN-US"><span><span>Please let me know
+your thoughts.</span></span></span></span></span></span><br /><br
+/><span><span><span><b><span><span><span><span><span>Olivia
+Miller</span></span></span></span></span></b></span></span></span><br
+/><span><span><span><b><span><span><span><span><span>Email
+Database</span></span></span></span></span></b></span></span></span><br
+/><span><span><span lang="EN-US">+1-&nbsp;</span><span><span>(678)
+745-8385</span></span></span></span>
+<img
+src="https://presidentsummit2021.info/emm/open.php?M=23461&L=1&N=4&F=H&image=.jpg"
+height="1" width="10"></body>
+</html>
 
 
- <div width=3D"1" style=3D"color:white;clear:both">_._,_._,_</div> <hr>   G=
-roups.io Links:<p>   You receive all messages sent to this group.    <p> <a=
- target=3D"_blank" href=3D"https://groups.io/g/linux-oxnas/message/110">Vie=
-w/Reply Online (#110)</a> |   <a target=3D"_blank" href=3D"mailto:linux-oxn=
-as@groups.io?subject=3DRe:%20%5Blinux-oxnas%5D%20spende">Reply To Group</a>=
- | <a target=3D"_blank" href=3D"mailto:?subject=3DPrivate:%20Re:%20%5Blinux=
--oxnas%5D%20spende">Reply To Sender</a>   |  <a target=3D"_blank" href=3D"h=
-ttps://groups.io/mt/84766656/1808289">Mute This Topic</a>  | <a href=3D"htt=
-ps://groups.io/g/linux-oxnas/post">New Topic</a><br>    <a href=3D"https://=
-groups.io/g/linux-oxnas/editsub/1808289">Your Subscription</a> | <a href=3D=
-"mailto:linux-oxnas+owner@groups.io">Contact Group Owner</a> |  <a href=3D"=
-https://groups.io/g/linux-oxnas/unsub">Unsubscribe</a>  [lists+linux-oxnas@=
-lfdr.de]<br> <div width=3D"1" style=3D"color:white;clear:both">_._,_._,_</d=
-iv>=20
+ <div width="1" style="color:white;clear:both">_._,_._,_</div> <hr>   Groups.io Links:<p>   You receive all messages sent to this group.    <p> <a target="_blank" href="https://groups.io/g/linux-oxnas/message/111">View/Reply Online (#111)</a> |   <a target="_blank" href="mailto:linux-oxnas@groups.io?subject=Re:%20Re%3A%20%5Blinux-oxnas%5D%20Client%20information">Reply To Group</a> | <a target="_blank" href="mailto:?subject=Private:%20Re:%20Re%3A%20%5Blinux-oxnas%5D%20Client%20information">Reply To Sender</a>   |  <a target="_blank" href="https://groups.io/mt/84766654/1808289">Mute This Topic</a>  | <a href="https://groups.io/g/linux-oxnas/post">New Topic</a><br>    <a href="https://groups.io/g/linux-oxnas/editsub/1808289">Your Subscription</a> | <a href="mailto:linux-oxnas+owner@groups.io">Contact Group Owner</a> |  <a href="https://groups.io/g/linux-oxnas/unsub">Unsubscribe</a>  [lists+linux-oxnas@lfdr.de]<br> <div width="1" style="color:white;clear:both">_._,_._,_</div> 
 
 
---=_610ad82c-2fb2-4882-9530-d521b7d26296--
+--b1_813c84d37423a6b8fb0fed88f687dd05--
