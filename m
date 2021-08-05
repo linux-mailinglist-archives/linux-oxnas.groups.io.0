@@ -1,26 +1,66 @@
-Return-Path: <bounce+16102+114+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+116+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 432A43E4566
-	for <lists+linux-oxnas@lfdr.de>; Mon,  9 Aug 2021 14:09:00 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id 0DrPYY1809624xb56WfQESlZ; Mon, 09 Aug 2021 05:08:58 -0700
-X-Received: from pre5.presidentsummit2021.info (pre5.presidentsummit2021.info [46.173.211.125])
- by mx.groups.io with SMTP id smtpd.web11.7736.1628165316392678510
+	by mail.lfdr.de (Postfix) with ESMTPS id 013E73E4568
+	for <lists+linux-oxnas@lfdr.de>; Mon,  9 Aug 2021 14:09:01 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id zwHRYY1809624xQCwvBoTiqx; Mon, 09 Aug 2021 05:09:00 -0700
+X-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
+ by mx.groups.io with SMTP id smtpd.web10.13574.1628190228841040204
  for <linux-oxnas@groups.io>;
- Thu, 05 Aug 2021 05:08:36 -0700
-X-Received: from presidentsummit2021.info (127.0.0.1) by pre2.presidentsummit2021.info id h1fac9i19tk3 for <linux-oxnas@groups.io>; Thu, 5 Aug 2021 15:08:34 +0300 (envelope-from <ol.millerbusiness21-linux+2Doxnas=groups.io@gmail.com>)
-To: linux-oxnas@groups.io
-Subject: Re: [linux-oxnas] Client information
-Message-ID: <b50e4882b82656fb6f5ab65923dd6845@presidentsummit2021.info>
-Date: Thu, 05 Aug 2021 11:31:17 +0000
-From: "Olivia Miller" <olivia.millerbusiness21@gmail.com>
-Reply-To: linux-oxnas@groups.io,olivia.millerbusiness21@gmail.com
+ Thu, 05 Aug 2021 12:03:49 -0700
+X-Received: from compute1.internal (compute1.nyi.internal [10.202.2.41])
+	by mailnew.nyi.internal (Postfix) with ESMTP id D3BAC5810B2;
+	Thu,  5 Aug 2021 15:03:46 -0400 (EDT)
+X-Received: from mailfrontend1 ([10.202.2.162])
+  by compute1.internal (MEProxy); Thu, 05 Aug 2021 15:03:46 -0400
+X-ME-Sender: <xms:EDYMYY-DL8P2bcvnLICbJUDwJSM9knPLJLgObnvHJpPeONvY18Y8zA>
+    <xme:EDYMYQuaN103Gqpz6IVwl1J1TfPrOWCIdVik9xAJA4Ej6bJdqSxpwSdpWtrORcNJP
+    zY1qpKdp_dodr_qwg>
+X-ME-Received: <xmr:EDYMYeDQlih2rLrqdgd6jlVePFzv5Z5MhViPFAcjOwbSFYpGFZTVca5ZEJTqPcCHSvsAykOj>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvtddrieelgdduvdelucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhephffvufffkffojghfrhgggfestdhqredtredttdenucfhrhhomhepkghiucgj
+    rghnuceoiihirdihrghnsehsvghnthdrtghomheqnecuggftrfgrthhtvghrnhepieejue
+    dvueduuefhgefhheeiuedvtedvuefgieegveetueeiueehtdegudehfeelnecuvehluhhs
+    thgvrhfuihiivgepudenucfrrghrrghmpehmrghilhhfrhhomhepiihirdihrghnsehsvg
+    hnthdrtghomh
+X-ME-Proxy: <xmx:EDYMYYebQ9uZTltrKTkpcJXLtFJiugbJgfdenr91RlXIpn-tUs0VXA>
+    <xmx:EDYMYdNGPMj1jZn3czxOZ1YHev0_hyrR_EzZOrQpHCpjsp3MQtYpDg>
+    <xmx:EDYMYSlWti7zMr_aZl-0ZjSHN1IURtnEK9-wZbzw1PspP32v-Um2OQ>
+    <xmx:EjYMYVbHX95gn2qpP7YVlS5-XylZg9XCV-qdmTswerMFWoEkCpgRVQ>
+X-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Thu,
+ 5 Aug 2021 15:03:43 -0400 (EDT)
+From: Zi Yan <zi.yan@sent.com>
+To: David Hildenbrand <david@redhat.com>,
+	linux-mm@kvack.org
+Cc: Matthew Wilcox <willy@infradead.org>,	Vlastimil Babka <vbabka@suse.cz>,
+	"Kirill A . Shutemov" <kirill.shutemov@linux.intel.com>,
+	Mike Kravetz <mike.kravetz@oracle.com>,	Michal Hocko <mhocko@kernel.org>,
+	John Hubbard <jhubbard@nvidia.com>,	linux-kernel@vger.kernel.org,
+	Zi Yan <ziy@nvidia.com>,	Vineet Gupta <vgupta@synopsys.com>,
+	Shawn Guo <shawnguo@kernel.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,	Guo Ren <guoren@kernel.org>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Ley Foon Tan <ley.foon.tan@intel.com>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Yoshinori Sato <ysato@users.sourceforge.jp>,
+	"David S. Miller" <davem@davemloft.net>,	Chris Zankel <chris@zankel.net>,
+	linux-snps-arc@lists.infradead.org,	linux-arm-kernel@lists.infradead.org,
+	linux-oxnas@groups.io,	linux-csky@vger.kernel.org,
+	linux-ia64@vger.kernel.org,	linux-m68k@lists.linux-m68k.org,
+	linux-mips@vger.kernel.org,	linuxppc-dev@lists.ozlabs.org,
+	linux-sh@vger.kernel.org,	sparclinux@vger.kernel.org,
+	linux-xtensa@linux-xtensa.org
+Subject: [linux-oxnas] [RFC PATCH 02/15] arch: mm: rename FORCE_MAX_ZONEORDER to ARCH_FORCE_MAX_ORDER
+Date: Thu,  5 Aug 2021 15:02:40 -0400
+Message-Id: <20210805190253.2795604-3-zi.yan@sent.com>
+In-Reply-To: <20210805190253.2795604-1-zi.yan@sent.com>
+References: <20210805190253.2795604-1-zi.yan@sent.com>
+Reply-To: linux-oxnas@groups.io,zi.yan@sent.com
 MIME-Version: 1.0
-X-Mailer-LID: 1
-X-Mailer-RecptId: 23461
-X-Mailer-SID: 6
-X-Mailer-Sent-By: 1
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -29,169 +69,371 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-X-Gm-Message-State: OC3QmNLKeK94FcmZskFCEYomx1808289AA=
-Content-Type: multipart/alternative; charset="UTF-8"; boundary="b1_b84fff5c78fa8e346ab40f6f6624fcab"
-Content-Transfer-Encoding: 8bit
+X-Gm-Message-State: W4MW55MLqsktVeCfHvStzeAIx1808289AA=
+Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1628510938;
- bh=rOuQd9tz3SmaJb9rZi2CsrJWoWAvgS/U9q5xIAwrEj0=;
- h=Content-Type:Date:From:Reply-To:Subject:To;
- b=BNbk/LvEsxTz80GV5AqjEUa9U1v4fzWD0Ydz46SYRoSAs2Nycsg7duLdTWvzrxmhluK
- vmPx9ZEKlHv1ojYNxIx6/hBpLLFbN0SKZebbbPUMU4tNg/c5jhkKS9KW4t0PZ6S4FBCk3
- mDezieGbd7bi3SIahtVpSkhEw6/N1gLry8A=
+ q=dns/txt; s=20140610; t=1628510940;
+ bh=UQ0czDGE1ZDWDYIPhnNQR3ki91LYtwC+Es/2IdcJz+U=;
+ h=Cc:Date:From:Reply-To:Subject:To;
+ b=jDjBNZsGhVWUptMmqQVbvm0AJywMR1x4hPdSu1jkQ6QRyzbb+E7trbwNrPBqc3mdfwc
+ VSra0QIhM2zTELyiYs1lEiOOvEYuDLTvwU17iFuAVAgtydzNJmjLbOGoKHgILvLSBsBYb
+ 27X0OCYmFo9Kt+2C03yG0U8/i/Md2iNM8TA=
 
---b1_b84fff5c78fa8e346ab40f6f6624fcab
-Content-Type: text/plain; format=flowed; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
+From: Zi Yan <ziy@nvidia.com>
 
-Your email client cannot read this email.
-To view it online, please go here:
-https://presidentsummit2021.info/emm/display.php?M=23461&C=e392d33736a860ca684b7c0bd78e5d38&S=6&L=1&N=1
+This Kconfig option is used by individual arch to set its desired
+MAX_ORDER. Rename it to reflect its actual use.
 
+Signed-off-by: Zi Yan <ziy@nvidia.com>
+Cc: Vineet Gupta <vgupta@synopsys.com>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: Catalin Marinas <catalin.marinas@arm.com>
+Cc: Guo Ren <guoren@kernel.org>
+Cc: Geert Uytterhoeven <geert@linux-m68k.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+Cc: Ley Foon Tan <ley.foon.tan@intel.com>
+Cc: Michael Ellerman <mpe@ellerman.id.au>
+Cc: Yoshinori Sato <ysato@users.sourceforge.jp>
+Cc: "David S. Miller" <davem@davemloft.net>
+Cc: Chris Zankel <chris@zankel.net>
+Cc: linux-snps-arc@lists.infradead.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-oxnas@groups.io
+Cc: linux-csky@vger.kernel.org
+Cc: linux-ia64@vger.kernel.org
+Cc: linux-m68k@lists.linux-m68k.org
+Cc: linux-mips@vger.kernel.org
+Cc: linuxppc-dev@lists.ozlabs.org
+Cc: linux-sh@vger.kernel.org
+Cc: sparclinux@vger.kernel.org
+Cc: linux-xtensa@linux-xtensa.org
+Cc: linux-mm@kvack.org
+Cc: linux-kernel@vger.kernel.org
+---
+ arch/arc/Kconfig                             | 2 +-
+ arch/arm/Kconfig                             | 2 +-
+ arch/arm/configs/imx_v6_v7_defconfig         | 2 +-
+ arch/arm/configs/milbeaut_m10v_defconfig     | 2 +-
+ arch/arm/configs/oxnas_v6_defconfig          | 2 +-
+ arch/arm/configs/sama7_defconfig             | 2 +-
+ arch/arm64/Kconfig                           | 2 +-
+ arch/csky/Kconfig                            | 2 +-
+ arch/ia64/Kconfig                            | 2 +-
+ arch/ia64/include/asm/sparsemem.h            | 6 +++---
+ arch/m68k/Kconfig.cpu                        | 2 +-
+ arch/mips/Kconfig                            | 2 +-
+ arch/nios2/Kconfig                           | 2 +-
+ arch/powerpc/Kconfig                         | 2 +-
+ arch/powerpc/configs/85xx/ge_imp3a_defconfig | 2 +-
+ arch/powerpc/configs/fsl-emb-nonhw.config    | 2 +-
+ arch/sh/configs/ecovec24_defconfig           | 2 +-
+ arch/sh/mm/Kconfig                           | 2 +-
+ arch/sparc/Kconfig                           | 2 +-
+ arch/xtensa/Kconfig                          | 2 +-
+ include/linux/mmzone.h                       | 4 ++--
+ 21 files changed, 24 insertions(+), 24 deletions(-)
 
-To stop receiving these
-emails:https://presidentsummit2021.info/emm/unsubscribe.php?M=23461&C=e392d33736a860ca684b7c0bd78e5d38&L=1&N=6
+diff --git a/arch/arc/Kconfig b/arch/arc/Kconfig
+index b5bf68e74732..923ea4c31e59 100644
+--- a/arch/arc/Kconfig
++++ b/arch/arc/Kconfig
+@@ -583,7 +583,7 @@ config ARC_BUILTIN_DTB_NAME
+=20
+ endmenu	 # "ARC Architecture Configuration"
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	default "12" if ARC_HUGEPAGE_16M
+ 	default "11"
+diff --git a/arch/arm/Kconfig b/arch/arm/Kconfig
+index 2fb7012c3246..286854318fe5 100644
+--- a/arch/arm/Kconfig
++++ b/arch/arm/Kconfig
+@@ -1523,7 +1523,7 @@ config ARM_MODULE_PLTS
+ 	  Disabling this is usually safe for small single-platform
+ 	  configurations. If unsure, say y.
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	default "12" if SOC_AM33XX
+ 	default "9" if SA1111
+diff --git a/arch/arm/configs/imx_v6_v7_defconfig b/arch/arm/configs/imx_v6=
+_v7_defconfig
+index 079fcd8d1d11..802310d3ebf5 100644
+--- a/arch/arm/configs/imx_v6_v7_defconfig
++++ b/arch/arm/configs/imx_v6_v7_defconfig
+@@ -34,7 +34,7 @@ CONFIG_PCI_IMX6=3Dy
+ CONFIG_SMP=3Dy
+ CONFIG_ARM_PSCI=3Dy
+ CONFIG_HIGHMEM=3Dy
+-CONFIG_FORCE_MAX_ZONEORDER=3D14
++CONFIG_ARCH_FORCE_MAX_ORDER=3D14
+ CONFIG_CMDLINE=3D"noinitrd console=3Dttymxc0,115200"
+ CONFIG_KEXEC=3Dy
+ CONFIG_CPU_FREQ=3Dy
+diff --git a/arch/arm/configs/milbeaut_m10v_defconfig b/arch/arm/configs/mi=
+lbeaut_m10v_defconfig
+index 7c07f9893a0f..06967243f74d 100644
+--- a/arch/arm/configs/milbeaut_m10v_defconfig
++++ b/arch/arm/configs/milbeaut_m10v_defconfig
+@@ -26,7 +26,7 @@ CONFIG_THUMB2_KERNEL=3Dy
+ # CONFIG_THUMB2_AVOID_R_ARM_THM_JUMP11 is not set
+ # CONFIG_ARM_PATCH_IDIV is not set
+ CONFIG_HIGHMEM=3Dy
+-CONFIG_FORCE_MAX_ZONEORDER=3D12
++CONFIG_ARCH_FORCE_MAX_ORDER=3D12
+ CONFIG_SECCOMP=3Dy
+ CONFIG_KEXEC=3Dy
+ CONFIG_EFI=3Dy
+diff --git a/arch/arm/configs/oxnas_v6_defconfig b/arch/arm/configs/oxnas_v=
+6_defconfig
+index cae0db6b4eaf..df8462272446 100644
+--- a/arch/arm/configs/oxnas_v6_defconfig
++++ b/arch/arm/configs/oxnas_v6_defconfig
+@@ -17,7 +17,7 @@ CONFIG_MACH_OX820=3Dy
+ CONFIG_SMP=3Dy
+ CONFIG_NR_CPUS=3D16
+ CONFIG_CMA=3Dy
+-CONFIG_FORCE_MAX_ZONEORDER=3D12
++CONFIG_ARCH_FORCE_MAX_ORDER=3D12
+ CONFIG_SECCOMP=3Dy
+ CONFIG_ARM_APPENDED_DTB=3Dy
+ CONFIG_ARM_ATAG_DTB_COMPAT=3Dy
+diff --git a/arch/arm/configs/sama7_defconfig b/arch/arm/configs/sama7_defc=
+onfig
+index 938aae4bd80b..f8683b87cb27 100644
+--- a/arch/arm/configs/sama7_defconfig
++++ b/arch/arm/configs/sama7_defconfig
+@@ -22,7 +22,7 @@ CONFIG_ATMEL_CLOCKSOURCE_TCB=3Dy
+ # CONFIG_CACHE_L2X0 is not set
+ # CONFIG_ARM_PATCH_IDIV is not set
+ # CONFIG_CPU_SW_DOMAIN_PAN is not set
+-CONFIG_FORCE_MAX_ZONEORDER=3D15
++CONFIG_ARCH_FORCE_MAX_ORDER=3D15
+ CONFIG_UACCESS_WITH_MEMCPY=3Dy
+ # CONFIG_ATAGS is not set
+ CONFIG_CMDLINE=3D"console=3DttyS0,115200 earlyprintk ignore_loglevel"
+diff --git a/arch/arm64/Kconfig b/arch/arm64/Kconfig
+index b5b13a932561..972d81f6bb2c 100644
+--- a/arch/arm64/Kconfig
++++ b/arch/arm64/Kconfig
+@@ -1152,7 +1152,7 @@ config XEN
+ 	help
+ 	  Say Y if you want to run Linux in a Virtual Machine on Xen on ARM64.
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int
+ 	default "14" if ARM64_64K_PAGES
+ 	default "12" if ARM64_16K_PAGES
+diff --git a/arch/csky/Kconfig b/arch/csky/Kconfig
+index 2716f6395ba7..0fd2333226b7 100644
+--- a/arch/csky/Kconfig
++++ b/arch/csky/Kconfig
+@@ -307,7 +307,7 @@ config HIGHMEM
+ 	select KMAP_LOCAL
+ 	default y
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	default "11"
+=20
+diff --git a/arch/ia64/Kconfig b/arch/ia64/Kconfig
+index 4993c7ac7ff6..d1bd010ee7a5 100644
+--- a/arch/ia64/Kconfig
++++ b/arch/ia64/Kconfig
+@@ -200,7 +200,7 @@ config IA64_CYCLONE
+ 	  Say Y here to enable support for IBM EXA Cyclone time source.
+ 	  If you're unsure, answer N.
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "MAX_ORDER (11 - 17)"  if !HUGETLB_PAGE
+ 	range 11 17  if !HUGETLB_PAGE
+ 	default "17" if HUGETLB_PAGE
+diff --git a/arch/ia64/include/asm/sparsemem.h b/arch/ia64/include/asm/spar=
+semem.h
+index 42ed5248fae9..84e8ce387b69 100644
+--- a/arch/ia64/include/asm/sparsemem.h
++++ b/arch/ia64/include/asm/sparsemem.h
+@@ -11,10 +11,10 @@
+=20
+ #define SECTION_SIZE_BITS	(30)
+ #define MAX_PHYSMEM_BITS	(50)
+-#ifdef CONFIG_FORCE_MAX_ZONEORDER
+-#if ((CONFIG_FORCE_MAX_ZONEORDER - 1 + PAGE_SHIFT) > SECTION_SIZE_BITS)
++#ifdef CONFIG_ARCH_FORCE_MAX_ORDER
++#if ((CONFIG_ARCH_FORCE_MAX_ORDER - 1 + PAGE_SHIFT) > SECTION_SIZE_BITS)
+ #undef SECTION_SIZE_BITS
+-#define SECTION_SIZE_BITS (CONFIG_FORCE_MAX_ZONEORDER - 1 + PAGE_SHIFT)
++#define SECTION_SIZE_BITS (CONFIG_ARCH_FORCE_MAX_ORDER - 1 + PAGE_SHIFT)
+ #endif
+ #endif
+=20
+diff --git a/arch/m68k/Kconfig.cpu b/arch/m68k/Kconfig.cpu
+index 29e946394fdb..c39157f3dd87 100644
+--- a/arch/m68k/Kconfig.cpu
++++ b/arch/m68k/Kconfig.cpu
+@@ -408,7 +408,7 @@ config SINGLE_MEMORY_CHUNK
+ 	  order" to save memory that could be wasted for unused memory map.
+ 	  Say N if not sure.
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order" if ADVANCED
+ 	depends on !SINGLE_MEMORY_CHUNK
+ 	default "11"
+diff --git a/arch/mips/Kconfig b/arch/mips/Kconfig
+index 6dfb27d531dd..0998f671ed7e 100644
+--- a/arch/mips/Kconfig
++++ b/arch/mips/Kconfig
+@@ -2284,7 +2284,7 @@ config PAGE_SIZE_64KB
+=20
+ endchoice
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	range 14 64 if MIPS_HUGE_TLB_SUPPORT && PAGE_SIZE_64KB
+ 	default "14" if MIPS_HUGE_TLB_SUPPORT && PAGE_SIZE_64KB
+diff --git a/arch/nios2/Kconfig b/arch/nios2/Kconfig
+index c24955c81c92..e5c300198e1f 100644
+--- a/arch/nios2/Kconfig
++++ b/arch/nios2/Kconfig
+@@ -50,7 +50,7 @@ menu "Kernel features"
+=20
+ source "kernel/Kconfig.hz"
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	range 9 20
+ 	default "11"
+diff --git a/arch/powerpc/Kconfig b/arch/powerpc/Kconfig
+index 2e213ec6ec05..5edb48b363c4 100644
+--- a/arch/powerpc/Kconfig
++++ b/arch/powerpc/Kconfig
+@@ -810,7 +810,7 @@ config DATA_SHIFT
+ 	  in that case. If PIN_TLB is selected, it must be aligned to 8M as
+ 	  8M pages will be pinned.
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	range 8 9 if PPC64 && PPC_64K_PAGES
+ 	default "9" if PPC64 && PPC_64K_PAGES
+diff --git a/arch/powerpc/configs/85xx/ge_imp3a_defconfig b/arch/powerpc/co=
+nfigs/85xx/ge_imp3a_defconfig
+index f29c166998af..e7672c186325 100644
+--- a/arch/powerpc/configs/85xx/ge_imp3a_defconfig
++++ b/arch/powerpc/configs/85xx/ge_imp3a_defconfig
+@@ -30,7 +30,7 @@ CONFIG_PREEMPT=3Dy
+ # CONFIG_CORE_DUMP_DEFAULT_ELF_HEADERS is not set
+ CONFIG_BINFMT_MISC=3Dm
+ CONFIG_MATH_EMULATION=3Dy
+-CONFIG_FORCE_MAX_ZONEORDER=3D17
++CONFIG_ARCH_FORCE_MAX_ORDER=3D17
+ CONFIG_PCI=3Dy
+ CONFIG_PCIEPORTBUS=3Dy
+ CONFIG_PCI_MSI=3Dy
+diff --git a/arch/powerpc/configs/fsl-emb-nonhw.config b/arch/powerpc/confi=
+gs/fsl-emb-nonhw.config
+index df37efed0aec..521e7a530888 100644
+--- a/arch/powerpc/configs/fsl-emb-nonhw.config
++++ b/arch/powerpc/configs/fsl-emb-nonhw.config
+@@ -41,7 +41,7 @@ CONFIG_FIXED_PHY=3Dy
+ CONFIG_FONT_8x16=3Dy
+ CONFIG_FONT_8x8=3Dy
+ CONFIG_FONTS=3Dy
+-CONFIG_FORCE_MAX_ZONEORDER=3D13
++CONFIG_ARCH_FORCE_MAX_ORDER=3D13
+ CONFIG_FRAMEBUFFER_CONSOLE=3Dy
+ CONFIG_FRAME_WARN=3D1024
+ CONFIG_FTL=3Dy
+diff --git a/arch/sh/configs/ecovec24_defconfig b/arch/sh/configs/ecovec24_=
+defconfig
+index 03cb916819fa..4c09ca308d43 100644
+--- a/arch/sh/configs/ecovec24_defconfig
++++ b/arch/sh/configs/ecovec24_defconfig
+@@ -8,7 +8,7 @@ CONFIG_MODULES=3Dy
+ CONFIG_MODULE_UNLOAD=3Dy
+ # CONFIG_BLK_DEV_BSG is not set
+ CONFIG_CPU_SUBTYPE_SH7724=3Dy
+-CONFIG_FORCE_MAX_ZONEORDER=3D12
++CONFIG_ARCH_FORCE_MAX_ORDER=3D12
+ CONFIG_MEMORY_SIZE=3D0x10000000
+ CONFIG_FLATMEM_MANUAL=3Dy
+ CONFIG_SH_ECOVEC=3Dy
+diff --git a/arch/sh/mm/Kconfig b/arch/sh/mm/Kconfig
+index ba569cfb4368..411fdc0901f7 100644
+--- a/arch/sh/mm/Kconfig
++++ b/arch/sh/mm/Kconfig
+@@ -18,7 +18,7 @@ config PAGE_OFFSET
+ 	default "0x80000000" if MMU
+ 	default "0x00000000"
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	range 9 64 if PAGE_SIZE_16KB
+ 	default "9" if PAGE_SIZE_16KB
+diff --git a/arch/sparc/Kconfig b/arch/sparc/Kconfig
+index f0c0f955e169..2206c99612ed 100644
+--- a/arch/sparc/Kconfig
++++ b/arch/sparc/Kconfig
+@@ -273,7 +273,7 @@ config ARCH_SPARSEMEM_ENABLE
+ config ARCH_SPARSEMEM_DEFAULT
+ 	def_bool y if SPARC64
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	default "13"
+ 	help
+diff --git a/arch/xtensa/Kconfig b/arch/xtensa/Kconfig
+index b843902ad9fd..90784aa68cf8 100644
+--- a/arch/xtensa/Kconfig
++++ b/arch/xtensa/Kconfig
+@@ -709,7 +709,7 @@ config HIGHMEM
+=20
+ 	  If unsure, say Y.
+=20
+-config FORCE_MAX_ZONEORDER
++config ARCH_FORCE_MAX_ORDER
+ 	int "Maximum zone order"
+ 	default "11"
+ 	help
+diff --git a/include/linux/mmzone.h b/include/linux/mmzone.h
+index c1d914a72489..98e3297b9e09 100644
+--- a/include/linux/mmzone.h
++++ b/include/linux/mmzone.h
+@@ -24,10 +24,10 @@
+ #include <asm/page.h>
+=20
+ /* Free memory management - zoned buddy allocator.  */
+-#ifndef CONFIG_FORCE_MAX_ZONEORDER
++#ifndef CONFIG_ARCH_FORCE_MAX_ORDER
+ #define MAX_ORDER 11
+ #else
+-#define MAX_ORDER CONFIG_FORCE_MAX_ZONEORDER
++#define MAX_ORDER CONFIG_ARCH_FORCE_MAX_ORDER
+ #endif
+ #define MAX_ORDER_NR_PAGES (1 << (MAX_ORDER - 1))
+=20
+--=20
+2.30.2
+
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#114): https://groups.io/g/linux-oxnas/message/114
-Mute This Topic: https://groups.io/mt/84766654/1808289
+View/Reply Online (#116): https://groups.io/g/linux-oxnas/message/116
+Mute This Topic: https://groups.io/mt/84766662/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
 
 
-
---b1_b84fff5c78fa8e346ab40f6f6624fcab
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-</head>
-<body>
-<span><span><span><span lang="EN-US"><span><span>Are you interested to
-purchase 100,000 contact details at $1,000 in excel file with 95% accuracy
-guarantee?<br />Would you like to see a sample of the
-file?</span></span></span></span></span></span><span></span><ol>
-<li><span><span><span><span lang="EN-US"><span><span>CEOs, owners,
-Presidents and MDs email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Home owners, Apartment
-owners, Building owner email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>High net worth
-individuals/investors email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Architects and
-interior designers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span>Trader/investors email
-list</span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-GB"><span>Fortune 500 companies
-decision makers email list</span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Event and Meeting
-planners, organizers, and exhibitors email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Engineers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Purchasing and
-Procurement Managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Physicians, Doctors,
-Nurses, Dentists, Therapists email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>CIO, CTO, CISO,
-VP/Director/Manager of IT, IT Compliance, IT Risk, BI, Cloud, Database and
-IT Security managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>CFO, Controller,
-VP/Director/Manager of Finance, Accounts Payable, Accounts Receivable,
-Audit managers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>VP/Director/Manager of
-Customer Service and Customer Success managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Telecom managers, VOIP
-managers, Cloud architect, Cloud managers, Storage managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Pharmacist and
-pharmacy owners email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Oil, Gas and utility
-industry decision makers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>New &amp; Used Car
-Dealers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Marketing, social
-media, demand generation, Lead generation decision makers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Manufacturing Industry
-decision makers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Logistics, shipping,
-and supply chain managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>ISV/VARs/Resellers
-email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Individual insuranc
-agents email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>HR, Training, Learning
-&amp; Development, Employee Benefits, Talent Acquisition, Recruiting
-decision makers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Hospitals, clinics,
-private practices, Pharmaceutical and biotechnology company's top decision
-makers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Health, environment
-&amp; Safety managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Government decision
-makers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>General and corporate
-counsels email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Fleet managers,
-Trucking company owners email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Financial
-planner/advisors email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Facilities, office and
-maintenance managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Education industry
-executives email list - Principals, Dean, Admins and teachers from Schools,
-Colleges and Universities</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>E-commerce or online
-retailers email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Data scientist, Data
-Analytics and Database Administrators email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>CPA and Bookkeepers
-email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Compliance and Risk
-Management managers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Commercial property
-owners email list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Builders, property
-developers and construction industry decision makers email
-list</span></span></span></span></span></span></li>
-<li><span><span><span><span lang="EN-US"><span><span>Attorneys and Lawyers
-email list</span></span></span></span></span></span></li>
-</ol><span><span><span><span lang="EN-US"><span><span>Please let me know
-your thoughts.</span></span></span></span></span></span><br /><br
-/><span><span><span><b><span><span><span><span><span>Olivia
-Miller</span></span></span></span></span></b></span></span></span><br
-/><span><span><span><b><span><span><span><span><span>Email
-Database</span></span></span></span></span></b></span></span></span><br
-/><span><span><span lang="EN-US">+1-&nbsp;</span><span><span>(678)
-745-8385</span></span></span></span>
-<img
-src="https://presidentsummit2021.info/emm/open.php?M=23461&L=1&N=6&F=H&image=.jpg"
-height="1" width="10"></body>
-</html>
-
-
- <div width="1" style="color:white;clear:both">_._,_._,_</div> <hr>   Groups.io Links:<p>   You receive all messages sent to this group.    <p> <a target="_blank" href="https://groups.io/g/linux-oxnas/message/114">View/Reply Online (#114)</a> |   <a target="_blank" href="mailto:linux-oxnas@groups.io?subject=Re:%20Re%3A%20%5Blinux-oxnas%5D%20Client%20information">Reply To Group</a> | <a target="_blank" href="mailto:?subject=Private:%20Re:%20Re%3A%20%5Blinux-oxnas%5D%20Client%20information">Reply To Sender</a>   |  <a target="_blank" href="https://groups.io/mt/84766654/1808289">Mute This Topic</a>  | <a href="https://groups.io/g/linux-oxnas/post">New Topic</a><br>    <a href="https://groups.io/g/linux-oxnas/editsub/1808289">Your Subscription</a> | <a href="mailto:linux-oxnas+owner@groups.io">Contact Group Owner</a> |  <a href="https://groups.io/g/linux-oxnas/unsub">Unsubscribe</a>  [lists+linux-oxnas@lfdr.de]<br> <div width="1" style="color:white;clear:both">_._,_._,_</div> 
-
-
---b1_b84fff5c78fa8e346ab40f6f6624fcab--
