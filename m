@@ -1,28 +1,29 @@
-Return-Path: <bounce+16102+124+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+125+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 165194053D9
-	for <lists+linux-oxnas@lfdr.de>; Thu,  9 Sep 2021 15:23:01 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id GrMsYY1809624xQbfE3d46Y6; Thu, 09 Sep 2021 06:23:00 -0700
-X-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com [209.85.167.53])
- by mx.groups.io with SMTP id smtpd.web11.34260.1631011316149427197
+	by mail.lfdr.de (Postfix) with ESMTPS id 998D24053DA
+	for <lists+linux-oxnas@lfdr.de>; Thu,  9 Sep 2021 15:23:03 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id F92aYY1809624xR51yh7GF1m; Thu, 09 Sep 2021 06:23:02 -0700
+X-Received: from mail-yb1-f175.google.com (mail-yb1-f175.google.com [209.85.219.175])
+ by mx.groups.io with SMTP id smtpd.web12.18866.1631138511880638157
  for <linux-oxnas@groups.io>;
- Tue, 07 Sep 2021 03:41:56 -0700
-X-Received: by mail-lf1-f53.google.com with SMTP id e23so4517830lfj.9
-        for <linux-oxnas@groups.io>; Tue, 07 Sep 2021 03:41:55 -0700 (PDT)
-X-Gm-Message-State: LGBaRSpW2fMaBl41LNVX0GZbx1808289AA=
-X-Google-Smtp-Source: ABdhPJx5OzN424vh3oUBOd8az3yzOHpWuZvPJYGzzfbrnfcRI/DT6ljkNdyfvmPJ0H6drgHJs7FbTfrhZnQn3vKdz38=
-X-Received: by 2002:a19:ac42:: with SMTP id r2mr12064265lfc.167.1631011314103;
- Tue, 07 Sep 2021 03:41:54 -0700 (PDT)
+ Wed, 08 Sep 2021 15:01:52 -0700
+X-Received: by mail-yb1-f175.google.com with SMTP id c206so7217849ybb.12
+        for <linux-oxnas@groups.io>; Wed, 08 Sep 2021 15:01:51 -0700 (PDT)
+X-Gm-Message-State: DyNHAegsx3kiIKjVwkDwxm0zx1808289AA=
+X-Google-Smtp-Source: ABdhPJzcrGOFhcWqvJKmXAgREc3Jl+IJVplHAN9b5rURTUIIgccy4UFyMg6V6WbeOAMJPrDtQs11Lw3yJ0JnWwEIeB4=
+X-Received: by 2002:a25:b94:: with SMTP id 142mr565239ybl.508.1631138510833;
+ Wed, 08 Sep 2021 15:01:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210904000543.2019010-1-saravanak@google.com> <20210904000543.2019010-2-saravanak@google.com>
-In-Reply-To: <20210904000543.2019010-2-saravanak@google.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Tue, 7 Sep 2021 12:41:18 +0200
-Message-ID: <CAPDyKFrsKvHXMT-6CuFXKfqX+hZa3vGAu7hQz=9ZYBC7-dYS0w@mail.gmail.com>
-Subject: Re: [linux-oxnas] [PATCH v3 1/2] drivers: bus: simple-pm-bus: Add support for probing simple bus only devices
-To: Saravana Kannan <saravanak@google.com>
+References: <20210904000543.2019010-1-saravanak@google.com>
+ <20210904000543.2019010-3-saravanak@google.com> <CAPDyKFqO9PLygSnNWSPg9OhnfFfiSUXsEmj7juYjNyYSn2C6og@mail.gmail.com>
+In-Reply-To: <CAPDyKFqO9PLygSnNWSPg9OhnfFfiSUXsEmj7juYjNyYSn2C6og@mail.gmail.com>
+From: "Saravana Kannan via groups.io" <saravanak=google.com@groups.io>
+Date: Wed, 8 Sep 2021 15:01:14 -0700
+Message-ID: <CAGETcx-0-DN5U6JY0xTahAje0SkdhwAesdAwi2Lp19meLsfe8g@mail.gmail.com>
+Subject: Re: [linux-oxnas] [PATCH v3 2/2] drivers: bus: Delete CONFIG_SIMPLE_PM_BUS
+To: Ulf Hansson <ulf.hansson@linaro.org>
 Cc: Russell King <linux@armlinux.org.uk>, Neil Armstrong <narmstrong@baylibre.com>, 
 	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
 	Tony Lindgren <tony@atomide.com>, Catalin Marinas <catalin.marinas@arm.com>, 
@@ -40,114 +41,178 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,ulf.hansson@linaro.org
+Reply-To: linux-oxnas@groups.io,saravanak@google.com
 Content-Type: text/plain; charset="UTF-8"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1631193780;
- bh=225EDrcxN5NtMH1zCdx2sBPR1DuE3daYOK1JfaySwv8=;
+ q=dns/txt; s=20140610; t=1631193782;
+ bh=ExPqjrHXD5JMO8bGlio50bPeijHOHnLz5ItWWIcw6O4=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=UXZXuUQXEtFaa6WoaefZ9KD7sK4Vii0pGSMQtDWhnc8/kjjq9vWBImuJdqq6uSuq/vt
- eN0R7o9wMlMQ5+UbcQbmkCTGDncLs1uHpY82K3u5bDbj1VMQN4UFbI5L2NbOv1oKgZ0OL
- 6EmX8octGbooYCkDJsEbvqPi0GaBGKfVnY0=
+ b=wG1qr2zhXoMF87m7K2Ooro+jIcUFTmbEKCgTxXXRGDn9zzcMkOWPIwH2eQfbSzCSpU9
+ YAPSPeXYhLIC9LKv3sz8CO4lvyqIeyXumbkK5jntaiD75cS0wahcmYEsTydbW/HdLJZXl
+ ukXv+DGL+XCjGtJ97r8HKLRSBX2zYQYAYEE=
 
-On Sat, 4 Sept 2021 at 02:05, Saravana Kannan <saravanak@google.com> wrote:
+On Tue, Sep 7, 2021 at 3:29 AM Ulf Hansson <ulf.hansson@linaro.org> wrote:
 >
-> fw_devlink could end up creating device links for bus only devices.
-> However, bus only devices don't get probed and can block probe() or
-> sync_state() [1] call backs of other devices. To avoid this, probe these
-> devices using the simple-pm-bus driver.
+> On Sat, 4 Sept 2021 at 02:05, Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > The simple-pm-bus driver is mandatory for CONFIG_OF based platforms to
+> > work with fw_devlink. So, always compile it in for CONFIG_OF and delete
+> > the config since it's no longer necessary.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
 >
-> However, there are instances of devices that are not simple buses (they
-> get probed by their specific drivers) that also list the "simple-bus"
-> (or other bus only compatible strings) in their compatible property to
-> automatically populate their child devices. We still want these devices
-> to get probed by their specific drivers. So, we make sure this driver
-> only probes devices that are only buses.
+> Some comments, see below. Nevertheless, feel free to add:
 >
-> [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> Tested-by: Saravana Kannan <saravanak@google.com>
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
+Thanks.
 
-I will run some tests as soon as I can and let you know the results.
+>
+> Kind regards
+> Uffe
+>
+> > ---
+> >  arch/arm/configs/multi_v7_defconfig |  1 -
+> >  arch/arm/configs/oxnas_v6_defconfig |  1 -
+> >  arch/arm/configs/shmobile_defconfig |  1 -
+> >  arch/arm/mach-omap2/Kconfig         |  1 -
+> >  arch/arm64/configs/defconfig        |  1 -
+> >  drivers/bus/Kconfig                 | 12 ------------
+> >  drivers/bus/Makefile                |  2 +-
+> >  drivers/soc/canaan/Kconfig          |  1 -
+> >  8 files changed, 1 insertion(+), 19 deletions(-)
+>
+> Not sure what other people think (and it's not my call to make), but I
+> would suggest to split this up in four pieces (drivers/bus,
+> drivers/soc, arm, arm64)
+>
+> The important part is that the change in drivers/bus gets merged as
+> part of your series, to make sure we don't break anything.
 
-Kind regards
-Uffe
+I think it'll be better if it's one commit like this and we have Greg
+up the series. That way, there's no chance of broken trees anywhere.
 
-> ---
->  drivers/bus/simple-pm-bus.c | 32 +++++++++++++++++++++++++++++---
->  1 file changed, 29 insertions(+), 3 deletions(-)
+-Saravana
+
 >
-> diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
-> index 01a3d0cd08ed..3e086a9f34cb 100644
-> --- a/drivers/bus/simple-pm-bus.c
-> +++ b/drivers/bus/simple-pm-bus.c
-> @@ -13,11 +13,26 @@
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->
-> -
->  static int simple_pm_bus_probe(struct platform_device *pdev)
->  {
-> -       const struct of_dev_auxdata *lookup = dev_get_platdata(&pdev->dev);
-> -       struct device_node *np = pdev->dev.of_node;
-> +       const struct device *dev = &pdev->dev;
-> +       const struct of_dev_auxdata *lookup = dev_get_platdata(dev);
-> +       struct device_node *np = dev->of_node;
-> +       const struct of_device_id *match;
-> +
-> +       match = of_match_device(dev->driver->of_match_table, dev);
-> +
-> +       /*
-> +        * These are transparent bus devices (not simple-pm-bus matches) that
-> +        * have their child nodes populated automatically.  So, don't need to
-> +        * do anything more.
-> +        */
-> +       if (match && match->data) {
-> +               if (of_property_match_string(np, "compatible", match->compatible) == 0)
-> +                       return 0;
-> +               else
-> +                       return -ENODEV;
-> +       }
->
->         dev_dbg(&pdev->dev, "%s\n", __func__);
->
-> @@ -31,14 +46,25 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
->
->  static int simple_pm_bus_remove(struct platform_device *pdev)
->  {
-> +       const void *data = of_device_get_match_data(&pdev->dev);
-> +
-> +       if (data)
-> +               return 0;
-> +
->         dev_dbg(&pdev->dev, "%s\n", __func__);
->
->         pm_runtime_disable(&pdev->dev);
->         return 0;
->  }
->
-> +#define ONLY_BUS       ((void *) 1) /* Match if the device is only a bus. */
-> +
->  static const struct of_device_id simple_pm_bus_of_match[] = {
->         { .compatible = "simple-pm-bus", },
-> +       { .compatible = "simple-bus",   .data = ONLY_BUS },
-> +       { .compatible = "simple-mfd",   .data = ONLY_BUS },
-> +       { .compatible = "isa",          .data = ONLY_BUS },
-> +       { .compatible = "arm,amba-bus", .data = ONLY_BUS },
->         { /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, simple_pm_bus_of_match);
-> --
-> 2.33.0.153.gba50c8fa24-goog
->
+> >
+> > diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
+> > index d9abaae118dd..362720ae8d65 100644
+> > --- a/arch/arm/configs/multi_v7_defconfig
+> > +++ b/arch/arm/configs/multi_v7_defconfig
+> > @@ -196,7 +196,6 @@ CONFIG_PCI_EPF_TEST=m
+> >  CONFIG_DEVTMPFS=y
+> >  CONFIG_DEVTMPFS_MOUNT=y
+> >  CONFIG_OMAP_OCP2SCP=y
+> > -CONFIG_SIMPLE_PM_BUS=y
+> >  CONFIG_MTD=y
+> >  CONFIG_MTD_CMDLINE_PARTS=y
+> >  CONFIG_MTD_BLOCK=y
+> > diff --git a/arch/arm/configs/oxnas_v6_defconfig b/arch/arm/configs/oxnas_v6_defconfig
+> > index cae0db6b4eaf..de37f7e90999 100644
+> > --- a/arch/arm/configs/oxnas_v6_defconfig
+> > +++ b/arch/arm/configs/oxnas_v6_defconfig
+> > @@ -46,7 +46,6 @@ CONFIG_DEVTMPFS=y
+> >  CONFIG_DEVTMPFS_MOUNT=y
+> >  CONFIG_DMA_CMA=y
+> >  CONFIG_CMA_SIZE_MBYTES=64
+> > -CONFIG_SIMPLE_PM_BUS=y
+> >  CONFIG_MTD=y
+> >  CONFIG_MTD_CMDLINE_PARTS=y
+> >  CONFIG_MTD_BLOCK=y
+> > diff --git a/arch/arm/configs/shmobile_defconfig b/arch/arm/configs/shmobile_defconfig
+> > index d9a27e4e0914..18d2a960b2d2 100644
+> > --- a/arch/arm/configs/shmobile_defconfig
+> > +++ b/arch/arm/configs/shmobile_defconfig
+> > @@ -40,7 +40,6 @@ CONFIG_PCI_RCAR_GEN2=y
+> >  CONFIG_PCIE_RCAR_HOST=y
+> >  CONFIG_DEVTMPFS=y
+> >  CONFIG_DEVTMPFS_MOUNT=y
+> > -CONFIG_SIMPLE_PM_BUS=y
+> >  CONFIG_MTD=y
+> >  CONFIG_MTD_BLOCK=y
+> >  CONFIG_MTD_CFI=y
+> > diff --git a/arch/arm/mach-omap2/Kconfig b/arch/arm/mach-omap2/Kconfig
+> > index 7df8f5276ddf..02f2f3157f07 100644
+> > --- a/arch/arm/mach-omap2/Kconfig
+> > +++ b/arch/arm/mach-omap2/Kconfig
+> > @@ -112,7 +112,6 @@ config ARCH_OMAP2PLUS
+> >         select PM_GENERIC_DOMAINS
+> >         select PM_GENERIC_DOMAINS_OF
+> >         select RESET_CONTROLLER
+> > -       select SIMPLE_PM_BUS
+> >         select SOC_BUS
+> >         select TI_SYSC
+> >         select OMAP_IRQCHIP
+> > diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
+> > index f423d08b9a71..474b1f2e3f06 100644
+> > --- a/arch/arm64/configs/defconfig
+> > +++ b/arch/arm64/configs/defconfig
+> > @@ -245,7 +245,6 @@ CONFIG_DEVTMPFS_MOUNT=y
+> >  CONFIG_FW_LOADER_USER_HELPER=y
+> >  CONFIG_FW_LOADER_USER_HELPER_FALLBACK=y
+> >  CONFIG_HISILICON_LPC=y
+> > -CONFIG_SIMPLE_PM_BUS=y
+> >  CONFIG_FSL_MC_BUS=y
+> >  CONFIG_TEGRA_ACONNECT=m
+> >  CONFIG_GNSS=m
+> > diff --git a/drivers/bus/Kconfig b/drivers/bus/Kconfig
+> > index e7f7eee6ee9a..dc3801369488 100644
+> > --- a/drivers/bus/Kconfig
+> > +++ b/drivers/bus/Kconfig
+> > @@ -141,18 +141,6 @@ config QCOM_EBI2
+> >           Interface 2, which can be used to connect things like NAND Flash,
+> >           SRAM, ethernet adapters, FPGAs and LCD displays.
+> >
+> > -config SIMPLE_PM_BUS
+> > -       tristate "Simple Power-Managed Bus Driver"
+> > -       depends on OF && PM
+> > -       help
+> > -         Driver for transparent busses that don't need a real driver, but
+> > -         where the bus controller is part of a PM domain, or under the control
+> > -         of a functional clock, and thus relies on runtime PM for managing
+> > -         this PM domain and/or clock.
+> > -         An example of such a bus controller is the Renesas Bus State
+> > -         Controller (BSC, sometimes called "LBSC within Bus Bridge", or
+> > -         "External Bus Interface") as found on several Renesas ARM SoCs.
+> > -
+> >  config SUN50I_DE2_BUS
+> >         bool "Allwinner A64 DE2 Bus Driver"
+> >           default ARM64
+> > diff --git a/drivers/bus/Makefile b/drivers/bus/Makefile
+> > index 397e35392bff..86aacd36a56d 100644
+> > --- a/drivers/bus/Makefile
+> > +++ b/drivers/bus/Makefile
+> > @@ -26,7 +26,7 @@ obj-$(CONFIG_OMAP_OCP2SCP)    += omap-ocp2scp.o
+> >  obj-$(CONFIG_QCOM_EBI2)                += qcom-ebi2.o
+> >  obj-$(CONFIG_SUN50I_DE2_BUS)   += sun50i-de2.o
+> >  obj-$(CONFIG_SUNXI_RSB)                += sunxi-rsb.o
+> > -obj-$(CONFIG_SIMPLE_PM_BUS)    += simple-pm-bus.o
+> > +obj-$(CONFIG_OF)               += simple-pm-bus.o
+> >  obj-$(CONFIG_TEGRA_ACONNECT)   += tegra-aconnect.o
+> >  obj-$(CONFIG_TEGRA_GMI)                += tegra-gmi.o
+> >  obj-$(CONFIG_TI_PWMSS)         += ti-pwmss.o
+> > diff --git a/drivers/soc/canaan/Kconfig b/drivers/soc/canaan/Kconfig
+> > index 8179b69518b4..853096b7e84c 100644
+> > --- a/drivers/soc/canaan/Kconfig
+> > +++ b/drivers/soc/canaan/Kconfig
+> > @@ -5,7 +5,6 @@ config SOC_K210_SYSCTL
+> >         depends on RISCV && SOC_CANAAN && OF
+> >         default SOC_CANAAN
+> >          select PM
+> > -        select SIMPLE_PM_BUS
+> >          select SYSCON
+> >          select MFD_SYSCON
+> >         help
+> > --
+> > 2.33.0.153.gba50c8fa24-goog
+> >
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#124): https://groups.io/g/linux-oxnas/message/124
-Mute This Topic: https://groups.io/mt/85483780/1808289
+View/Reply Online (#125): https://groups.io/g/linux-oxnas/message/125
+Mute This Topic: https://groups.io/mt/85483781/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
