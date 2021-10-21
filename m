@@ -1,37 +1,38 @@
-Return-Path: <bounce+16102+130+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+131+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 48B6D4053DF
-	for <lists+linux-oxnas@lfdr.de>; Thu,  9 Sep 2021 15:23:07 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id h8z0YY1809624xs102CedOUz; Thu, 09 Sep 2021 06:23:05 -0700
-X-Received: from mail-lf1-f42.google.com (mail-lf1-f42.google.com [209.85.167.42])
- by mx.groups.io with SMTP id smtpd.web12.5608.1631185363038618940
+	by mail.lfdr.de (Postfix) with ESMTPS id 1032A443F01
+	for <lists+linux-oxnas@lfdr.de>; Wed,  3 Nov 2021 10:10:15 +0100 (CET)
+X-Received: by 127.0.0.2 with SMTP id 7LDZYY1809624xZBbzhvSdYC; Wed, 03 Nov 2021 02:10:14 -0700
+X-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+ by mx.groups.io with SMTP id smtpd.web12.7816.1634815301848361801
  for <linux-oxnas@groups.io>;
- Thu, 09 Sep 2021 04:02:43 -0700
-X-Received: by mail-lf1-f42.google.com with SMTP id n2so2984591lfk.0
-        for <linux-oxnas@groups.io>; Thu, 09 Sep 2021 04:02:42 -0700 (PDT)
-X-Gm-Message-State: nReAByqRK1ZaHNGEyowm65RGx1808289AA=
-X-Google-Smtp-Source: ABdhPJy3mWn7qeyq8n17edf1tHxklevbxaO65oTUlKfBimrKR4Ud4ggJ7NUbnrmXGkBcppaDG0lVyZ/HBNZcWkTSgsI=
-X-Received: by 2002:a05:6512:31c7:: with SMTP id j7mr1825685lfe.373.1631185361009;
- Thu, 09 Sep 2021 04:02:41 -0700 (PDT)
+ Thu, 21 Oct 2021 04:21:42 -0700
+X-Received: by mail-io1-f48.google.com with SMTP id o184so388174iof.6
+        for <linux-oxnas@groups.io>; Thu, 21 Oct 2021 04:21:41 -0700 (PDT)
+X-Gm-Message-State: w4j4eZFeqlryRGCESI63PKU9x1808289AA=
+X-Google-Smtp-Source: ABdhPJxMRo/M6HcJdEwh6eTZSJmNRK1zwILbTp96Xp6bcY/ASKoT49bvdtBnoUUI19JfFMMWqZN4m0P00TAN76G7v0w=
+X-Received: by 2002:a05:6638:3796:: with SMTP id w22mr3510784jal.25.1634815300995;
+ Thu, 21 Oct 2021 04:21:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20210904000543.2019010-1-saravanak@google.com> <20210904000543.2019010-3-saravanak@google.com>
-In-Reply-To: <20210904000543.2019010-3-saravanak@google.com>
-From: Ulf Hansson <ulf.hansson@linaro.org>
-Date: Thu, 9 Sep 2021 13:02:03 +0200
-Message-ID: <CAPDyKFo2rHww_UmbhjeyQ=SSYE0sQwSv0Nxy=iEaK55j7i9DXQ@mail.gmail.com>
-Subject: Re: [linux-oxnas] [PATCH v3 2/2] drivers: bus: Delete CONFIG_SIMPLE_PM_BUS
+References: <20210929000735.585237-1-saravanak@google.com> <20210929000735.585237-3-saravanak@google.com>
+In-Reply-To: <20210929000735.585237-3-saravanak@google.com>
+From: Amit Pundir <amit.pundir@linaro.org>
+Date: Thu, 21 Oct 2021 16:51:04 +0530
+Message-ID: <CAMi1Hd0HvPOT277mx8hNTU9NQH2ti7h5qc5+rxOkRWwbfrhyQQ@mail.gmail.com>
+Subject: Re: [linux-oxnas] [PATCH v4 2/2] drivers: bus: Delete CONFIG_SIMPLE_PM_BUS
 To: Saravana Kannan <saravanak@google.com>
 Cc: Russell King <linux@armlinux.org.uk>, Neil Armstrong <narmstrong@baylibre.com>, 
 	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
 	Tony Lindgren <tony@atomide.com>, Catalin Marinas <catalin.marinas@arm.com>, 
 	Will Deacon <will@kernel.org>, Damien Le Moal <damien.lemoal@wdc.com>, 
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
 	Rob Herring <robh+dt@kernel.org>, Android Kernel Team <kernel-team@android.com>, 
-	Linux ARM <linux-arm-kernel@lists.infradead.org>, 
-	Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, linux-oxnas@groups.io, 
-	Linux-Renesas <linux-renesas-soc@vger.kernel.org>, linux-omap <linux-omap@vger.kernel.org>, 
-	linux-riscv <linux-riscv@lists.infradead.org>
+	linux-arm-kernel@lists.infradead.org, lkml <linux-kernel@vger.kernel.org>, 
+	linux-oxnas@groups.io, linux-renesas-soc@vger.kernel.org, 
+	linux-omap@vger.kernel.org, linux-riscv@lists.infradead.org, 
+	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, John Stultz <john.stultz@linaro.org>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -40,29 +41,32 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,ulf.hansson@linaro.org
+Reply-To: linux-oxnas@groups.io,amit.pundir@linaro.org
 Content-Type: text/plain; charset="UTF-8"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1631193785;
- bh=OVg4k1WWjqA+saR2YWLE8SFttAL1qAGUAapJalj6YTk=;
+ q=dns/txt; s=20140610; t=1635930614;
+ bh=sR4yXAZzHLcxIdY4PzTzMOSXCMAUWxsB3vnKi3mL5ro=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=NJxvwJdVmzZgjgnIc9TcG/53+Ym6J61Xp/fDbDjHug7fzhe9j2hRZyhRw9j3hcx7KZo
- dG/Uw+siBWbTpeWS4SjgT6zwXe0X1QiPbX0kWv73o5ZN/en8ZViqhncQ9f3fKOlUE/PpZ
- bWXjFnpBqy1FH9sSEDzlcPghadr4c2O5qxA=
+ b=H0cFrY2EnqJAYMTT/iC6gYDl7p/6sSLv0Top9Qk0AliBklgMGVkrXCFrOF2QX4aNIb7
+ cL3j3TGQtp9rwp9aMMWrTu8wg42Q7rWFiHe6ErpO3Z6V63xXj5wGYAVJixFRY9AeruZuP
+ NMjhOQj911xbMsEekD44Rei+dPzU01wprJA=
 
-On Sat, 4 Sept 2021 at 02:05, Saravana Kannan <saravanak@google.com> wrote:
+Hi Saravana,
+
+This patch broke v5.15-rc6 on RB5 (sm8250 | qcom/qrb5165-rb5.dts).
+I can't boot past this point https://www.irccloud.com/pastebin/raw/Nv6ZwHmW.
+
+Regards,
+Amit Pundir
+
+On Wed, 29 Sept 2021 at 05:37, Saravana Kannan <saravanak@google.com> wrote:
 >
-> The simple-pm-bus driver is mandatory for CONFIG_OF based platforms to
-> work with fw_devlink. So, always compile it in for CONFIG_OF and delete
-> the config since it's no longer necessary.
+> The simple-pm-bus driver is mandatory for CONFIG_OF based platforms to work
+> with fw_devlink. So, always compile it in for CONFIG_OF and delete the
+> config since it's no longer necessary.
 >
 > Signed-off-by: Saravana Kannan <saravanak@google.com>
-
-Tested-by: Ulf Hansson <ulf.hansson@linaro.org>
-
-Kind regards
-Uffe
-
+> Tested-by: Ulf Hansson <ulf.hansson@linaro.org>
 > ---
 >  arch/arm/configs/multi_v7_defconfig |  1 -
 >  arch/arm/configs/oxnas_v6_defconfig |  1 -
@@ -183,14 +187,14 @@ Uffe
 >          select MFD_SYSCON
 >         help
 > --
-> 2.33.0.153.gba50c8fa24-goog
+> 2.33.0.685.g46640cef36-goog
 >
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#130): https://groups.io/g/linux-oxnas/message/130
-Mute This Topic: https://groups.io/mt/85483781/1808289
+View/Reply Online (#131): https://groups.io/g/linux-oxnas/message/131
+Mute This Topic: https://groups.io/mt/86786845/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
