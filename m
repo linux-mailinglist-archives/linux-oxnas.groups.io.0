@@ -1,41 +1,39 @@
-Return-Path: <bounce+16102+135+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+136+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6FEC0443F04
-	for <lists+linux-oxnas@lfdr.de>; Wed,  3 Nov 2021 10:10:19 +0100 (CET)
-X-Received: by 127.0.0.2 with SMTP id zDROYY1809624x2COJ9Trmwg; Wed, 03 Nov 2021 02:10:18 -0700
-X-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
- by mx.groups.io with SMTP id smtpd.web10.76.1635270628274557805
+	by mail.lfdr.de (Postfix) with ESMTPS id F30BC45D63F
+	for <lists+linux-oxnas@lfdr.de>; Thu, 25 Nov 2021 09:35:51 +0100 (CET)
+X-Received: by 127.0.0.2 with SMTP id j2IdYY1809624xxFMr7lmEth; Thu, 25 Nov 2021 00:35:50 -0800
+X-Received: from mail.kernel.org (mail.kernel.org [198.145.29.99])
+ by mx.groups.io with SMTP id smtpd.web12.10948.1636546585283479792
  for <linux-oxnas@groups.io>;
- Tue, 26 Oct 2021 10:50:28 -0700
-X-Received: by mail-io1-f41.google.com with SMTP id m184so408917iof.1
-        for <linux-oxnas@groups.io>; Tue, 26 Oct 2021 10:50:28 -0700 (PDT)
-X-Gm-Message-State: TGITQuIm3qmvoFdJstReRgY9x1808289AA=
-X-Google-Smtp-Source: ABdhPJxveY0oywA1uEFOsixzZAWNxGoGo9GT3NayQjT+kzpJD6taj+8m/BPE1pbuTZZr1AsC5LrElvmVs4XKlZpQs/8=
-X-Received: by 2002:a05:6638:d84:: with SMTP id l4mr16445923jaj.30.1635270627599;
- Tue, 26 Oct 2021 10:50:27 -0700 (PDT)
-MIME-Version: 1.0
-References: <20210929000735.585237-1-saravanak@google.com> <20210929000735.585237-3-saravanak@google.com>
- <CAMi1Hd0HvPOT277mx8hNTU9NQH2ti7h5qc5+rxOkRWwbfrhyQQ@mail.gmail.com>
- <CAGETcx_YZOd05Gg53ZR8mfVhFUzwQWo4MrrWF8JHF_DCwEtunw@mail.gmail.com>
- <CAMi1Hd3M--+V6jPTV=psYGpOqi3UeQBs_FHqOg=oUf1hH-EU4w@mail.gmail.com> <CAGETcx9U130Oq-umrvXME4JhEpO0Wadoki3kNxx=0-YvTR6PtQ@mail.gmail.com>
-In-Reply-To: <CAGETcx9U130Oq-umrvXME4JhEpO0Wadoki3kNxx=0-YvTR6PtQ@mail.gmail.com>
-From: Amit Pundir <amit.pundir@linaro.org>
-Date: Tue, 26 Oct 2021 23:19:50 +0530
-Message-ID: <CAMi1Hd1gR0nRqQ9CKopc=veQXjtaS-CUxz-j48KEs8pHC6Ni=w@mail.gmail.com>
-Subject: Re: [linux-oxnas] [PATCH v4 2/2] drivers: bus: Delete CONFIG_SIMPLE_PM_BUS
+ Wed, 10 Nov 2021 04:16:25 -0800
+X-Received: by mail.kernel.org (Postfix) with ESMTPSA id 0B97761247;
+	Wed, 10 Nov 2021 12:16:20 +0000 (UTC)
+Date: Wed, 10 Nov 2021 14:16:18 +0200
+From: Abel Vesa <abelvesa@kernel.org>
 To: Saravana Kannan <saravanak@google.com>
-Cc: Russell King <linux@armlinux.org.uk>, Neil Armstrong <narmstrong@baylibre.com>, 
-	Geert Uytterhoeven <geert+renesas@glider.be>, Magnus Damm <magnus.damm@gmail.com>, 
-	Tony Lindgren <tony@atomide.com>, Catalin Marinas <catalin.marinas@arm.com>, 
-	Will Deacon <will@kernel.org>, Damien Le Moal <damien.lemoal@wdc.com>, 
-	Greg Kroah-Hartman <gregkh@linuxfoundation.org>, Ulf Hansson <ulf.hansson@linaro.org>, 
-	Rob Herring <robh+dt@kernel.org>, Android Kernel Team <kernel-team@android.com>, 
-	linux-arm-kernel@lists.infradead.org, lkml <linux-kernel@vger.kernel.org>, 
-	linux-oxnas@groups.io, linux-renesas-soc@vger.kernel.org, 
-	linux-omap@vger.kernel.org, linux-riscv@lists.infradead.org, 
-	Dmitry Baryshkov <dmitry.baryshkov@linaro.org>, John Stultz <john.stultz@linaro.org>
+Cc: Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <narmstrong@baylibre.com>,
+	Geert Uytterhoeven <geert+renesas@glider.be>,
+	Magnus Damm <magnus.damm@gmail.com>,
+	Tony Lindgren <tony@atomide.com>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>,
+	Damien Le Moal <damien.lemoal@wdc.com>,
+	Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	Ulf Hansson <ulf.hansson@linaro.org>,
+	Rob Herring <robh+dt@kernel.org>, kernel-team@android.com,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	linux-oxnas@groups.io, linux-renesas-soc@vger.kernel.org,
+	linux-omap@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [linux-oxnas] [PATCH v4 1/2] drivers: bus: simple-pm-bus: Add support for probing simple bus only devices
+Message-ID: <YYu4EglV7SBZU2Iy@ryzen>
+References: <20210929000735.585237-1-saravanak@google.com>
+ <20210929000735.585237-2-saravanak@google.com>
+MIME-Version: 1.0
+In-Reply-To: <20210929000735.585237-2-saravanak@google.com>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -44,113 +42,129 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,amit.pundir@linaro.org
-Content-Type: text/plain; charset="UTF-8"
+Reply-To: linux-oxnas@groups.io,abelvesa@kernel.org
+X-Gm-Message-State: QWODzZt3Bh4ochbHFMSkFQPzx1808289AA=
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1635930618;
- bh=n5CfCvjg6IT3k2W90FRLX0hi13JlZw17nBmiO3e1BKw=;
+ q=dns/txt; s=20140610; t=1637829350;
+ bh=oAGXX8ZRvX9uh8UvAZt9yYaeRK11gbsdRuT/nz0YYW4=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=f7M5PVyDJZO4GjB6qt05r89zKFtZ2i8kzGZvIvtSr4fcrQVn/LZa/UnlelC7Vvoywza
- G4O0uJ2mFY+YyxNukuGKZPWeAZzKijqjcS4moUA/TyU029FBZqjI9hF0hFHZMDWqbwokS
- Ipv/Io8VWTd04tkf3QIkHPI5q+8kY98bulY=
+ b=myBTPcpfooyMyPU0dzhyX2vlqk8H1IgIrO9qLaySqXsM/et/E5MLm9eXqmkfnWgN+jS
+ xS6efBSb2OWvBKspFojQ+2ft6Q+hN8jA2R4tke/KSiFBCFYFkGmWmQZsJLTtQ0rokyPXi
+ vb/G2ZYjvPvJzkF0394xITtZSQfKKd2JHZo=
 
-On Tue, 26 Oct 2021 at 06:00, Saravana Kannan <saravanak@google.com> wrote:
->
-> On Fri, Oct 22, 2021 at 10:00 AM Amit Pundir <amit.pundir@linaro.org> wrote:
-> >
-> > On Fri, 22 Oct 2021 at 05:13, Saravana Kannan <saravanak@google.com> wrote:
-> > >
-> > > On Thu, Oct 21, 2021 at 4:21 AM Amit Pundir <amit.pundir@linaro.org> wrote:
-> > > >
-> > > > Hi Saravana,
-> > > >
-> > > > This patch broke v5.15-rc6 on RB5 (sm8250 | qcom/qrb5165-rb5.dts).
-> > > > I can't boot past this point https://www.irccloud.com/pastebin/raw/Nv6ZwHmW.
-> > >
-> > > Amit top posting? How did that happen? :)
-> > >
-> > > The fact you are seeing this issue is super strange though. The driver
-> > > literally does nothing other than allowing some sync_state() callbacks
-> > > to happen. I also grepped for the occurence of "simple-bus" in
-> > > arch/arm64/boot/dts/qcom/ and the only instance for 8250 is for the
-> > > soc node.
-> > >
-> > > The only thing I can think of is that without my patch some
-> > > sync_state() callbacks weren't getting called and maybe it was masking
-> > > some other issue.
-> > >
-> > > Can you try to boot with this log (see log patch below) and see if the
-> > > device hangs right after a sync_state() callback? Also, looking at the
-> > > different sync_state() implementations in upstream, I'm guessing one
-> > > of the devices isn't voting for interconnect bandwidth when it should
-> > > have.
-> > >
-> > > Another thing you could do is boot without the simple-bus changes and
-> > > then look for all instances of "state_synced" in /sys/devices and then
-> > > see if any of them has the value "0" after boot up is complete.
-> >
-> > Turned out RB5 is not even reaching up to
-> > device_links_flush_sync_list() and seem to be stuck somewhere in
-> > device_links_driver_bound(). So I added more print logs to narrow down
-> > to any specific lock state but those additional prints seem to have
-> > added enough delay to unblock that particular driver (Serial:
-> > 8250/16550 driver if I understood the logs correctly) and I eventually
-> > booted to UI.
->
-> Ugh... I think I know what's going on. It popped into my head over the weekend.
->
-> Couple of ways to confirm my theory:
-> 1. After it finishes booting in both cases, can you compare the output
-> of the command below? I'm expecting to see a significant drop in the
-> number of device links.
-> ls -l /sys/class/devlink | wc -l
->
-
-On a successful boot with debug prints:
-rb5:/ $ ls -l /sys/class/devlink | wc -l
-245
-
-Booting with this SIMPLE_PM_BUS patch reverted:
-rb5:/ $ ls -l /sys/class/devlink | wc -l
-248
-
-> 2. Can you try out this terrible hack patch (not final fix, no code
-> reviews please) on top of Tot to see if it fixes your issue without
-> having to add hacky logs?
->
-
-No luck booting with the following hack patch either.
-
-Regards,
-Amit Pundir
-
-
-> Thanks,
-> Saravana
->
+On 21-09-28 17:07:33, Saravana Kannan wrote:
+> fw_devlink could end up creating device links for bus only devices.
+> However, bus only devices don't get probed and can block probe() or
+> sync_state() [1] call backs of other devices. To avoid this, probe these
+> devices using the simple-pm-bus driver.
+> 
+> However, there are instances of devices that are not simple buses (they get
+> probed by their specific drivers) that also list the "simple-bus" (or other
+> bus only compatible strings) in their compatible property to automatically
+> populate their child devices. We still want these devices to get probed by
+> their specific drivers. So, we make sure this driver only probes devices
+> that are only buses.
+> 
+> [1] - https://lore.kernel.org/lkml/CAPDyKFo9Bxremkb1dDrr4OcXSpE0keVze94Cm=zrkOVxHHxBmQ@mail.gmail.com/
+> Fixes: c442a0d18744 ("driver core: Set fw_devlink to "permissive" behavior by default")
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> Tested-by: Saravana Kannan <saravanak@google.com>
+> Tested-by: Ulf Hansson <ulf.hansson@linaro.org>
+> ---
+>  drivers/bus/simple-pm-bus.c | 42 ++++++++++++++++++++++++++++++++++---
+>  1 file changed, 39 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/bus/simple-pm-bus.c b/drivers/bus/simple-pm-bus.c
+> index 01a3d0cd08ed..6b8d6257ed8a 100644
 > --- a/drivers/bus/simple-pm-bus.c
 > +++ b/drivers/bus/simple-pm-bus.c
-> @@ -38,10 +38,12 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
->          * a device that has a more specific driver.
->          */
->         if (match && match->data) {
-> -               if (of_property_match_string(np, "compatible",
-> match->compatible) == 0)
-> +               if (of_property_match_string(np, "compatible",
-> match->compatible) == 0) {
-> +                       of_platform_populate(np, NULL, lookup, &pdev->dev);
->                         return 0;
-> -               else
-> +               } else {
->                         return -ENODEV;
-> +               }
->         }
+> @@ -13,11 +13,36 @@
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+>  
+> -
+>  static int simple_pm_bus_probe(struct platform_device *pdev)
+>  {
+> -	const struct of_dev_auxdata *lookup = dev_get_platdata(&pdev->dev);
+> -	struct device_node *np = pdev->dev.of_node;
+> +	const struct device *dev = &pdev->dev;
+> +	const struct of_dev_auxdata *lookup = dev_get_platdata(dev);
+> +	struct device_node *np = dev->of_node;
+> +	const struct of_device_id *match;
+> +
+> +	/*
+> +	 * Allow user to use driver_override to bind this driver to a
+> +	 * transparent bus device which has a different compatible string
+> +	 * that's not listed in simple_pm_bus_of_match. We don't want to do any
+> +	 * of the simple-pm-bus tasks for these devices, so return early.
+> +	 */
+> +	if (pdev->driver_override)
+> +		return 0;
+> +
+> +	match = of_match_device(dev->driver->of_match_table, dev);
+> +	/*
+> +	 * These are transparent bus devices (not simple-pm-bus matches) that
+> +	 * have their child nodes populated automatically.  So, don't need to
+> +	 * do anything more. We only match with the device if this driver is
+> +	 * the most specific match because we don't want to incorrectly bind to
+> +	 * a device that has a more specific driver.
+> +	 */
+> +	if (match && match->data) {
+> +		if (of_property_match_string(np, "compatible", match->compatible) == 0)
+> +			return 0;
+> +		else
+> +			return -ENODEV;
+> +	}
+
+This change is breaking the expected behavior for the already existent
+simple-bus nodes. All the simple-bus compatibles should be replaced now
+to simple-pm-bus. In my case, on some i.MX8 platforms, without the
+devlink, the devices suspend sequence changes (and even breaks).
+
+To avoid breaking the already existent simple-bus nodes, maybe the logic
+should've been reversed: keep the simple-bus as is and add another
+compatible, IDK, something like simple-trasnparent-bus, or something.
+
+>  
+>  	dev_dbg(&pdev->dev, "%s\n", __func__);
+>  
+> @@ -31,14 +56,25 @@ static int simple_pm_bus_probe(struct platform_device *pdev)
+>  
+>  static int simple_pm_bus_remove(struct platform_device *pdev)
+>  {
+> +	const void *data = of_device_get_match_data(&pdev->dev);
+> +
+> +	if (pdev->driver_override || data)
+> +		return 0;
+> +
+>  	dev_dbg(&pdev->dev, "%s\n", __func__);
+>  
+>  	pm_runtime_disable(&pdev->dev);
+>  	return 0;
+>  }
+>  
+> +#define ONLY_BUS	((void *) 1) /* Match if the device is only a bus. */
+> +
+>  static const struct of_device_id simple_pm_bus_of_match[] = {
+>  	{ .compatible = "simple-pm-bus", },
+> +	{ .compatible = "simple-bus",	.data = ONLY_BUS },
+> +	{ .compatible = "simple-mfd",	.data = ONLY_BUS },
+> +	{ .compatible = "isa",		.data = ONLY_BUS },
+> +	{ .compatible = "arm,amba-bus",	.data = ONLY_BUS },
+>  	{ /* sentinel */ }
+>  };
+>  MODULE_DEVICE_TABLE(of, simple_pm_bus_of_match);
+> -- 
+> 2.33.0.685.g46640cef36-goog
+>
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#135): https://groups.io/g/linux-oxnas/message/135
-Mute This Topic: https://groups.io/mt/86786845/1808289
+View/Reply Online (#136): https://groups.io/g/linux-oxnas/message/136
+Mute This Topic: https://groups.io/mt/87298933/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
