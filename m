@@ -1,34 +1,37 @@
-Return-Path: <bounce+16102+143+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+144+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36E08483674
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C05D483675
 	for <lists+linux-oxnas@lfdr.de>; Mon,  3 Jan 2022 18:56:46 +0100 (CET)
-X-Received: by 127.0.0.2 with SMTP id tMIKYY1809624xp6qUNO7GZu; Mon, 03 Jan 2022 09:56:44 -0800
-X-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
- by mx.groups.io with SMTP id smtpd.web08.32108.1641232602271203450
+X-Received: by 127.0.0.2 with SMTP id xNDiYY1809624xNDtaYrlSph; Mon, 03 Jan 2022 09:56:44 -0800
+X-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+ by mx.groups.io with SMTP id smtpd.web09.32127.1641232603154937342
  for <linux-oxnas@groups.io>;
- Mon, 03 Jan 2022 09:56:42 -0800
-X-Received: by mail-wm1-f50.google.com with SMTP id k66-20020a1ca145000000b00345fa984108so260730wme.2
-        for <linux-oxnas@groups.io>; Mon, 03 Jan 2022 09:56:41 -0800 (PST)
-X-Gm-Message-State: khnzLJ2opwP6G7ZCSf1WPrqux1808289AA=
-X-Google-Smtp-Source: ABdhPJxLb2ZC1xXpCfFP6Tqr5DY5BlCu/MTHXlOBRaDiFcQM3Abd5EiKgwYAYFl7qmLi4DwRApdIRA==
-X-Received: by 2002:a05:600c:acf:: with SMTP id c15mr37063822wmr.7.1641232600541;
-        Mon, 03 Jan 2022 09:56:40 -0800 (PST)
+ Mon, 03 Jan 2022 09:56:43 -0800
+X-Received: by mail-wr1-f45.google.com with SMTP id o3so13131195wrh.10
+        for <linux-oxnas@groups.io>; Mon, 03 Jan 2022 09:56:42 -0800 (PST)
+X-Gm-Message-State: tUzVCb61iMyUFVa8WyxUWwtLx1808289AA=
+X-Google-Smtp-Source: ABdhPJw7NRuoQzYialN/ofxRojlC+rMlNFgTAaoktigERArvcxUcZfxMwsO4ZIqBe2qOY/2d56FPug==
+X-Received: by 2002:a05:6000:2a4:: with SMTP id l4mr40910111wry.460.1641232601515;
+        Mon, 03 Jan 2022 09:56:41 -0800 (PST)
 X-Received: from localhost.localdomain ([2001:861:44c0:66c0:7c9d:a967:38e2:5220])
-        by smtp.gmail.com with ESMTPSA id f13sm35763228wri.51.2022.01.03.09.56.39
+        by smtp.gmail.com with ESMTPSA id f13sm35763228wri.51.2022.01.03.09.56.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Mon, 03 Jan 2022 09:56:40 -0800 (PST)
 From: "Neil Armstrong" <narmstrong@baylibre.com>
-To: davem@davemloft.net
+To: davem@davemloft.net,
+	devicetree@vger.kernel.org
 Cc: Neil Armstrong <narmstrong@baylibre.com>,
 	netdev@vger.kernel.org,
 	linux-arm-kernel@lists.infradead.org,
 	linux-oxnas@groups.io,
 	linux-kernel@vger.kernel.org
-Subject: [linux-oxnas] [PATCH 0/3] ARM: ox810se: Add Ethernet support
-Date: Mon,  3 Jan 2022 18:56:35 +0100
-Message-Id: <20220103175638.89625-1-narmstrong@baylibre.com>
+Subject: [linux-oxnas] [PATCH net-next 1/3] dt-bindings: net: oxnas-dwmac: Add bindings for OX810SE
+Date: Mon,  3 Jan 2022 18:56:36 +0100
+Message-Id: <20220103175638.89625-2-narmstrong@baylibre.com>
+In-Reply-To: <20220103175638.89625-1-narmstrong@baylibre.com>
+References: <20220103175638.89625-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
@@ -42,26 +45,33 @@ Reply-To: linux-oxnas@groups.io,narmstrong@baylibre.com
 Content-Transfer-Encoding: 8bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
  q=dns/txt; s=20140610; t=1641232604;
- bh=58xQEyHs3FwbUe9A9cG9K8MO3MdvJmbLZrhvxS8HwSc=;
+ bh=FRznCGwYSXstmEXjQxmzLlxDGRnuFb0ZkTlElP1CB40=;
  h=Cc:Date:From:Reply-To:Subject:To;
- b=mXkwrihh8+SKeC56dDbH5At1JaBkBEzh7B/V/reUbdUzOHoWSYWsgJ4nyVDU9MXvSbW
- qK9k7zf4I0Tlqw0qNSWBif+ZJeIPudXOorlfQQlxHem9uVJ7IDLWODcQVmLJ2p8CKWb8j
- meUrKW78U2eOY50zoLtQCC4JRIxQ50toTmA=
+ b=Hg8cU4zR16uKzGYm593bnWm2wM2mroWd7/OKqr2dBPk/1tHSZseQqck4zyhh1xyQdan
+ jOYMAr/5pyV36Qhqe1SAdAVc9vtVPAsjZl7BBayBs/5SL1MbBgClWiz3nlau7CBMkxg2i
+ GGevullbJgAaU4EkardLfOEr9kIuQ9J1p9U=
 
-This adds support for the Synopsys DWMAC controller found in the
-OX820SE SoC, by using almost the same glue code as the OX820.
+Add SoC specific bindings for OX810SE support.
 
-Neil Armstrong (3):
-  dt-bindings: net: oxnas-dwmac: Add bindings for OX810SE
-  net: stmmac: dwmac-oxnas: Add support for OX810SE
-  ARM: dts: ox810se: Add Ethernet support
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ Documentation/devicetree/bindings/net/oxnas-dwmac.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
- .../devicetree/bindings/net/oxnas-dwmac.txt   |  3 +
- arch/arm/boot/dts/ox810se-wd-mbwe.dts         |  4 +
- arch/arm/boot/dts/ox810se.dtsi                | 18 ++++
- .../net/ethernet/stmicro/stmmac/dwmac-oxnas.c | 92 ++++++++++++++-----
- 4 files changed, 95 insertions(+), 22 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/net/oxnas-dwmac.txt b/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
+index d7117a22fd87..27db496f1ce8 100644
+--- a/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
++++ b/Documentation/devicetree/bindings/net/oxnas-dwmac.txt
+@@ -9,6 +9,9 @@ Required properties on all platforms:
+ - compatible:	For the OX820 SoC, it should be :
+ 		- "oxsemi,ox820-dwmac" to select glue
+ 		- "snps,dwmac-3.512" to select IP version.
++		For the OX810SE SoC, it should be :
++		- "oxsemi,ox810se-dwmac" to select glue
++		- "snps,dwmac-3.512" to select IP version.
+ 
+ - clocks: Should contain phandles to the following clocks
+ - clock-names:	Should contain the following:
 -- 
 2.25.1
 
@@ -69,8 +79,8 @@ Neil Armstrong (3):
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#143): https://groups.io/g/linux-oxnas/message/143
-Mute This Topic: https://groups.io/mt/88117936/1808289
+View/Reply Online (#144): https://groups.io/g/linux-oxnas/message/144
+Mute This Topic: https://groups.io/mt/88117937/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
