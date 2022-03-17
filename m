@@ -1,39 +1,40 @@
-Return-Path: <bounce+16102+165+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+166+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD7FC4CB84F
-	for <lists+linux-oxnas@lfdr.de>; Thu,  3 Mar 2022 09:07:18 +0100 (CET)
-X-Received: by 127.0.0.2 with SMTP id 4t4JYY1809624xebQxsu6RRV; Thu, 03 Mar 2022 00:07:17 -0800
-X-Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com [209.85.128.46])
- by mx.groups.io with SMTP id smtpd.web09.8719.1646294834252998922
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E924DCBD2
+	for <lists+linux-oxnas@lfdr.de>; Thu, 17 Mar 2022 17:55:34 +0100 (CET)
+X-Received: by 127.0.0.2 with SMTP id 58fZYY1809624xf0RSwGy5JB; Thu, 17 Mar 2022 09:55:33 -0700
+X-Received: from mail-wr1-f48.google.com (mail-wr1-f48.google.com [209.85.221.48])
+ by mx.groups.io with SMTP id smtpd.web08.94.1647536130944713444
  for <linux-oxnas@groups.io>;
- Thu, 03 Mar 2022 00:07:15 -0800
-X-Received: by mail-wm1-f46.google.com with SMTP id r187-20020a1c2bc4000000b003810e6b192aso2734468wmr.1
-        for <linux-oxnas@groups.io>; Thu, 03 Mar 2022 00:07:13 -0800 (PST)
-X-Gm-Message-State: ky2UpoDZ3LukKuzvuc1q0aZWx1808289AA=
-X-Google-Smtp-Source: ABdhPJxssSWDTS0arUsVI2AtPzFrsJyLEpnlrXh0+Wuj4W0lgc2VDglTI9bvy0zswsg7KY/31OI4Qw==
-X-Received: by 2002:a05:600c:3546:b0:381:7a9d:eee2 with SMTP id i6-20020a05600c354600b003817a9deee2mr2762176wmq.24.1646294832313;
-        Thu, 03 Mar 2022 00:07:12 -0800 (PST)
-X-Received: from ?IPV6:2001:861:44c0:66c0:37d4:6d61:9015:27a5? ([2001:861:44c0:66c0:37d4:6d61:9015:27a5])
-        by smtp.gmail.com with ESMTPSA id p12-20020a5d48cc000000b001e6114938a8sm1244035wrs.56.2022.03.03.00.07.11
+ Thu, 17 Mar 2022 09:55:31 -0700
+X-Received: by mail-wr1-f48.google.com with SMTP id p9so8159764wra.12
+        for <linux-oxnas@groups.io>; Thu, 17 Mar 2022 09:55:30 -0700 (PDT)
+X-Gm-Message-State: bOD9NTDAKbT8UGOH8FIgIWbJx1808289AA=
+X-Google-Smtp-Source: ABdhPJyYXDlB/d2tNDCbE6c7hp/FisGGzgGoDAWIvPNSuQV9sLYz7rl6/nmd1ugHlhB3s8zaSQ2/lQ==
+X-Received: by 2002:a5d:64e5:0:b0:1fb:5b9a:1a20 with SMTP id g5-20020a5d64e5000000b001fb5b9a1a20mr4810404wri.34.1647536129056;
+        Thu, 17 Mar 2022 09:55:29 -0700 (PDT)
+X-Received: from [192.168.1.10] (i16-les01-ntr-213-44-230-108.sfr.lns.abo.bbox.fr. [213.44.230.108])
+        by smtp.gmail.com with ESMTPSA id s15-20020a5d4ecf000000b00203de8012f5sm4319852wrv.16.2022.03.17.09.55.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 03 Mar 2022 00:07:11 -0800 (PST)
-Message-ID: <7d585748-7a41-13ca-60da-20eb4fe78374@baylibre.com>
-Date: Thu, 3 Mar 2022 09:07:11 +0100
+        Thu, 17 Mar 2022 09:55:28 -0700 (PDT)
+Message-ID: <d53764bd-8b49-37eb-c393-1317180979d1@baylibre.com>
+Date: Thu, 17 Mar 2022 17:55:27 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
  Thunderbird/91.5.0
-Subject: Re: [linux-oxnas] [PATCH] clk: Use of_device_get_match_data()
-To: cgel.zte@gmail.com, mturquette@baylibre.com
-Cc: sboyd@kernel.org, linux-clk@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io,
- linux-kernel@vger.kernel.org, Minghao Chi <chi.minghao@zte.com.cn>,
- Zeal Robot <zealci@zte.com.cn>
-References: <20220303014856.2059307-1-chi.minghao@zte.com.cn>
+Subject: Re: [linux-oxnas] [PATCH 02/18] ARM: dts: ox820: align interrupt controller node name with dtschema
+To: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>,
+ Thomas Gleixner <tglx@linutronix.de>, Marc Zyngier <maz@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, Krzysztof Kozlowski <krzk+dt@kernel.org>,
+ linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io
+References: <20220317115542.450032-1-krzysztof.kozlowski@canonical.com>
+ <20220317115705.450427-1-krzysztof.kozlowski@canonical.com>
 From: "Neil Armstrong" <narmstrong@baylibre.com>
 Organization: Baylibre
-In-Reply-To: <20220303014856.2059307-1-chi.minghao@zte.com.cn>
+In-Reply-To: <20220317115705.450427-1-krzysztof.kozlowski@canonical.com>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -47,55 +48,45 @@ Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1646294837;
- bh=bviJvjWp90I301RCsXdywMUNhVLpxk3S9cCehSpfnmY=;
- h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=L9MhLJBiu7vfGiasfKbfxeMufVcG5kd+VHoMpJ/Py/iJuVs3iOoW66a1zMh3b3QiWx7
- QYI/yUkSyF8meqYN2z1taUY9R40A3Vj3gJiKEbItK32SJRB4s6PHvL9TEPkDMSTCY6qTz
- Ryr4MPG+hBUvju4v1DIlnmvDo3OO1f5QV3o=
+ q=dns/txt; s=20140610; t=1647536133;
+ bh=d+iSWO6FxVtWxv0KvxsLNA9wg5PXqSTTwUjyjS61mFM=;
+ h=Content-Type:Date:From:Reply-To:Subject:To;
+ b=VR+ZfPkwWDTajtnvmzj6jy63CD5As1FTaxXFapQBW/Viz0zxHRTqDBjWxsLvzDHXngo
+ ez9KO8yW8srAqx8i60XFjwE+951u4/fjRyjGNbm0/sbY/c3xd7zoNscAoa1QF65hAHG+f
+ WOLdHjYpkzfHSECeMHoXLdaqyXy02rkeW2k=
 
-On 03/03/2022 02:48, cgel.zte@gmail.com wrote:
-> From: Minghao Chi (CGEL ZTE) <chi.minghao@zte.com.cn>
+On 17/03/2022 12:56, Krzysztof Kozlowski wrote:
+> Fixes dtbs_check warnings like:
 >=20
-> Use of_device_get_match_data() to simplify the code.
+>    gic@1000: $nodename:0: 'gic@1000' does not match '^interrupt-controlle=
+r(@[0-9a-f,]+)*$'
 >=20
-> Reported-by: Zeal Robot <zealci@zte.com.cn>
-> Signed-off-by: Minghao Chi (CGEL ZTE) <chi.minghao@zte.com.cn>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@canonical.com>
 > ---
->   drivers/clk/clk-oxnas.c | 6 +-----
->   1 file changed, 1 insertion(+), 5 deletions(-)
+>   arch/arm/boot/dts/ox820.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> diff --git a/drivers/clk/clk-oxnas.c b/drivers/clk/clk-oxnas.c
-> index 78d5ea669fea..cda5e258355b 100644
-> --- a/drivers/clk/clk-oxnas.c
-> +++ b/drivers/clk/clk-oxnas.c
-> @@ -209,15 +209,11 @@ static int oxnas_stdclk_probe(struct platform_devic=
-e *pdev)
->   {
->   	struct device_node *np =3D pdev->dev.of_node;
->   	const struct oxnas_stdclk_data *data;
-> -	const struct of_device_id *id;
->   	struct regmap *regmap;
->   	int ret;
->   	int i;
+> diff --git a/arch/arm/boot/dts/ox820.dtsi b/arch/arm/boot/dts/ox820.dtsi
+> index 90846a7655b4..dde4364892bf 100644
+> --- a/arch/arm/boot/dts/ox820.dtsi
+> +++ b/arch/arm/boot/dts/ox820.dtsi
+> @@ -287,7 +287,7 @@ local-timer@600 {
+>   				clocks =3D <&armclk>;
+>   			};
 >  =20
-> -	id =3D of_match_device(oxnas_stdclk_dt_ids, &pdev->dev);
-> -	if (!id)
-> -		return -ENODEV;
-> -	data =3D id->data;
-> +	data =3D of_device_get_match_data(&pdev->dev);
->  =20
->   	regmap =3D syscon_node_to_regmap(of_get_parent(np));
->   	if (IS_ERR(regmap)) {
-
+> -			gic: gic@1000 {
+> +			gic: interrupt-controller@1000 {
+>   				compatible =3D "arm,arm11mp-gic";
+>   				interrupt-controller;
+>   				#interrupt-cells =3D <3>;
 
 Acked-by: Neil Armstrong <narmstrong@baylibre.com>
 
 
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#165): https://groups.io/g/linux-oxnas/message/165
-Mute This Topic: https://groups.io/mt/89521472/1808289
+View/Reply Online (#166): https://groups.io/g/linux-oxnas/message/166
+Mute This Topic: https://groups.io/mt/89850036/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
 de]
