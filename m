@@ -1,21 +1,21 @@
-Return-Path: <bounce+16102+174+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+175+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD5815400AA
-	for <lists+linux-oxnas@lfdr.de>; Tue,  7 Jun 2022 16:03:33 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id CwhZYY1809624xnIqG1BsuSO; Tue, 07 Jun 2022 07:03:32 -0700
-X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by mx.groups.io with SMTP id smtpd.web12.7895.1654091884165185290
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F9625400A7
+	for <lists+linux-oxnas@lfdr.de>; Tue,  7 Jun 2022 16:03:31 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id jFepYY1809624xTLvegBYbC3; Tue, 07 Jun 2022 07:03:30 -0700
+X-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
+ by mx.groups.io with SMTP id smtpd.web09.7892.1654091949822932738
  for <linux-oxnas@groups.io>;
- Wed, 01 Jun 2022 06:58:04 -0700
+ Wed, 01 Jun 2022 06:59:10 -0700
 X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 9F09B61636;
-	Wed,  1 Jun 2022 13:58:03 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FC2BC34119;
-	Wed,  1 Jun 2022 13:58:02 +0000 (UTC)
+	by sin.source.kernel.org (Postfix) with ESMTPS id AE2FBCE1C2E;
+	Wed,  1 Jun 2022 13:59:06 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 418B9C3411F;
+	Wed,  1 Jun 2022 13:59:05 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -27,11 +27,11 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-oxnas@groups.io,
 	devicetree@vger.kernel.org
-Subject: [linux-oxnas] [PATCH AUTOSEL 5.10 02/26] ARM: dts: ox820: align interrupt controller node name with dtschema
-Date: Wed,  1 Jun 2022 09:57:35 -0400
-Message-Id: <20220601135759.2004435-2-sashal@kernel.org>
-In-Reply-To: <20220601135759.2004435-1-sashal@kernel.org>
-References: <20220601135759.2004435-1-sashal@kernel.org>
+Subject: [linux-oxnas] [PATCH AUTOSEL 5.4 02/20] ARM: dts: ox820: align interrupt controller node name with dtschema
+Date: Wed,  1 Jun 2022 09:58:44 -0400
+Message-Id: <20220601135902.2004823-2-sashal@kernel.org>
+In-Reply-To: <20220601135902.2004823-1-sashal@kernel.org>
+References: <20220601135902.2004823-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,15 +44,15 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,sashal@kernel.org
-X-Gm-Message-State: BWGI2fp6K6MtcweoarM2oERhx1808289AA=
+X-Gm-Message-State: p41ufSY6SykWHW1nlPLrNLGEx1808289AA=
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1654610612;
- bh=+Arw5g0cxQ9fp9U5T8RV9LqhcUK/sayBPkjiCeCiWlI=;
+ q=dns/txt; s=20140610; t=1654610610;
+ bh=MElWSNORwBMuIQClbvI15S9vHl+BM4miYPfW/iMNmd4=;
  h=Cc:Date:From:Reply-To:Subject:To;
- b=YJS9KhKIjcdAQGb5ViaYQcFlvv/VITAnXlNw7aBT/phfCIHIl+h189p2QbXAn5dXH9b
- Hqy1GQRJpKVp/4P+XVoZfw9PMTPhv/jCYukqhKcFwyADQ07Md723IyX4gs3z6+LaybLrC
- bnHiQR0hq8PsoH5oTN5ezLmfqOYD5lIatrY=
+ b=lPWWvPZhMgo2hnWu1eOJ032zgmqQvDdoh1mDYKqHvlZGzH/7bOdsMLnP0AZqdDNZpEl
+ tZAbvIPw/vDlbmpNFnQG6v46ILcEaapg+qyKxAAbDtRPZI7dSbEy4LZntwF4PSJjmgmnZ
+ xFbRHfXg+IOaewymXirPX+6PflbBdubyP5k=
 
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -92,8 +92,8 @@ index 90846a7655b4..dde4364892bf 100644
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#174): https://groups.io/g/linux-oxnas/message/174
-Mute This Topic: https://groups.io/mt/91601150/1808289
+View/Reply Online (#175): https://groups.io/g/linux-oxnas/message/175
+Mute This Topic: https://groups.io/mt/91601151/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
