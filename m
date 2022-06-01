@@ -1,21 +1,21 @@
-Return-Path: <bounce+16102+175+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+176+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F9625400A7
-	for <lists+linux-oxnas@lfdr.de>; Tue,  7 Jun 2022 16:03:31 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id jFepYY1809624xTLvegBYbC3; Tue, 07 Jun 2022 07:03:30 -0700
-X-Received: from sin.source.kernel.org (sin.source.kernel.org [145.40.73.55])
- by mx.groups.io with SMTP id smtpd.web09.7892.1654091949822932738
+	by mail.lfdr.de (Postfix) with ESMTPS id DB8C65400A9
+	for <lists+linux-oxnas@lfdr.de>; Tue,  7 Jun 2022 16:03:33 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id 5CkwYY1809624xJMhTJL4ode; Tue, 07 Jun 2022 07:03:32 -0700
+X-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
+ by mx.groups.io with SMTP id smtpd.web11.8034.1654091997661085062
  for <linux-oxnas@groups.io>;
- Wed, 01 Jun 2022 06:59:10 -0700
+ Wed, 01 Jun 2022 06:59:58 -0700
 X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by sin.source.kernel.org (Postfix) with ESMTPS id AE2FBCE1C2E;
-	Wed,  1 Jun 2022 13:59:06 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 418B9C3411F;
-	Wed,  1 Jun 2022 13:59:05 +0000 (UTC)
+	by ams.source.kernel.org (Postfix) with ESMTPS id 5FA0EB8175B;
+	Wed,  1 Jun 2022 13:59:55 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E39CEC34119;
+	Wed,  1 Jun 2022 13:59:52 +0000 (UTC)
 From: Sasha Levin <sashal@kernel.org>
 To: linux-kernel@vger.kernel.org,
 	stable@vger.kernel.org
@@ -27,11 +27,9 @@ Cc: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
 	linux-arm-kernel@lists.infradead.org,
 	linux-oxnas@groups.io,
 	devicetree@vger.kernel.org
-Subject: [linux-oxnas] [PATCH AUTOSEL 5.4 02/20] ARM: dts: ox820: align interrupt controller node name with dtschema
-Date: Wed,  1 Jun 2022 09:58:44 -0400
-Message-Id: <20220601135902.2004823-2-sashal@kernel.org>
-In-Reply-To: <20220601135902.2004823-1-sashal@kernel.org>
-References: <20220601135902.2004823-1-sashal@kernel.org>
+Subject: [linux-oxnas] [PATCH AUTOSEL 4.19 01/15] ARM: dts: ox820: align interrupt controller node name with dtschema
+Date: Wed,  1 Jun 2022 09:59:36 -0400
+Message-Id: <20220601135951.2005085-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,15 +42,15 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,sashal@kernel.org
-X-Gm-Message-State: p41ufSY6SykWHW1nlPLrNLGEx1808289AA=
+X-Gm-Message-State: zZzdoemno7S2qLPvVcPtiI4Dx1808289AA=
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1654610610;
- bh=MElWSNORwBMuIQClbvI15S9vHl+BM4miYPfW/iMNmd4=;
+ q=dns/txt; s=20140610; t=1654610612;
+ bh=7FDZjt8MoAG1c4ZtZmYUA/cA64DcAeuJ0JW4Lo49f/k=;
  h=Cc:Date:From:Reply-To:Subject:To;
- b=lPWWvPZhMgo2hnWu1eOJ032zgmqQvDdoh1mDYKqHvlZGzH/7bOdsMLnP0AZqdDNZpEl
- tZAbvIPw/vDlbmpNFnQG6v46ILcEaapg+qyKxAAbDtRPZI7dSbEy4LZntwF4PSJjmgmnZ
- xFbRHfXg+IOaewymXirPX+6PflbBdubyP5k=
+ b=Y2ej7QAIBS93e2YAfigc6hFYutjpsXPOVMJGepnJvqQJ6ei2q3LG75ElQXW7NeJz85m
+ ar1c+L9j1XrgDFaALupsoCQ4HOoU085WmtNGb7sN/vxaY2D3En6QBtOd1BTHKJc1nGiDE
+ xQp/SkxtNB9pwI+3qJBqTov/kQMhBGwZDts=
 
 From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
@@ -73,10 +71,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/arm/boot/dts/ox820.dtsi b/arch/arm/boot/dts/ox820.dtsi
-index 90846a7655b4..dde4364892bf 100644
+index f7dddfb01f81..d629caf8b98f 100644
 --- a/arch/arm/boot/dts/ox820.dtsi
 +++ b/arch/arm/boot/dts/ox820.dtsi
-@@ -287,7 +287,7 @@ local-timer@600 {
+@@ -286,7 +286,7 @@ local-timer@600 {
  				clocks =3D <&armclk>;
  			};
 =20
@@ -92,8 +90,8 @@ index 90846a7655b4..dde4364892bf 100644
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#175): https://groups.io/g/linux-oxnas/message/175
-Mute This Topic: https://groups.io/mt/91601151/1808289
+View/Reply Online (#176): https://groups.io/g/linux-oxnas/message/176
+Mute This Topic: https://groups.io/mt/91601152/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
