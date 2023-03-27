@@ -1,21 +1,21 @@
-Return-Path: <bounce+16102+195+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+196+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89C666D1D26
-	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:17 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id A6kxYY1809624xltXNNNWAdN; Fri, 31 Mar 2023 02:55:16 -0700
-X-Received: from ams.source.kernel.org (ams.source.kernel.org [145.40.68.75])
- by mx.groups.io with SMTP id smtpd.web11.33309.1679919318852339645
+	by mail.lfdr.de (Postfix) with ESMTPS id E25346D1D25
+	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:15 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id BOo4YY1809624xrCRKMI4Lno; Fri, 31 Mar 2023 02:55:14 -0700
+X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by mx.groups.io with SMTP id smtpd.web11.33311.1679919325106513247
  for <linux-oxnas@groups.io>;
- Mon, 27 Mar 2023 05:15:19 -0700
+ Mon, 27 Mar 2023 05:15:25 -0700
 X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by ams.source.kernel.org (Postfix) with ESMTPS id 39A3DB8117E;
-	Mon, 27 Mar 2023 12:15:17 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7D8DC4339B;
-	Mon, 27 Mar 2023 12:15:07 +0000 (UTC)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id A573B611CE;
+	Mon, 27 Mar 2023 12:15:24 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56A3DC433A4;
+	Mon, 27 Mar 2023 12:15:16 +0000 (UTC)
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-kernel@vger.kernel.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -59,9 +59,9 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-sh@vger.kernel.org,
 	sparclinux@vger.kernel.org,
 	linux-xtensa@linux-xtensa.org
-Subject: [linux-oxnas] [PATCH 09/21] riscv: dma-mapping: skip invalidation before bidirectional DMA
-Date: Mon, 27 Mar 2023 14:13:05 +0200
-Message-Id: <20230327121317.4081816-10-arnd@kernel.org>
+Subject: [linux-oxnas] [PATCH 10/21] csky: dma-mapping: skip invalidating before DMA from device
+Date: Mon, 27 Mar 2023 14:13:06 +0200
+Message-Id: <20230327121317.4081816-11-arnd@kernel.org>
 In-Reply-To: <20230327121317.4081816-1-arnd@kernel.org>
 References: <20230327121317.4081816-1-arnd@kernel.org>
 MIME-Version: 1.0
@@ -74,45 +74,51 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,arnd@kernel.org
-X-Gm-Message-State: FVWcidOWa25On549Ytws5yB2x1808289AA=
+X-Gm-Message-State: ZWy6KYkHsiUKdJBf8E2Rp2Trx1808289AA=
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1680256516;
- bh=/3C6Mu0u6/JgR3M0GzeEzIC9vUgWF/JD6BJ5a4+Z5UI=;
+ q=dns/txt; s=20140610; t=1680256514;
+ bh=Hz8wqk9UgRpNQKmtdopW8ZXc6LUUjcR7VzyQVbq/nyI=;
  h=Cc:Date:From:Reply-To:Subject:To;
- b=b3oJua9lge9VYpjd07C43UCr43z4u6B1M7hd7gQhiPGjJ/BKtYKQIp8PQyYYAJiET3d
- ZJqmewP5wXu/s8qlIkoGuPn+u/eIqyit4f/i+ztVNQ57yn/c2gW73RCEXLsoECXwt/dL4
- ssoqbRgquNrWgxocv6R6x7zYqWIg40MQ3xo=
+ b=viPxbSOx7qJkcLdJJbxtHivs7BdZD14iUzcxiYkliNwovCU3rNZRGWUcwwznWmpHgJa
+ 0LgHQcXbStbWzxGzo8qc42O+vpY9d/CFxzuBFmMwN3qYNhptSqIvhyJb8vWJ2Jam7bdCA
+ YYcEwx5sXqcm+4FID9X4lSTjAivzRqbV38w=
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-For a DMA_BIDIRECTIONAL transfer, the caches have to be cleaned
-first to let the device see data written by the CPU, and invalidated
-after the transfer to let the CPU see data written by the device.
+csky is the only architecture that does a full flush for the
+dma_sync_*_for_device(..., DMA_FROM_DEVICE) operation. The requirement
+is only make sure there are no dirty cache lines for the buffer,
+which can be either done through an invalidate operation (as on most
+architectures including arm32, mips and arc), or a writeback (as on
+arm64 and riscv). The cache also has to be invalidated eventually but
+csky already does that after the transfer.
 
-riscv also invalidates the caches before the transfer, which does
-not appear to serve any purpose.
+Use a 'clean' operation here for consistency with arm64 and riscv.
 
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- arch/riscv/mm/dma-noncoherent.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ arch/csky/mm/dma-mapping.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
-diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoher=
-ent.c
-index 640f4c496d26..69c80b2155a1 100644
---- a/arch/riscv/mm/dma-noncoherent.c
-+++ b/arch/riscv/mm/dma-noncoherent.c
-@@ -25,7 +25,7 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t=
- size,
- 		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
- 		break;
+diff --git a/arch/csky/mm/dma-mapping.c b/arch/csky/mm/dma-mapping.c
+index 82447029feb4..c90f912e2822 100644
+--- a/arch/csky/mm/dma-mapping.c
++++ b/arch/csky/mm/dma-mapping.c
+@@ -60,11 +60,9 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_=
+t size,
+ {
+ 	switch (dir) {
+ 	case DMA_TO_DEVICE:
+-		cache_op(paddr, size, dma_wb_range);
+-		break;
+ 	case DMA_FROM_DEVICE:
  	case DMA_BIDIRECTIONAL:
--		ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
-+		ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+-		cache_op(paddr, size, dma_wbinv_range);
++		cache_op(paddr, size, dma_wb_range);
  		break;
  	default:
- 		break;
+ 		BUG();
 --=20
 2.39.2
 
@@ -120,8 +126,8 @@ index 640f4c496d26..69c80b2155a1 100644
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#195): https://groups.io/g/linux-oxnas/message/195
-Mute This Topic: https://groups.io/mt/97970101/1808289
+View/Reply Online (#196): https://groups.io/g/linux-oxnas/message/196
+Mute This Topic: https://groups.io/mt/97970102/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
