@@ -1,21 +1,21 @@
-Return-Path: <bounce+16102+189+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+190+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29A5C6D1D1F
-	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:12 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id jmd3YY1809624xva5DvVBFFl; Fri, 31 Mar 2023 02:55:10 -0700
+	by mail.lfdr.de (Postfix) with ESMTPS id AD3266D1D27
+	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:17 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id gZKYYY1809624xJzdBGZEsFs; Fri, 31 Mar 2023 02:55:16 -0700
 X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by mx.groups.io with SMTP id smtpd.web10.33166.1679919265009855664
+ by mx.groups.io with SMTP id smtpd.web10.33168.1679919273322617573
  for <linux-oxnas@groups.io>;
- Mon, 27 Mar 2023 05:14:25 -0700
+ Mon, 27 Mar 2023 05:14:33 -0700
 X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 95DAD611E6;
+	by dfw.source.kernel.org (Postfix) with ESMTPS id CD90D611ED;
+	Mon, 27 Mar 2023 12:14:32 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7B9C0C433EF;
 	Mon, 27 Mar 2023 12:14:24 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D461BC433A4;
-	Mon, 27 Mar 2023 12:14:15 +0000 (UTC)
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-kernel@vger.kernel.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -59,9 +59,9 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-sh@vger.kernel.org,
 	sparclinux@vger.kernel.org,
 	linux-xtensa@linux-xtensa.org
-Subject: [linux-oxnas] [PATCH 03/21] sparc32: flush caches in dma_sync_*for_device
-Date: Mon, 27 Mar 2023 14:12:59 +0200
-Message-Id: <20230327121317.4081816-4-arnd@kernel.org>
+Subject: [linux-oxnas] [PATCH 04/21] microblaze: dma-mapping: skip extra DMA flushes
+Date: Mon, 27 Mar 2023 14:13:00 +0200
+Message-Id: <20230327121317.4081816-5-arnd@kernel.org>
 In-Reply-To: <20230327121317.4081816-1-arnd@kernel.org>
 References: <20230327121317.4081816-1-arnd@kernel.org>
 MIME-Version: 1.0
@@ -74,59 +74,78 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,arnd@kernel.org
-X-Gm-Message-State: GDoc7iPD4cRhY0Qra2bHXmifx1808289AA=
+X-Gm-Message-State: ZiTyH7gFXqWa6C3kJZ2R2m2Dx1808289AA=
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1680256510;
- bh=/9wfGNt+JsUiX4+ko4aWYAN7fMQnJqEDFvk/n8fq9wc=;
+ q=dns/txt; s=20140610; t=1680256516;
+ bh=Bk6H9r3G4nFgaoYSv672rbCxkPHVPTNfsA7rkcR2eQk=;
  h=Cc:Date:From:Reply-To:Subject:To;
- b=av7Tp/Pfq/6D2zZrDO00646iNs/u71sPB6B2yg7ynxgV5NavQ3F2a9qHJyGuwQc7VJa
- /ay1+vxipnGER7c+pnqptuNMHCbAWMWKM2Xy6WFmpdutAyGdSghlM/FhmEhxuuTbC16pI
- DiCfq7rJlIfRXM1Z3eZVYj2T0kD//CHZw+o=
+ b=jyw4I8WAOC1LdXIwoIPIwwMcPviwO5gPdQ6iuWEuRC0WdBO2NTIrP5TA/qm6JBGnI+f
+ t5UK22kZPbZEYOw8WMiZs94kv2yjcvIL4aBZyQhaPYZIo1rKqdUHTWe6L7KPSN2Iex2LS
+ E5sTXMZhJ1o+eci/gZGzG65QnFTfDKQGT2s=
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-Leon has a very minimalistic cache that has no range operations
-and requires being flushed entirely to deal with noncoherent
-DMA. Most in-order architectures do their cache management in
-the dma_sync_*for_device() operations rather than dma_sync_*for_cpu.
+The microblaze dma_sync_* implementation uses the same function
+for both _for_cpu() and _for_device(), which is inconsistent
+with other architectures and slightly more expensive.
 
-Since the cache is write-through only, both should have the same
-effect, so change it for consistency with the other architectures.
+Split it up into separate functions and skip the parts that
+are not needed:
+
+ - on dma_sync_*_for_cpu(..., DMA_TO_DEVICE), skip the second
+   writeback, which does nothing.
+
+ - on dma_sync_*_for_cpu(..., DMA_BIDIRECTIONAL), only invalidate
+   the cache to clear out cache lines that got loaded speculatively,
+   but skip the extraneous writeback.
 
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- arch/sparc/Kconfig         | 2 +-
- arch/sparc/kernel/ioport.c | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ arch/microblaze/kernel/dma.c | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/arch/sparc/Kconfig b/arch/sparc/Kconfig
-index 84437a4c6545..637da50e236c 100644
---- a/arch/sparc/Kconfig
-+++ b/arch/sparc/Kconfig
-@@ -51,7 +51,7 @@ config SPARC
- config SPARC32
- 	def_bool !64BIT
- 	select ARCH_32BIT_OFF_T
--	select ARCH_HAS_SYNC_DMA_FOR_CPU
-+	select ARCH_HAS_SYNC_DMA_FOR_DEVICE
- 	select CLZ_TAB
- 	select DMA_DIRECT_REMAP
- 	select GENERIC_ATOMIC64
-diff --git a/arch/sparc/kernel/ioport.c b/arch/sparc/kernel/ioport.c
-index 4e4f3d3263e4..4f3d26066ec2 100644
---- a/arch/sparc/kernel/ioport.c
-+++ b/arch/sparc/kernel/ioport.c
-@@ -306,7 +306,7 @@ arch_initcall(sparc_register_ioport);
-  * On LEON systems without cache snooping, the entire D-CACHE must be fl=
-ushed to
-  * make DMA to cacheable memory coherent.
-  */
--void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
+diff --git a/arch/microblaze/kernel/dma.c b/arch/microblaze/kernel/dma.c
+index 04d091ade417..b4c4e45fd45e 100644
+--- a/arch/microblaze/kernel/dma.c
++++ b/arch/microblaze/kernel/dma.c
+@@ -14,8 +14,8 @@
+ #include <linux/bug.h>
+ #include <asm/cacheflush.h>
+=20
+-static void __dma_sync(phys_addr_t paddr, size_t size,
+-		enum dma_data_direction direction)
 +void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
++		enum dma_data_direction dir)
+ {
+ 	switch (direction) {
+ 	case DMA_TO_DEVICE:
+@@ -30,14 +30,16 @@ static void __dma_sync(phys_addr_t paddr, size_t size=
+,
+ 	}
+ }
+=20
+-void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+-		enum dma_data_direction dir)
+-{
+-	__dma_sync(paddr, size, dir);
+-}
+-
+ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
  		enum dma_data_direction dir)
  {
- 	if (dir !=3D DMA_TO_DEVICE &&
+-	__dma_sync(paddr, size, dir);
+-}
++	switch (direction) {
++	case DMA_TO_DEVICE:
++		break;
++	case DMA_BIDIRECTIONAL:
++	case DMA_FROM_DEVICE:
++		invalidate_dcache_range(paddr, paddr + size);
++		break;
++	default:
++		BUG();
++	}}
 --=20
 2.39.2
 
@@ -134,8 +153,8 @@ ushed to
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#189): https://groups.io/g/linux-oxnas/message/189
-Mute This Topic: https://groups.io/mt/97970095/1808289
+View/Reply Online (#190): https://groups.io/g/linux-oxnas/message/190
+Mute This Topic: https://groups.io/mt/97970096/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
