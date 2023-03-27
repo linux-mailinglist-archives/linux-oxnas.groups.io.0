@@ -1,21 +1,21 @@
-Return-Path: <bounce+16102+188+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+189+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F616D1D1B
-	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:08 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id mLYhYY1809624xzpswM8J6Of; Fri, 31 Mar 2023 02:55:06 -0700
+	by mail.lfdr.de (Postfix) with ESMTPS id 29A5C6D1D1F
+	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:12 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id jmd3YY1809624xva5DvVBFFl; Fri, 31 Mar 2023 02:55:10 -0700
 X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by mx.groups.io with SMTP id smtpd.web11.33279.1679919256787149316
+ by mx.groups.io with SMTP id smtpd.web10.33166.1679919265009855664
  for <linux-oxnas@groups.io>;
- Mon, 27 Mar 2023 05:14:16 -0700
+ Mon, 27 Mar 2023 05:14:25 -0700
 X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id E406F611E4;
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 95DAD611E6;
+	Mon, 27 Mar 2023 12:14:24 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D461BC433A4;
 	Mon, 27 Mar 2023 12:14:15 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 22CE2C433A0;
-	Mon, 27 Mar 2023 12:14:06 +0000 (UTC)
 From: Arnd Bergmann <arnd@kernel.org>
 To: linux-kernel@vger.kernel.org
 Cc: Arnd Bergmann <arnd@arndb.de>,
@@ -59,9 +59,9 @@ Cc: Arnd Bergmann <arnd@arndb.de>,
 	linux-sh@vger.kernel.org,
 	sparclinux@vger.kernel.org,
 	linux-xtensa@linux-xtensa.org
-Subject: [linux-oxnas] [PATCH 02/21] xtensa: dma-mapping: use normal cache invalidation rules
-Date: Mon, 27 Mar 2023 14:12:58 +0200
-Message-Id: <20230327121317.4081816-3-arnd@kernel.org>
+Subject: [linux-oxnas] [PATCH 03/21] sparc32: flush caches in dma_sync_*for_device
+Date: Mon, 27 Mar 2023 14:12:59 +0200
+Message-Id: <20230327121317.4081816-4-arnd@kernel.org>
 In-Reply-To: <20230327121317.4081816-1-arnd@kernel.org>
 References: <20230327121317.4081816-1-arnd@kernel.org>
 MIME-Version: 1.0
@@ -74,127 +74,59 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,arnd@kernel.org
-X-Gm-Message-State: 0hq3XEtMS62i6sOZXUN5K2gXx1808289AA=
+X-Gm-Message-State: GDoc7iPD4cRhY0Qra2bHXmifx1808289AA=
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1680256506;
- bh=etWimwIjREMfgKn3/KN40DoD5HxEwfSh33AjMZWksMk=;
+ q=dns/txt; s=20140610; t=1680256510;
+ bh=/9wfGNt+JsUiX4+ko4aWYAN7fMQnJqEDFvk/n8fq9wc=;
  h=Cc:Date:From:Reply-To:Subject:To;
- b=UhfAAy8iaeY7wCiSbb6lM5RXYTZilNHLuqjdNpw/rBxWWzLAqXbmxkAP2k6Z1w4edpL
- qOTE7r+hdBq5kVytHMKSC1+Tp8iinBESYj2KhaiPVt6oSsNViKcQw1HSUvi8bFQSiAS3g
- nAHzdtZvKYGquXyUP7IXtRjfpgWUeI+t0TM=
+ b=av7Tp/Pfq/6D2zZrDO00646iNs/u71sPB6B2yg7ynxgV5NavQ3F2a9qHJyGuwQc7VJa
+ /ay1+vxipnGER7c+pnqptuNMHCbAWMWKM2Xy6WFmpdutAyGdSghlM/FhmEhxuuTbC16pI
+ DiCfq7rJlIfRXM1Z3eZVYj2T0kD//CHZw+o=
 
 From: Arnd Bergmann <arnd@arndb.de>
 
-xtensa is one of the platforms that has both write-back and write-through
-caches, and needs to account for both in its DMA mapping operations.
+Leon has a very minimalistic cache that has no range operations
+and requires being flushed entirely to deal with noncoherent
+DMA. Most in-order architectures do their cache management in
+the dma_sync_*for_device() operations rather than dma_sync_*for_cpu.
 
-It does this through a set of operations that is different from any
-architecture. This is not a problem by itself, but it makes it rather
-hard to figure out whether this is correct or not, and to unify this
-implementation with the others.
-
-Change the semantics to the usual ones for non-speculating CPUs:
-
- - On DMA_TO_DEVICE, call __flush_dcache_range() to perform the
-   writeback even on writethrough caches, where this is a nop.
-
- - On DMA_FROM_DEVICE, invalidate the mapping before the DMA rather
-   than afterwards.
-
- - On DMA_BIDIRECTIONAL, combine the pre-writeback with the
-   post-invalidate into a call to __flush_invalidate_dcache_range()
-   that turns into a simple invalidate on writeback caches.
+Since the cache is write-through only, both should have the same
+effect, so change it for consistency with the other architectures.
 
 Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 ---
- arch/xtensa/Kconfig                  |  1 -
- arch/xtensa/include/asm/cacheflush.h |  6 +++---
- arch/xtensa/kernel/pci-dma.c         | 29 +++++-----------------------
- 3 files changed, 8 insertions(+), 28 deletions(-)
+ arch/sparc/Kconfig         | 2 +-
+ arch/sparc/kernel/ioport.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/xtensa/Kconfig b/arch/xtensa/Kconfig
-index bcb0c5d2abc2..b938bacbb9af 100644
---- a/arch/xtensa/Kconfig
-+++ b/arch/xtensa/Kconfig
-@@ -8,7 +8,6 @@ config XTENSA
- 	select ARCH_HAS_DMA_PREP_COHERENT if MMU
- 	select ARCH_HAS_GCOV_PROFILE_ALL
- 	select ARCH_HAS_KCOV
--	select ARCH_HAS_SYNC_DMA_FOR_CPU if MMU
- 	select ARCH_HAS_SYNC_DMA_FOR_DEVICE if MMU
- 	select ARCH_HAS_DMA_SET_UNCACHED if MMU
- 	select ARCH_HAS_STRNCPY_FROM_USER if !KASAN
-diff --git a/arch/xtensa/include/asm/cacheflush.h b/arch/xtensa/include/a=
-sm/cacheflush.h
-index 7b4359312c25..2f645d25565a 100644
---- a/arch/xtensa/include/asm/cacheflush.h
-+++ b/arch/xtensa/include/asm/cacheflush.h
-@@ -61,9 +61,9 @@ static inline void __flush_dcache_page(unsigned long va=
-)
- static inline void __flush_dcache_range(unsigned long va, unsigned long =
-sz)
- {
- }
--# define __flush_invalidate_dcache_all()	__invalidate_dcache_all()
--# define __flush_invalidate_dcache_page(p)	__invalidate_dcache_page(p)
--# define __flush_invalidate_dcache_range(p,s)	__invalidate_dcache_range(=
-p,s)
-+# define __flush_invalidate_dcache_all		__invalidate_dcache_all
-+# define __flush_invalidate_dcache_page		__invalidate_dcache_page
-+# define __flush_invalidate_dcache_range	__invalidate_dcache_range
- #endif
-=20
- #if defined(CONFIG_MMU) && (DCACHE_WAY_SIZE > PAGE_SIZE)
-diff --git a/arch/xtensa/kernel/pci-dma.c b/arch/xtensa/kernel/pci-dma.c
-index 94955caa4488..ff3bf015eca4 100644
---- a/arch/xtensa/kernel/pci-dma.c
-+++ b/arch/xtensa/kernel/pci-dma.c
-@@ -43,38 +43,19 @@ static void do_cache_op(phys_addr_t paddr, size_t siz=
-e,
- 		}
- }
-=20
+diff --git a/arch/sparc/Kconfig b/arch/sparc/Kconfig
+index 84437a4c6545..637da50e236c 100644
+--- a/arch/sparc/Kconfig
++++ b/arch/sparc/Kconfig
+@@ -51,7 +51,7 @@ config SPARC
+ config SPARC32
+ 	def_bool !64BIT
+ 	select ARCH_32BIT_OFF_T
+-	select ARCH_HAS_SYNC_DMA_FOR_CPU
++	select ARCH_HAS_SYNC_DMA_FOR_DEVICE
+ 	select CLZ_TAB
+ 	select DMA_DIRECT_REMAP
+ 	select GENERIC_ATOMIC64
+diff --git a/arch/sparc/kernel/ioport.c b/arch/sparc/kernel/ioport.c
+index 4e4f3d3263e4..4f3d26066ec2 100644
+--- a/arch/sparc/kernel/ioport.c
++++ b/arch/sparc/kernel/ioport.c
+@@ -306,7 +306,7 @@ arch_initcall(sparc_register_ioport);
+  * On LEON systems without cache snooping, the entire D-CACHE must be fl=
+ushed to
+  * make DMA to cacheable memory coherent.
+  */
 -void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size,
 +void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
  		enum dma_data_direction dir)
  {
- 	switch (dir) {
--	case DMA_BIDIRECTIONAL:
-+	case DMA_TO_DEVICE:
-+		do_cache_op(paddr, size, __flush_dcache_range);
-+		break;
- 	case DMA_FROM_DEVICE:
- 		do_cache_op(paddr, size, __invalidate_dcache_range);
- 		break;
--
--	case DMA_NONE:
--		BUG();
--		break;
--
--	default:
--		break;
--	}
--}
--
--void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
--		enum dma_data_direction dir)
--{
--	switch (dir) {
- 	case DMA_BIDIRECTIONAL:
--	case DMA_TO_DEVICE:
--		if (XCHAL_DCACHE_IS_WRITEBACK)
--			do_cache_op(paddr, size, __flush_dcache_range);
-+		do_cache_op(paddr, size, __flush_invalidate_dcache_range);
- 		break;
--
--	case DMA_NONE:
--		BUG();
--		break;
--
- 	default:
- 		break;
- 	}
+ 	if (dir !=3D DMA_TO_DEVICE &&
 --=20
 2.39.2
 
@@ -202,8 +134,8 @@ e,
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#188): https://groups.io/g/linux-oxnas/message/188
-Mute This Topic: https://groups.io/mt/97970094/1808289
+View/Reply Online (#189): https://groups.io/g/linux-oxnas/message/189
+Mute This Topic: https://groups.io/mt/97970095/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
