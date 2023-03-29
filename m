@@ -1,49 +1,61 @@
-Return-Path: <bounce+16102+213+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+214+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id B4C596D1D39
+	by mail.lfdr.de (Postfix) with ESMTPS id 7F5656D1D38
 	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:30 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id W7nTYY1809624xDz2SmSXlON; Fri, 31 Mar 2023 02:55:29 -0700
-X-Received: from mail-pg1-f179.google.com (mail-pg1-f179.google.com [209.85.215.179])
- by mx.groups.io with SMTP id smtpd.web11.39072.1679931791181148044
+X-Received: by 127.0.0.2 with SMTP id sOCwYY1809624xWPkJzhnHex; Fri, 31 Mar 2023 02:55:29 -0700
+X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by mx.groups.io with SMTP id smtpd.web10.7996.1680120981737492602
  for <linux-oxnas@groups.io>;
- Mon, 27 Mar 2023 08:43:11 -0700
-X-Received: by mail-pg1-f179.google.com with SMTP id d22so5414166pgw.2
-        for <linux-oxnas@groups.io>; Mon, 27 Mar 2023 08:43:11 -0700 (PDT)
-X-Gm-Message-State: Wnka0gAEWKT3EfFSwHHZWAY2x1808289AA=
-X-Google-Smtp-Source: AKy350ZLARTDoGqBnXYfSrHDqt1ndSavaTIx5HilksseUiOHQOdKd5qG9m3KbOwJxwDn1K1TODO6L/v92bKQLX9gh5M=
-X-Received: by 2002:a63:e20f:0:b0:50a:592b:25ba with SMTP id
- q15-20020a63e20f000000b0050a592b25bamr3326211pgh.3.1679931790647; Mon, 27 Mar
- 2023 08:43:10 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230327121317.4081816-1-arnd@kernel.org> <20230327121317.4081816-3-arnd@kernel.org>
-In-Reply-To: <20230327121317.4081816-3-arnd@kernel.org>
-From: Max Filippov <jcmvbkbc@gmail.com>
-Date: Mon, 27 Mar 2023 08:42:59 -0700
-Message-ID: <CAMo8BfJwjcQxWVW9o6brvBYTgUe9v=QGgs39=_V6Oc9-OKv7Sw@mail.gmail.com>
-Subject: Re: [linux-oxnas] [PATCH 02/21] xtensa: dma-mapping: use normal cache invalidation rules
+ Wed, 29 Mar 2023 13:16:21 -0700
+X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 0ABA761DEE;
+	Wed, 29 Mar 2023 20:16:21 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BAEB3C433D2;
+	Wed, 29 Mar 2023 20:16:12 +0000 (UTC)
+Date: Wed, 29 Mar 2023 21:16:10 +0100
+From: Conor Dooley <conor@kernel.org>
 To: Arnd Bergmann <arnd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
-	Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>, 
-	Neil Armstrong <neil.armstrong@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
-	Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>, 
-	Brian Cain <bcain@quicinc.com>, Geert Uytterhoeven <geert@linux-m68k.org>, 
-	Michal Simek <monstr@monstr.eu>, Thomas Bogendoerfer <tsbogend@alpha.franken.de>, 
-	Dinh Nguyen <dinguyen@kernel.org>, Stafford Horne <shorne@gmail.com>, Helge Deller <deller@gmx.de>, 
-	Michael Ellerman <mpe@ellerman.id.au>, Christophe Leroy <christophe.leroy@csgroup.eu>, 
-	Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt <palmer@dabbelt.com>, 
-	Rich Felker <dalias@libc.org>, John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, 
-	"David S. Miller" <davem@davemloft.net>, Christoph Hellwig <hch@lst.de>, Robin Murphy <robin.murphy@arm.com>, 
-	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
-	Conor Dooley <conor.dooley@microchip.com>, linux-snps-arc@lists.infradead.org, 
-	linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io, 
-	linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
-	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org, 
-	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
-	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
-	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org, 
+Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
+	Vineet Gupta <vgupta@kernel.org>,
+	Russell King <linux@armlinux.org.uk>,
+	Neil Armstrong <neil.armstrong@linaro.org>,
+	Linus Walleij <linus.walleij@linaro.org>,
+	Catalin Marinas <catalin.marinas@arm.com>,
+	Will Deacon <will@kernel.org>, Guo Ren <guoren@kernel.org>,
+	Brian Cain <bcain@quicinc.com>,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	Michal Simek <monstr@monstr.eu>,
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+	Dinh Nguyen <dinguyen@kernel.org>,
+	Stafford Horne <shorne@gmail.com>, Helge Deller <deller@gmx.de>,
+	Michael Ellerman <mpe@ellerman.id.au>,
+	Christophe Leroy <christophe.leroy@csgroup.eu>,
+	Paul Walmsley <paul.walmsley@sifive.com>,
+	Palmer Dabbelt <palmer@dabbelt.com>, Rich Felker <dalias@libc.org>,
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+	"David S. Miller" <davem@davemloft.net>,
+	Max Filippov <jcmvbkbc@gmail.com>, Christoph Hellwig <hch@lst.de>,
+	Robin Murphy <robin.murphy@arm.com>,
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+	Conor Dooley <conor.dooley@microchip.com>,
+	linux-snps-arc@lists.infradead.org,
+	linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io,
+	linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org,
+	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org,
+	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org,
 	linux-xtensa@linux-xtensa.org
+Subject: Re: [linux-oxnas] [PATCH 09/21] riscv: dma-mapping: skip invalidation before bidirectional DMA
+Message-ID: <764e8d2f-ed98-49dc-8fdb-112d59359148@spud>
+References: <20230327121317.4081816-1-arnd@kernel.org>
+ <20230327121317.4081816-10-arnd@kernel.org>
+MIME-Version: 1.0
+In-Reply-To: <20230327121317.4081816-10-arnd@kernel.org>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -52,63 +64,58 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,jcmvbkbc@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Reply-To: linux-oxnas@groups.io,conor@kernel.org
+X-Gm-Message-State: 7N8sWhPbdDOm65mqt9w4qkdGx1808289AA=
+Content-Type: multipart/mixed; boundary="Groupsio=fSJCH7eyUODu5KlXAeOC"
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
  q=dns/txt; s=20140610; t=1680256529;
- bh=Y8oAg/b9vK6qCcmD7vxGD2iGJPcfepwSkrPjX4aXtik=;
+ bh=nnbqpUciWlrpbb1uT/zCxWrN/LdBUGwfSWZ56k9Re/M=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=O4S2g6WYN2dEV22KkIR6XUSycz9Pll3wQaS01NbBZTmrsLv9UWzjpm+0midArOuILCH
- 7eMEPxcmA5Vn6kZdCSkMuiqsVdj01JvxelHWlnHL14RDYFCB20kMnqlj9vlay/TMUKxeh
- 1PcoFe9+c4puSoVOUGTxla5NU9ReW6jXTGE=
+ b=eFGLLduVOVWk0CVK2ywa7Ev2vjxxUtwXBJNl8b6RodkWty64vlnDosybV2E3SivtTcE
+ vgMd22aez1ANUCQxDZhGXlFPTLZFWiVeTsw8ByFuuBHzyBsSKqNO0KMddw8GaajtMLfpz
+ QaYWhN/T0jbCRHWCqTIha1h51YdiVHIhgEw=
 
-On Mon, Mar 27, 2023 at 5:14=E2=80=AFAM Arnd Bergmann <arnd@kernel.org> wro=
-te:
->
+--Groupsio=fSJCH7eyUODu5KlXAeOC
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Mon, Mar 27, 2023 at 02:13:05PM +0200, Arnd Bergmann wrote:
 > From: Arnd Bergmann <arnd@arndb.de>
->
-> xtensa is one of the platforms that has both write-back and write-through
-> caches, and needs to account for both in its DMA mapping operations.
->
-> It does this through a set of operations that is different from any
-> architecture. This is not a problem by itself, but it makes it rather
-> hard to figure out whether this is correct or not, and to unify this
-> implementation with the others.
->
-> Change the semantics to the usual ones for non-speculating CPUs:
->
->  - On DMA_TO_DEVICE, call __flush_dcache_range() to perform the
->    writeback even on writethrough caches, where this is a nop.
->
->  - On DMA_FROM_DEVICE, invalidate the mapping before the DMA rather
->    than afterwards.
->
->  - On DMA_BIDIRECTIONAL, combine the pre-writeback with the
->    post-invalidate into a call to __flush_invalidate_dcache_range()
->    that turns into a simple invalidate on writeback caches.
->
-> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
-> ---
->  arch/xtensa/Kconfig                  |  1 -
->  arch/xtensa/include/asm/cacheflush.h |  6 +++---
->  arch/xtensa/kernel/pci-dma.c         | 29 +++++-----------------------
->  3 files changed, 8 insertions(+), 28 deletions(-)
+>=20
+> For a DMA_BIDIRECTIONAL transfer, the caches have to be cleaned
+> first to let the device see data written by the CPU, and invalidated
+> after the transfer to let the CPU see data written by the device.
+>=20
+> riscv also invalidates the caches before the transfer, which does
+> not appear to serve any purpose.
 
-Reviewed-by: Max Filippov <jcmvbkbc@gmail.com>
+Rationale makes sense to me..
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
---=20
-Thanks.
--- Max
+Thanks for working on all of this Arnd!
 
 
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#213): https://groups.io/g/linux-oxnas/message/213
-Mute This Topic: https://groups.io/mt/97970094/1808289
+View/Reply Online (#214): https://groups.io/g/linux-oxnas/message/214
+Mute This Topic: https://groups.io/mt/97970101/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
 de]
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
 
+
+--Groupsio=fSJCH7eyUODu5KlXAeOC
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZCScigAKCRB4tDGHoIJi
+0jHpAP47kMhf2uxHoGKhD+jHsEYnFgTHptLnAfIJV6N+QeFoOAD/YxG6hd8qhesW
+6Tw9EqBEW/4auX2CLsbK7xE8fP5A9wg=
+=os1C
+-----END PGP SIGNATURE-----
+
+--Groupsio=fSJCH7eyUODu5KlXAeOC--
