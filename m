@@ -1,28 +1,28 @@
-Return-Path: <bounce+16102+221+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+222+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8436E6D1D46
-	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:39 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id IDmSYY1809624xpY1aShaS3r; Fri, 31 Mar 2023 02:55:38 -0700
-X-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
- by mx.groups.io with SMTP id smtpd.web10.24275.1680181173234476610
+	by mail.lfdr.de (Postfix) with ESMTPS id 51C476D1D4A
+	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:41 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id ovAaYY1809624xKVZVeTFbyy; Fri, 31 Mar 2023 02:55:39 -0700
+X-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
+ by mx.groups.io with SMTP id smtpd.web11.25203.1680182806390353700
  for <linux-oxnas@groups.io>;
- Thu, 30 Mar 2023 05:59:33 -0700
-X-Received: by mail-io1-f51.google.com with SMTP id m22so8235062ioy.4
-        for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 05:59:33 -0700 (PDT)
-X-Gm-Message-State: pxEAe2F7mmTQGW0BTorCvMIQx1808289AA=
-X-Google-Smtp-Source: AKy350Yt7w4HDnt8ZzJ1OA1g5OCPUWPp6heQMoQ57xTct+y1JPFpMNsPMtx4N97vitPklV5i5ccLJReO6yCW0ia7/Oo=
-X-Received: by 2002:a02:95c3:0:b0:3eb:3166:9da4 with SMTP id
- b61-20020a0295c3000000b003eb31669da4mr2710421jai.2.1680181172425; Thu, 30 Mar
- 2023 05:59:32 -0700 (PDT)
+ Thu, 30 Mar 2023 06:26:46 -0700
+X-Received: by mail-il1-f176.google.com with SMTP id j2so2768170ila.8
+        for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 06:26:46 -0700 (PDT)
+X-Gm-Message-State: qD2oQ4kA8Dq0nQGEx6woGadjx1808289AA=
+X-Google-Smtp-Source: AKy350b7GKjd6GbmSD4bjqzZzqd/x8SBG7vY+M0wf9Tl0Xt+rzmxZqELne3/hmMfJjmFaGc7B3VEjdENhXkZ8+X22Co=
+X-Received: by 2002:a05:6e02:1047:b0:325:dd36:7451 with SMTP id
+ p7-20020a056e02104700b00325dd367451mr11322497ilj.1.1680182805604; Thu, 30 Mar
+ 2023 06:26:45 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230327121317.4081816-1-arnd@kernel.org> <20230327121317.4081816-9-arnd@kernel.org>
-In-Reply-To: <20230327121317.4081816-9-arnd@kernel.org>
+References: <20230327121317.4081816-1-arnd@kernel.org> <20230327121317.4081816-10-arnd@kernel.org>
+In-Reply-To: <20230327121317.4081816-10-arnd@kernel.org>
 From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date: Thu, 30 Mar 2023 13:59:06 +0100
-Message-ID: <CA+V-a8v--RqxFJYTZ04vVgiA69VJsFWk=r=TvRvokhpAV-famg@mail.gmail.com>
-Subject: Re: [linux-oxnas] [PATCH 08/21] riscv: dma-mapping: only invalidate after DMA, not flush
+Date: Thu, 30 Mar 2023 14:26:18 +0100
+Message-ID: <CA+V-a8twDb_P3TOpOqhz3Umump_NZg2Bw-8tgMCAmAdadUxfkw@mail.gmail.com>
+Subject: Re: [linux-oxnas] [PATCH 09/21] riscv: dma-mapping: skip invalidation before bidirectional DMA
 To: Arnd Bergmann <arnd@kernel.org>
 Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
 	Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>, 
@@ -57,30 +57,30 @@ Reply-To: linux-oxnas@groups.io,prabhakar.csengg@gmail.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1680256538;
- bh=RdZkrWOwN4WkjHZ5P2jbvEnvhkMIrydU5LVsOYlBrN0=;
+ q=dns/txt; s=20140610; t=1680256539;
+ bh=raVKeetqhXV3La39I47XBjsYxJZOhMuQAI9huB7qgEU=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=TKoO5A6DBOUn6YREC65rjn1J7AjTRCu5I9iOy30OxC+Kwi3HGeoYX+oA5DvfkWzrz1R
- 0aUVuWn3+bIyJ8x8vLBStFEqyOdqTdQ8CWCE/+GZkG+Uc5X4+Q1/W3QoKABbreW2g7soV
- TD0xiG3saXGqHTBh3YuxfJ8slXHvah0lo0Y=
+ b=itqo09U9hX3x+1stJomxec5PVehBGPgUD8usq6mbWCeG80HTfMikiyUAkvBZlwnFKtM
+ 5js7FalF1koUk5N6+FeRr/sA4E8TBfPD35MC7Xk5xzijN2kFrfnS4xI+YjkEQMauc86AN
+ 2S15B6NfilfsHAA85JfX/2DARc+GADFXMIY=
 
 On Mon, Mar 27, 2023 at 1:16=E2=80=AFPM Arnd Bergmann <arnd@kernel.org> wro=
 te:
 >
 > From: Arnd Bergmann <arnd@arndb.de>
 >
-> No other architecture intentionally writes back dirty cache lines into
-> a buffer that a device has just finished writing into. If the cache is
-> clean, this has no effect at all, but if a cacheline in the buffer has
-> actually been written by the CPU,  there is a drive bug that is likely
-> made worse by overwriting that buffer.
+> For a DMA_BIDIRECTIONAL transfer, the caches have to be cleaned
+> first to let the device see data written by the CPU, and invalidated
+> after the transfer to let the CPU see data written by the device.
+>
+> riscv also invalidates the caches before the transfer, which does
+> not appear to serve any purpose.
 >
 > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
 > ---
 >  arch/riscv/mm/dma-noncoherent.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 >
-
 Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
 Cheers,
@@ -88,16 +88,16 @@ Prabhakar
 
 > diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoher=
 ent.c
-> index d919efab6eba..640f4c496d26 100644
+> index 640f4c496d26..69c80b2155a1 100644
 > --- a/arch/riscv/mm/dma-noncoherent.c
 > +++ b/arch/riscv/mm/dma-noncoherent.c
-> @@ -42,7 +42,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t si=
-ze,
+> @@ -25,7 +25,7 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t=
+ size,
+>                 ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
 >                 break;
->         case DMA_FROM_DEVICE:
 >         case DMA_BIDIRECTIONAL:
 > -               ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
-> +               ALT_CMO_OP(inval, vaddr, size, riscv_cbom_block_size);
+> +               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
 >                 break;
 >         default:
 >                 break;
@@ -113,8 +113,8 @@ ze,
 
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#221): https://groups.io/g/linux-oxnas/message/221
-Mute This Topic: https://groups.io/mt/97970100/1808289
+View/Reply Online (#222): https://groups.io/g/linux-oxnas/message/222
+Mute This Topic: https://groups.io/mt/97970101/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
 de]
