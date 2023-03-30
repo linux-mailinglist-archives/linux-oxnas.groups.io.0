@@ -1,79 +1,62 @@
-Return-Path: <bounce+16102+217+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+184+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 17BCB6D1D3F
-	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:35 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id mxeDYY1809624xNbLGsDqFuV; Fri, 31 Mar 2023 02:55:34 -0700
-X-Received: from new4-smtp.messagingengine.com (new4-smtp.messagingengine.com [66.111.4.230])
- by mx.groups.io with SMTP id smtpd.web10.19147.1680160283666731813
+	by mail.lfdr.de (Postfix) with ESMTPS id A849D6CFD3E
+	for <lists+linux-oxnas@lfdr.de>; Thu, 30 Mar 2023 09:48:52 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id A2lEYY1809624xuYVZRnxbpo; Thu, 30 Mar 2023 00:48:50 -0700
+X-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com [209.85.221.45])
+ by mx.groups.io with SMTP id smtpd.web10.19609.1680162529964031312
  for <linux-oxnas@groups.io>;
- Thu, 30 Mar 2023 00:11:24 -0700
-X-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 91091581DB4;
-	Thu, 30 Mar 2023 03:11:20 -0400 (EDT)
-X-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 30 Mar 2023 03:11:20 -0400
-X-ME-Sender: <xms:FTYlZOrkzwdxpCxeIZzclV90hxzPUSC3ms8-E11J67_aPSJXJ1BIkg>
-    <xme:FTYlZMrP3FZFc1NJSA8GIlQPVO9kl25CsPN1r07QL_dGO5vWTCxWy7o2eATgnKdQ9
-    a578gSy3QQoXr1upcg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrvdehjedguddujecutefuodetggdotefrod
-    ftvfcurfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfgh
-    necuuegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
-    enucfjughrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdet
-    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
-    htthgvrhhnpeevhfffledtgeehfeffhfdtgedvheejtdfgkeeuvefgudffteettdekkeeu
-    feehudenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
-    eptdenucfrrghrrghmpehmrghilhhfrhhomheprghrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:FjYlZDNNTBCw6HhWBDqV-oUWPDwRI7BTNiBMI3iXI3sHS545zVmJ2w>
-    <xmx:FjYlZN4cwCdj47vqSASOc6XR5L2duLCySn6_f-BJZvURW8Sn6XqTzw>
-    <xmx:FjYlZN6Cp-M6Z89_Yu31L8qrA-V1bCiPBKi9s_taeLF3yPIrQttNLw>
-    <xmx:GDYlZL7CJyRZz1a_FlDEKTyWBaiLrIUUjNVWWchrrS5Jr6hXYCWp0A>
-Feedback-ID: i56a14606:Fastmail
-X-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id E08C7B60086; Thu, 30 Mar 2023 03:11:17 -0400 (EDT)
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-238-g746678b8b6-fm-20230329.001-g746678b8
-Mime-Version: 1.0
-Message-Id: <34f3e043-20eb-40b2-a7f5-b1b98a0d452a@app.fastmail.com>
-In-Reply-To: <2668e232-ae83-4576-beaa-08e420236996@spud>
-References: <20230327121317.4081816-1-arnd@kernel.org>
- <20230327121317.4081816-9-arnd@kernel.org>
- <2668e232-ae83-4576-beaa-08e420236996@spud>
-Date: Thu, 30 Mar 2023 09:10:57 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Conor Dooley" <conor@kernel.org>, "Arnd Bergmann" <arnd@kernel.org>
-Cc: linux-kernel@vger.kernel.org, "Vineet Gupta" <vgupta@kernel.org>,
- "Russell King" <linux@armlinux.org.uk>,
- "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Linus Walleij" <linus.walleij@linaro.org>,
- "Catalin Marinas" <catalin.marinas@arm.com>,
- "Will Deacon" <will@kernel.org>, guoren <guoren@kernel.org>,
- "Brian Cain" <bcain@quicinc.com>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Michal Simek" <monstr@monstr.eu>,
- "Thomas Bogendoerfer" <tsbogend@alpha.franken.de>,
- "Dinh Nguyen" <dinguyen@kernel.org>, "Stafford Horne" <shorne@gmail.com>,
- "Helge Deller" <deller@gmx.de>, "Michael Ellerman" <mpe@ellerman.id.au>,
- "Christophe Leroy" <christophe.leroy@csgroup.eu>,
- "Paul Walmsley" <paul.walmsley@sifive.com>,
- "Palmer Dabbelt" <palmer@dabbelt.com>, "Rich Felker" <dalias@libc.org>,
- "John Paul Adrian Glaubitz" <glaubitz@physik.fu-berlin.de>,
- "David S . Miller" <davem@davemloft.net>,
- "Max Filippov" <jcmvbkbc@gmail.com>, "Christoph Hellwig" <hch@lst.de>,
- "Robin Murphy" <robin.murphy@arm.com>, "Lad,
- Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>,
- "Conor.Dooley" <conor.dooley@microchip.com>,
+ Thu, 30 Mar 2023 00:48:50 -0700
+X-Received: by mail-wr1-f45.google.com with SMTP id d17so18064167wrb.11
+        for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 00:48:49 -0700 (PDT)
+X-Gm-Message-State: 1rsCHg0hQIoKxQFwRF660q19x1808289AA=
+X-Google-Smtp-Source: AKy350YBDtDK4PFtkzL9mw2TdTBg5d1e+av3yV0hQ8sa0sVV3ghf+fwGAiaHFlngdg878+Nut7sZlA==
+X-Received: by 2002:adf:f0ca:0:b0:2d3:f610:8417 with SMTP id x10-20020adff0ca000000b002d3f6108417mr16612494wro.0.1680162527868;
+        Thu, 30 Mar 2023 00:48:47 -0700 (PDT)
+X-Received: from ?IPV6:2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f? ([2a01:e0a:982:cbb0:fe8e:8291:fc25:6c8f])
+        by smtp.gmail.com with ESMTPSA id z1-20020adff1c1000000b002c6e8af1037sm32115528wro.104.2023.03.30.00.48.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 30 Mar 2023 00:48:47 -0700 (PDT)
+Message-ID: <d7f36a28-0cae-a035-791b-363754aefeee@linaro.org>
+Date: Thu, 30 Mar 2023 09:48:45 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+From: "Neil Armstrong" <neil.armstrong@linaro.org>
+Reply-To: linux-oxnas@groups.io,neil.armstrong@linaro.org
+Subject: Re: [linux-oxnas] [PATCH 18/21] ARM: drop SMP support for ARM11MPCore
+To: Arnd Bergmann <arnd@kernel.org>, linux-kernel@vger.kernel.org
+Cc: Arnd Bergmann <arnd@arndb.de>, Vineet Gupta <vgupta@kernel.org>,
+ Russell King <linux@armlinux.org.uk>,
+ Linus Walleij <linus.walleij@linaro.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Will Deacon <will@kernel.org>,
+ Guo Ren <guoren@kernel.org>, Brian Cain <bcain@quicinc.com>,
+ Geert Uytterhoeven <geert@linux-m68k.org>, Michal Simek <monstr@monstr.eu>,
+ Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Dinh Nguyen <dinguyen@kernel.org>, Stafford Horne <shorne@gmail.com>,
+ Helge Deller <deller@gmx.de>, Michael Ellerman <mpe@ellerman.id.au>,
+ Christophe Leroy <christophe.leroy@csgroup.eu>,
+ Paul Walmsley <paul.walmsley@sifive.com>, Palmer Dabbelt
+ <palmer@dabbelt.com>, Rich Felker <dalias@libc.org>,
+ John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
+ "David S. Miller" <davem@davemloft.net>, Max Filippov <jcmvbkbc@gmail.com>,
+ Christoph Hellwig <hch@lst.de>, Robin Murphy <robin.murphy@arm.com>,
+ Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+ Conor Dooley <conor.dooley@microchip.com>,
  linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
- "linux-csky@vger.kernel.org" <linux-csky@vger.kernel.org>,
+ linux-oxnas@groups.io, linux-csky@vger.kernel.org,
  linux-hexagon@vger.kernel.org, linux-m68k@lists.linux-m68k.org,
- linux-mips@vger.kernel.org,
- "linux-openrisc@vger.kernel.org" <linux-openrisc@vger.kernel.org>,
+ linux-mips@vger.kernel.org, linux-openrisc@vger.kernel.org,
  linux-parisc@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
  linux-riscv@lists.infradead.org, linux-sh@vger.kernel.org,
  sparclinux@vger.kernel.org, linux-xtensa@linux-xtensa.org,
- "Samuel Holland" <samuel@sholland.org>
-Subject: Re: [linux-oxnas] [PATCH 08/21] riscv: dma-mapping: only invalidate after DMA, not flush
+ Daniel Golle <daniel@makrotopia.org>
+References: <20230327121317.4081816-1-arnd@kernel.org>
+ <20230327121317.4081816-19-arnd@kernel.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230327121317.4081816-19-arnd@kernel.org>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -82,82 +65,407 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,arnd@arndb.de
-X-Gm-Message-State: qNcgYP5luUOdlOuS0Xx0XuTix1808289AA=
-Content-Type: text/plain
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1680256534;
- bh=i3IXsDtAPcxkwFYohK+ZPRAZiDnQNDM/kGe3NKwTToc=;
+ q=dns/txt; s=20140610; t=1680162530;
+ bh=vtebY+A+6ojCiM1PLUmIihMRihmHyeCHVnLY3bj2+kM=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=uV74ff9cPigyCXUdy7TN/Qm7gfoNzGKsZyL7bvcu3i2HYK56ZfCzKUMcY/Tdpw7WTXD
- s8puqgMiCqjfXnHhss6LRkCcNY4GH/9zhvh+7QmgdegslRbgzS9Gibwage82kVnaPkov4
- GYMsQGzgb4CC9NLdUbmr1t0W0c4cFiA1lzE=
+ b=PpopuVn4bebpZnyv7JyHtMJLIQv4G+BnjHKygzqTDrrvyWQUQWv9eGx7ZLXpsOFghZf
+ xHSMhhJWRTxgXUnl1d9lu10D0klTlrxSCpA/klHeo+c0B+FhR72xsCpkfWrSmT0KvBipJ
+ mdyOEgPHosQ5FnFM9EAm+VeZpXXOZZi8Row=
 
-On Wed, Mar 29, 2023, at 22:48, Conor Dooley wrote:
-> On Mon, Mar 27, 2023 at 02:13:04PM +0200, Arnd Bergmann wrote:
->> From: Arnd Bergmann <arnd@arndb.de>
->> 
->> No other architecture intentionally writes back dirty cache lines into
->> a buffer that a device has just finished writing into. If the cache is
->> clean, this has no effect at all, but
->
->> if a cacheline in the buffer has
->> actually been written by the CPU,  there is a drive bug that is likely
->> made worse by overwriting that buffer.
->
-> So does this need a
-> Fixes: 1631ba1259d6 ("riscv: Add support for non-coherent devices using 
-> zicbom extension")
-> then, even if the cacheline really should not have been touched by the
-> CPU?
-> Also, minor typo, s/drive/driver/.
+On 27/03/2023 14:13, Arnd Bergmann wrote:
+> From: Arnd Bergmann <arnd@arndb.de>
+>=20
+> The cache management operations for noncoherent DMA on ARMv6 work
+> in two different ways:
+>=20
+>   * When CONFIG_DMA_CACHE_RWFO is set, speculative prefetches on in-fligh=
+t
+>     DMA buffers lead to data corruption when the prefetched data is writt=
+en
+>     back on top of data from the device.
+>=20
+>   * When CONFIG_DMA_CACHE_RWFO is disabled, a cache flush on one CPU
+>     is not seen by the other core(s), leading to inconsistent contents
+>     accross the system.
+>=20
+> As a consequence, neither configuration is actually safe to use in a
+> general-purpose kernel that is used on both MPCore systems and ARM1176
+> with prefetching enabled.
+>=20
+> We could add further workarounds to make the behavior more dynamic based
+> on the system, but realistically, there are close to zero remaining
+> users on any ARM11MPCore anyway, and nobody seems too interested in it,
+> compared to the more popular ARM1176 used in BMC2835 and AST2500.
+>=20
+> The Oxnas platform has some minimal support in OpenWRT, but most of the
+> drivers and dts files never made it into the mainline kernel, while the
+> Arm Versatile/Realview platform mainly serves as a reference system but
+> is not necessary to be kept working once all other ARM11MPCore are gone.
 
-done
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 
-> In the thread we had that sparked this, I went digging for the source of
-> the flushes, and it came from a review comment:
-> https://lore.kernel.org/linux-riscv/342e3c12-ebb0-badf-7d4c-c444a2b842b2@sholland.org/
+It's sad but it's the reality, there's no chance full OXNAS support will
+ever come upstream and no real work has been done for years.
 
-Ah, so the comment that led to it was 
+I think OXNAS support can be programmed for removal for next release,
+it would need significant work to rework current support to make it accepta=
+ble
+before trying to upstream missing bits anyway.
 
-"For arch_sync_dma_for_cpu(DMA_BIDIRECTIONAL), we expect the CPU to have
-written to the buffer, so this should flush, not invalidate."
-
-which sounds like Samuel just misunderstood what "bidirectional"
-means: the comment implies that both the cpu and the device access
-the buffer before arch_sync_dma_for_cpu(DMA_BIDIRECTIONAL), but
-this is not allowed. Instead, the point is that the device may both
-read and write the buffer, requiring that we must do a writeback
-at arch_sync_dma_for_device(DMA_BIDIRECTIONAL) and an invalidate
-at arch_sync_dma_for_cpu(DMA_BIDIRECTIONAL).
-
-The comment about arch_sync_dma_for_device(DMA_FROM_DEVICE) (in the
-same email) seems equally confused. It's of course easy to
-misunderstand these, and many others have gotten confused in
-similar ways before.
-
-> But *surely* if no other arch needs to do that, then we are safe to also
-> not do it... Your logic seems right by me at least, especially given the
-> lack of flushes elsewhere.
-
-Right, I remove the extra writeback from powerpc, parisc and microblaze
-for the same reason. Those appear to only be there because they used the
-same function for _for_device() as for _for_cpu(), not because someone
-thought they were required.
-
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Thanks!
-
-     Arnd
+Thanks,
+Neil
 
 
--=-=-=-=-=-=-=-=-=-=-=-
+>=20
+> Take the easy way out here and drop support for multiprocessing on
+> ARMv6, along with the CONFIG_DMA_CACHE_RWFO option and the cache
+> management implementation for it. This also helps with other ARMv6
+> issues, but for the moment leaves the ability to build a kernel that
+> can run on both ARMv7 SMP and single-processor ARMv6, which we probably
+> want to stop supporting as well, but not as part of this series.
+>=20
+> Cc: Neil Armstrong <neil.armstrong@linaro.org>
+> Cc: Daniel Golle <daniel@makrotopia.org>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: linux-oxnas@groups.io
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+> I could use some help clarifying the above changelog text to describe
+> the exact problem, and how the CONFIG_DMA_CACHE_RWFO actually works on
+> MPCore. The TRMs for both 1176 and 11MPCore only describe prefetching
+> into the instruction cache, not the data cache, but this can end up in
+> the outercache as a result. The 1176 has some extra control bits to
+> control prefetching, but I found no reference that explains why an
+> MPCore does not run into the problem.
+> ---
+>   arch/arm/mach-oxnas/Kconfig                |  4 -
+>   arch/arm/mach-oxnas/Makefile               |  1 -
+>   arch/arm/mach-oxnas/headsmp.S              | 23 ------
+>   arch/arm/mach-oxnas/platsmp.c              | 96 ----------------------
+>   arch/arm/mach-versatile/platsmp-realview.c |  4 -
+>   arch/arm/mm/Kconfig                        | 19 -----
+>   arch/arm/mm/cache-v6.S                     | 31 -------
+>   7 files changed, 178 deletions(-)
+>   delete mode 100644 arch/arm/mach-oxnas/headsmp.S
+>   delete mode 100644 arch/arm/mach-oxnas/platsmp.c
+>=20
+> diff --git a/arch/arm/mach-oxnas/Kconfig b/arch/arm/mach-oxnas/Kconfig
+> index a9ded7079268..a054235c3d6c 100644
+> --- a/arch/arm/mach-oxnas/Kconfig
+> +++ b/arch/arm/mach-oxnas/Kconfig
+> @@ -28,10 +28,6 @@ config MACH_OX820
+>   	bool "Support OX820 Based Products"
+>   	depends on ARCH_MULTI_V6
+>   	select ARM_GIC
+> -	select DMA_CACHE_RWFO if SMP
+> -	select HAVE_SMP
+> -	select HAVE_ARM_SCU if SMP
+> -	select HAVE_ARM_TWD if SMP
+>   	help
+>   	  Include Support for the Oxford Semiconductor OX820 SoC Based Product=
+s.
+>  =20
+> diff --git a/arch/arm/mach-oxnas/Makefile b/arch/arm/mach-oxnas/Makefile
+> index 0e78ecfe6c49..a4e40e534e6a 100644
+> --- a/arch/arm/mach-oxnas/Makefile
+> +++ b/arch/arm/mach-oxnas/Makefile
+> @@ -1,2 +1 @@
+>   # SPDX-License-Identifier: GPL-2.0-only
+> -obj-$(CONFIG_SMP)		+=3D platsmp.o headsmp.o
+> diff --git a/arch/arm/mach-oxnas/headsmp.S b/arch/arm/mach-oxnas/headsmp.=
+S
+> deleted file mode 100644
+> index 9c0f1479f33a..000000000000
+> --- a/arch/arm/mach-oxnas/headsmp.S
+> +++ /dev/null
+> @@ -1,23 +0,0 @@
+> -/* SPDX-License-Identifier: GPL-2.0-only */
+> -/*
+> - * Copyright (C) 2013 Ma Haijun <mahaijuns@gmail.com>
+> - * Copyright (c) 2003 ARM Limited
+> - * All Rights Reserved
+> - */
+> -#include <linux/linkage.h>
+> -#include <linux/init.h>
+> -
+> -	__INIT
+> -
+> -/*
+> - * OX820 specific entry point for secondary CPUs.
+> - */
+> -ENTRY(ox820_secondary_startup)
+> -	mov r4, #0
+> -	/* invalidate both caches and branch target cache */
+> -	mcr p15, 0, r4, c7, c7, 0
+> -	/*
+> -	 * we've been released from the holding pen: secondary_stack
+> -	 * should now contain the SVC stack for this core
+> -	 */
+> -	b	secondary_startup
+> diff --git a/arch/arm/mach-oxnas/platsmp.c b/arch/arm/mach-oxnas/platsmp.=
+c
+> deleted file mode 100644
+> index f0a50b9e61df..000000000000
+> --- a/arch/arm/mach-oxnas/platsmp.c
+> +++ /dev/null
+> @@ -1,96 +0,0 @@
+> -// SPDX-License-Identifier: GPL-2.0-only
+> -/*
+> - * Copyright (C) 2016 Neil Armstrong <narmstrong@baylibre.com>
+> - * Copyright (C) 2013 Ma Haijun <mahaijuns@gmail.com>
+> - * Copyright (C) 2002 ARM Ltd.
+> - * All Rights Reserved
+> - */
+> -#include <linux/io.h>
+> -#include <linux/delay.h>
+> -#include <linux/of.h>
+> -#include <linux/of_address.h>
+> -
+> -#include <asm/cacheflush.h>
+> -#include <asm/cp15.h>
+> -#include <asm/smp_plat.h>
+> -#include <asm/smp_scu.h>
+> -
+> -extern void ox820_secondary_startup(void);
+> -
+> -static void __iomem *cpu_ctrl;
+> -static void __iomem *gic_cpu_ctrl;
+> -
+> -#define HOLDINGPEN_CPU_OFFSET		0xc8
+> -#define HOLDINGPEN_LOCATION_OFFSET	0xc4
+> -
+> -#define GIC_NCPU_OFFSET(cpu)		(0x100 + (cpu)*0x100)
+> -#define GIC_CPU_CTRL			0x00
+> -#define GIC_CPU_CTRL_ENABLE		1
+> -
+> -static int __init ox820_boot_secondary(unsigned int cpu,
+> -		struct task_struct *idle)
+> -{
+> -	/*
+> -	 * Write the address of secondary startup into the
+> -	 * system-wide flags register. The BootMonitor waits
+> -	 * until it receives a soft interrupt, and then the
+> -	 * secondary CPU branches to this address.
+> -	 */
+> -	writel(virt_to_phys(ox820_secondary_startup),
+> -			cpu_ctrl + HOLDINGPEN_LOCATION_OFFSET);
+> -
+> -	writel(cpu, cpu_ctrl + HOLDINGPEN_CPU_OFFSET);
+> -
+> -	/*
+> -	 * Enable GIC cpu interface in CPU Interface Control Register
+> -	 */
+> -	writel(GIC_CPU_CTRL_ENABLE,
+> -		gic_cpu_ctrl + GIC_NCPU_OFFSET(cpu) + GIC_CPU_CTRL);
+> -
+> -	/*
+> -	 * Send the secondary CPU a soft interrupt, thereby causing
+> -	 * the boot monitor to read the system wide flags register,
+> -	 * and branch to the address found there.
+> -	 */
+> -	arch_send_wakeup_ipi_mask(cpumask_of(cpu));
+> -
+> -	return 0;
+> -}
+> -
+> -static void __init ox820_smp_prepare_cpus(unsigned int max_cpus)
+> -{
+> -	struct device_node *np;
+> -	void __iomem *scu_base;
+> -
+> -	np =3D of_find_compatible_node(NULL, NULL, "arm,arm11mp-scu");
+> -	scu_base =3D of_iomap(np, 0);
+> -	of_node_put(np);
+> -	if (!scu_base)
+> -		return;
+> -
+> -	/* Remap CPU Interrupt Interface Registers */
+> -	np =3D of_find_compatible_node(NULL, NULL, "arm,arm11mp-gic");
+> -	gic_cpu_ctrl =3D of_iomap(np, 1);
+> -	of_node_put(np);
+> -	if (!gic_cpu_ctrl)
+> -		goto unmap_scu;
+> -
+> -	np =3D of_find_compatible_node(NULL, NULL, "oxsemi,ox820-sys-ctrl");
+> -	cpu_ctrl =3D of_iomap(np, 0);
+> -	of_node_put(np);
+> -	if (!cpu_ctrl)
+> -		goto unmap_scu;
+> -
+> -	scu_enable(scu_base);
+> -	flush_cache_all();
+> -
+> -unmap_scu:
+> -	iounmap(scu_base);
+> -}
+> -
+> -static const struct smp_operations ox820_smp_ops __initconst =3D {
+> -	.smp_prepare_cpus	=3D ox820_smp_prepare_cpus,
+> -	.smp_boot_secondary	=3D ox820_boot_secondary,
+> -};
+> -
+> -CPU_METHOD_OF_DECLARE(ox820_smp, "oxsemi,ox820-smp", &ox820_smp_ops);
+> diff --git a/arch/arm/mach-versatile/platsmp-realview.c b/arch/arm/mach-v=
+ersatile/platsmp-realview.c
+> index 5d363385c801..fa31fd2d211d 100644
+> --- a/arch/arm/mach-versatile/platsmp-realview.c
+> +++ b/arch/arm/mach-versatile/platsmp-realview.c
+> @@ -18,16 +18,12 @@
+>   #define REALVIEW_SYS_FLAGSSET_OFFSET	0x30
+>  =20
+>   static const struct of_device_id realview_scu_match[] =3D {
+> -	{ .compatible =3D "arm,arm11mp-scu", },
+>   	{ .compatible =3D "arm,cortex-a9-scu", },
+>   	{ .compatible =3D "arm,cortex-a5-scu", },
+>   	{ }
+>   };
+>  =20
+>   static const struct of_device_id realview_syscon_match[] =3D {
+> -        { .compatible =3D "arm,core-module-integrator", },
+> -        { .compatible =3D "arm,realview-eb-syscon", },
+> -        { .compatible =3D "arm,realview-pb11mp-syscon", },
+>           { .compatible =3D "arm,realview-pbx-syscon", },
+>           { },
+>   };
+> diff --git a/arch/arm/mm/Kconfig b/arch/arm/mm/Kconfig
+> index c5bbae86f725..16b62bc0a970 100644
+> --- a/arch/arm/mm/Kconfig
+> +++ b/arch/arm/mm/Kconfig
+> @@ -937,25 +937,6 @@ config VDSO
+>   	  You must have glibc 2.22 or later for programs to seamlessly
+>   	  take advantage of this.
+>  =20
+> -config DMA_CACHE_RWFO
+> -	bool "Enable read/write for ownership DMA cache maintenance"
+> -	depends on CPU_V6K && SMP
+> -	default y
+> -	help
+> -	  The Snoop Control Unit on ARM11MPCore does not detect the
+> -	  cache maintenance operations and the dma_{map,unmap}_area()
+> -	  functions may leave stale cache entries on other CPUs. By
+> -	  enabling this option, Read or Write For Ownership in the ARMv6
+> -	  DMA cache maintenance functions is performed. These LDR/STR
+> -	  instructions change the cache line state to shared or modified
+> -	  so that the cache operation has the desired effect.
+> -
+> -	  Note that the workaround is only valid on processors that do
+> -	  not perform speculative loads into the D-cache. For such
+> -	  processors, if cache maintenance operations are not broadcast
+> -	  in hardware, other workarounds are needed (e.g. cache
+> -	  maintenance broadcasting in software via FIQ).
+> -
+>   config OUTER_CACHE
+>   	bool
+>  =20
+> diff --git a/arch/arm/mm/cache-v6.S b/arch/arm/mm/cache-v6.S
+> index abae7ff5defc..f6ee53c1de20 100644
+> --- a/arch/arm/mm/cache-v6.S
+> +++ b/arch/arm/mm/cache-v6.S
+> @@ -201,10 +201,6 @@ ENTRY(v6_flush_kern_dcache_area)
+>    *	- end     - virtual end address of region
+>    */
+>   ENTRY(v6_dma_inv_range)
+> -#ifdef CONFIG_DMA_CACHE_RWFO
+> -	ldrb	r2, [r0]			@ read for ownership
+> -	strb	r2, [r0]			@ write for ownership
+> -#endif
+>   	tst	r0, #D_CACHE_LINE_SIZE - 1
+>   	bic	r0, r0, #D_CACHE_LINE_SIZE - 1
+>   #ifdef HARVARD_CACHE
+> @@ -213,10 +209,6 @@ ENTRY(v6_dma_inv_range)
+>   	mcrne	p15, 0, r0, c7, c11, 1		@ clean unified line
+>   #endif
+>   	tst	r1, #D_CACHE_LINE_SIZE - 1
+> -#ifdef CONFIG_DMA_CACHE_RWFO
+> -	ldrbne	r2, [r1, #-1]			@ read for ownership
+> -	strbne	r2, [r1, #-1]			@ write for ownership
+> -#endif
+>   	bic	r1, r1, #D_CACHE_LINE_SIZE - 1
+>   #ifdef HARVARD_CACHE
+>   	mcrne	p15, 0, r1, c7, c14, 1		@ clean & invalidate D line
+> @@ -231,10 +223,6 @@ ENTRY(v6_dma_inv_range)
+>   #endif
+>   	add	r0, r0, #D_CACHE_LINE_SIZE
+>   	cmp	r0, r1
+> -#ifdef CONFIG_DMA_CACHE_RWFO
+> -	ldrlo	r2, [r0]			@ read for ownership
+> -	strlo	r2, [r0]			@ write for ownership
+> -#endif
+>   	blo	1b
+>   	mov	r0, #0
+>   	mcr	p15, 0, r0, c7, c10, 4		@ drain write buffer
+> @@ -248,9 +236,6 @@ ENTRY(v6_dma_inv_range)
+>   ENTRY(v6_dma_clean_range)
+>   	bic	r0, r0, #D_CACHE_LINE_SIZE - 1
+>   1:
+> -#ifdef CONFIG_DMA_CACHE_RWFO
+> -	ldr	r2, [r0]			@ read for ownership
+> -#endif
+>   #ifdef HARVARD_CACHE
+>   	mcr	p15, 0, r0, c7, c10, 1		@ clean D line
+>   #else
+> @@ -269,10 +254,6 @@ ENTRY(v6_dma_clean_range)
+>    *	- end     - virtual end address of region
+>    */
+>   ENTRY(v6_dma_flush_range)
+> -#ifdef CONFIG_DMA_CACHE_RWFO
+> -	ldrb	r2, [r0]		@ read for ownership
+> -	strb	r2, [r0]		@ write for ownership
+> -#endif
+>   	bic	r0, r0, #D_CACHE_LINE_SIZE - 1
+>   1:
+>   #ifdef HARVARD_CACHE
+> @@ -282,10 +263,6 @@ ENTRY(v6_dma_flush_range)
+>   #endif
+>   	add	r0, r0, #D_CACHE_LINE_SIZE
+>   	cmp	r0, r1
+> -#ifdef CONFIG_DMA_CACHE_RWFO
+> -	ldrblo	r2, [r0]			@ read for ownership
+> -	strblo	r2, [r0]			@ write for ownership
+> -#endif
+>   	blo	1b
+>   	mov	r0, #0
+>   	mcr	p15, 0, r0, c7, c10, 4		@ drain write buffer
+> @@ -301,13 +278,7 @@ ENTRY(v6_dma_map_area)
+>   	add	r1, r1, r0
+>   	teq	r2, #DMA_FROM_DEVICE
+>   	beq	v6_dma_inv_range
+> -#ifndef CONFIG_DMA_CACHE_RWFO
+>   	b	v6_dma_clean_range
+> -#else
+> -	teq	r2, #DMA_TO_DEVICE
+> -	beq	v6_dma_clean_range
+> -	b	v6_dma_flush_range
+> -#endif
+>   ENDPROC(v6_dma_map_area)
+>  =20
+>   /*
+> @@ -317,11 +288,9 @@ ENDPROC(v6_dma_map_area)
+>    *	- dir	- DMA direction
+>    */
+>   ENTRY(v6_dma_unmap_area)
+> -#ifndef CONFIG_DMA_CACHE_RWFO
+>   	add	r1, r1, r0
+>   	teq	r2, #DMA_TO_DEVICE
+>   	bne	v6_dma_inv_range
+> -#endif
+>   	ret	lr
+>   ENDPROC(v6_dma_unmap_area)
+>  =20
+
+
+
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#217): https://groups.io/g/linux-oxnas/message/217
-Mute This Topic: https://groups.io/mt/97970100/1808289
+View/Reply Online (#184): https://groups.io/g/linux-oxnas/message/184
+Mute This Topic: https://groups.io/mt/97946110/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
--=-=-=-=-=-=-=-=-=-=-=-
+Unsubscribe: https://groups.io/g/linux-oxnas/leave/3934443/1808289/40129949=
+9/xyzzy [lists+linux-oxnas@lfdr.de]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
 
