@@ -1,35 +1,28 @@
-Return-Path: <bounce+16102+220+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+221+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id D97926D1D42
-	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:37 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id af7EYY1809624x1vESpbbvkR; Fri, 31 Mar 2023 02:55:36 -0700
-X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by mx.groups.io with SMTP id smtpd.web11.23001.1680177149409577384
+	by mail.lfdr.de (Postfix) with ESMTPS id 8436E6D1D46
+	for <lists+linux-oxnas@lfdr.de>; Fri, 31 Mar 2023 11:55:39 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id IDmSYY1809624xpY1aShaS3r; Fri, 31 Mar 2023 02:55:38 -0700
+X-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+ by mx.groups.io with SMTP id smtpd.web10.24275.1680181173234476610
  for <linux-oxnas@groups.io>;
- Thu, 30 Mar 2023 04:52:29 -0700
-X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 9E3076204D
-	for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 11:52:28 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9886C4339B
-	for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 11:52:27 +0000 (UTC)
-X-Received: by mail-ed1-f54.google.com with SMTP id y4so75429204edo.2
-        for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 04:52:27 -0700 (PDT)
-X-Gm-Message-State: Dac89dcrzm7XoCIg5wWRf9nTx1808289AA=
-X-Google-Smtp-Source: AKy350aaxBOgSqlP959KpS9cfZAsDCsvbSuFf+7QcLc+VlamdgSrDzoUdXNjAn81KSsW2remp6yjeVooIQhT3qtniP0=
-X-Received: by 2002:a19:f007:0:b0:4db:b4:c8d7 with SMTP id p7-20020a19f007000000b004db00b4c8d7mr1755725lfc.2.1680177124990;
- Thu, 30 Mar 2023 04:52:04 -0700 (PDT)
+ Thu, 30 Mar 2023 05:59:33 -0700
+X-Received: by mail-io1-f51.google.com with SMTP id m22so8235062ioy.4
+        for <linux-oxnas@groups.io>; Thu, 30 Mar 2023 05:59:33 -0700 (PDT)
+X-Gm-Message-State: pxEAe2F7mmTQGW0BTorCvMIQx1808289AA=
+X-Google-Smtp-Source: AKy350Yt7w4HDnt8ZzJ1OA1g5OCPUWPp6heQMoQ57xTct+y1JPFpMNsPMtx4N97vitPklV5i5ccLJReO6yCW0ia7/Oo=
+X-Received: by 2002:a02:95c3:0:b0:3eb:3166:9da4 with SMTP id
+ b61-20020a0295c3000000b003eb31669da4mr2710421jai.2.1680181172425; Thu, 30 Mar
+ 2023 05:59:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230327121317.4081816-1-arnd@kernel.org> <20230327121317.4081816-19-arnd@kernel.org>
-In-Reply-To: <20230327121317.4081816-19-arnd@kernel.org>
-From: Ard Biesheuvel <ardb@kernel.org>
-Date: Thu, 30 Mar 2023 13:51:53 +0200
-X-Gmail-Original-Message-ID: <CAMj1kXGNjrmTr1R+-09UYtHSgvT6fSgZxvpbEOfeTFxhWtgGcQ@mail.gmail.com>
-Message-ID: <CAMj1kXGNjrmTr1R+-09UYtHSgvT6fSgZxvpbEOfeTFxhWtgGcQ@mail.gmail.com>
-Subject: Re: [linux-oxnas] [PATCH 18/21] ARM: drop SMP support for ARM11MPCore
+References: <20230327121317.4081816-1-arnd@kernel.org> <20230327121317.4081816-9-arnd@kernel.org>
+In-Reply-To: <20230327121317.4081816-9-arnd@kernel.org>
+From: "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date: Thu, 30 Mar 2023 13:59:06 +0100
+Message-ID: <CA+V-a8v--RqxFJYTZ04vVgiA69VJsFWk=r=TvRvokhpAV-famg@mail.gmail.com>
+Subject: Re: [linux-oxnas] [PATCH 08/21] riscv: dma-mapping: only invalidate after DMA, not flush
 To: Arnd Bergmann <arnd@kernel.org>
 Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>, 
 	Vineet Gupta <vgupta@kernel.org>, Russell King <linux@armlinux.org.uk>, 
@@ -51,7 +44,7 @@ Cc: linux-kernel@vger.kernel.org, Arnd Bergmann <arnd@arndb.de>,
 	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
 	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
 	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org, 
-	linux-xtensa@linux-xtensa.org, Daniel Golle <daniel@makrotopia.org>
+	linux-xtensa@linux-xtensa.org
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -60,67 +53,71 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,ardb@kernel.org
+Reply-To: linux-oxnas@groups.io,prabhakar.csengg@gmail.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1680256536;
- bh=J/xVxg716zsSNxWgEK566Eb1+GLf93zaQmnFTnrDADY=;
+ q=dns/txt; s=20140610; t=1680256538;
+ bh=RdZkrWOwN4WkjHZ5P2jbvEnvhkMIrydU5LVsOYlBrN0=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=dbKTgxvToUOjvPgMp37bBcJnAgkg3MyPeziBqHIWEmVk/E0z2WKSdB3F71o1jsQSvup
- eq7M3HSIO7jVfiA/sv9CL/O5Iry0Gt895hBzWljjdtaiHLVCz9hL299pLamxY+6xnjaYD
- d8fImkEhOnxZHbw/07+frAJHSiTF63DhH6A=
+ b=TKoO5A6DBOUn6YREC65rjn1J7AjTRCu5I9iOy30OxC+Kwi3HGeoYX+oA5DvfkWzrz1R
+ 0aUVuWn3+bIyJ8x8vLBStFEqyOdqTdQ8CWCE/+GZkG+Uc5X4+Q1/W3QoKABbreW2g7soV
+ TD0xiG3saXGqHTBh3YuxfJ8slXHvah0lo0Y=
 
-On Mon, 27 Mar 2023 at 14:18, Arnd Bergmann <arnd@kernel.org> wrote:
+On Mon, Mar 27, 2023 at 1:16=E2=80=AFPM Arnd Bergmann <arnd@kernel.org> wro=
+te:
 >
 > From: Arnd Bergmann <arnd@arndb.de>
 >
-> The cache management operations for noncoherent DMA on ARMv6 work
-> in two different ways:
+> No other architecture intentionally writes back dirty cache lines into
+> a buffer that a device has just finished writing into. If the cache is
+> clean, this has no effect at all, but if a cacheline in the buffer has
+> actually been written by the CPU,  there is a drive bug that is likely
+> made worse by overwriting that buffer.
 >
->  * When CONFIG_DMA_CACHE_RWFO is set, speculative prefetches on in-flight
->    DMA buffers lead to data corruption when the prefetched data is written
->    back on top of data from the device.
->
->  * When CONFIG_DMA_CACHE_RWFO is disabled, a cache flush on one CPU
->    is not seen by the other core(s), leading to inconsistent contents
->    accross the system.
->
-> As a consequence, neither configuration is actually safe to use in a
-> general-purpose kernel that is used on both MPCore systems and ARM1176
-> with prefetching enabled.
->
-> We could add further workarounds to make the behavior more dynamic based
-> on the system, but realistically, there are close to zero remaining
-> users on any ARM11MPCore anyway, and nobody seems too interested in it,
-> compared to the more popular ARM1176 used in BMC2835 and AST2500.
->
-> The Oxnas platform has some minimal support in OpenWRT, but most of the
-> drivers and dts files never made it into the mainline kernel, while the
-> Arm Versatile/Realview platform mainly serves as a reference system but
-> is not necessary to be kept working once all other ARM11MPCore are gone.
->
-> Take the easy way out here and drop support for multiprocessing on
-> ARMv6, along with the CONFIG_DMA_CACHE_RWFO option and the cache
-> management implementation for it. This also helps with other ARMv6
-> issues, but for the moment leaves the ability to build a kernel that
-> can run on both ARMv7 SMP and single-processor ARMv6, which we probably
-> want to stop supporting as well, but not as part of this series.
->
-> Cc: Neil Armstrong <neil.armstrong@linaro.org>
-> Cc: Daniel Golle <daniel@makrotopia.org>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: linux-oxnas@groups.io
 > Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  arch/riscv/mm/dma-noncoherent.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
 
-Acked-by: Ard Biesheuvel <ardb@kernel.org>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+
+Cheers,
+Prabhakar
+
+> diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoher=
+ent.c
+> index d919efab6eba..640f4c496d26 100644
+> --- a/arch/riscv/mm/dma-noncoherent.c
+> +++ b/arch/riscv/mm/dma-noncoherent.c
+> @@ -42,7 +42,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t si=
+ze,
+>                 break;
+>         case DMA_FROM_DEVICE:
+>         case DMA_BIDIRECTIONAL:
+> -               ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
+> +               ALT_CMO_OP(inval, vaddr, size, riscv_cbom_block_size);
+>                 break;
+>         default:
+>                 break;
+> --
+> 2.39.2
+>
+>
+> _______________________________________________
+> linux-riscv mailing list
+> linux-riscv@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-riscv
 
 
--=-=-=-=-=-=-=-=-=-=-=-
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#220): https://groups.io/g/linux-oxnas/message/220
-Mute This Topic: https://groups.io/mt/97970110/1808289
+View/Reply Online (#221): https://groups.io/g/linux-oxnas/message/221
+Mute This Topic: https://groups.io/mt/97970100/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
--=-=-=-=-=-=-=-=-=-=-=-
+Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
+de]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
 
