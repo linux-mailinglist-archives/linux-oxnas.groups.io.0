@@ -1,81 +1,35 @@
-Return-Path: <bounce+16102+236+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+237+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id A06776E4167
-	for <lists+linux-oxnas@lfdr.de>; Mon, 17 Apr 2023 09:42:08 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id MoKSYY1809624xDSw96xB04n; Mon, 17 Apr 2023 00:42:07 -0700
-X-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com [209.85.208.46])
- by mx.groups.io with SMTP id smtpd.web10.76115.1680539405424961225
+	by mail.lfdr.de (Postfix) with ESMTPS id A3B516E4165
+	for <lists+linux-oxnas@lfdr.de>; Mon, 17 Apr 2023 09:42:06 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id 8avjYY1809624xcY9x8DPhBN; Mon, 17 Apr 2023 00:42:04 -0700
+X-Received: from mail-oa1-f52.google.com (mail-oa1-f52.google.com [209.85.160.52])
+ by mx.groups.io with SMTP id smtpd.web11.79895.1680547005269089239
  for <linux-oxnas@groups.io>;
- Mon, 03 Apr 2023 09:30:05 -0700
-X-Received: by mail-ed1-f46.google.com with SMTP id x3so119581463edb.10
-        for <linux-oxnas@groups.io>; Mon, 03 Apr 2023 09:30:05 -0700 (PDT)
-X-Gm-Message-State: rhgkQf7wvtYngiApBParX20Dx1808289AA=
-X-Google-Smtp-Source: AKy350YS4e1dI8mZhrbLOs96X7qTnH/JqlEPq688zdETFGPGyW8pAjyNj4FhzEJY/Pp8fKqk3yTMRQ==
-X-Received: by 2002:a17:906:3da:b0:931:95a1:a05a with SMTP id c26-20020a17090603da00b0093195a1a05amr37358230eja.62.1680539403777;
-        Mon, 03 Apr 2023 09:30:03 -0700 (PDT)
-X-Received: from [192.168.2.107] ([79.115.63.91])
-        by smtp.gmail.com with ESMTPSA id ld4-20020a1709079c0400b009486efb9192sm2073196ejc.11.2023.04.03.09.29.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Apr 2023 09:30:03 -0700 (PDT)
-Message-ID: <f881883e-23e1-66e0-78d2-da86533b038f@linaro.org>
-Date: Mon, 3 Apr 2023 17:29:59 +0100
+ Mon, 03 Apr 2023 11:36:45 -0700
+X-Received: by mail-oa1-f52.google.com with SMTP id 586e51a60fabf-17aeb49429eso31835838fac.6
+        for <linux-oxnas@groups.io>; Mon, 03 Apr 2023 11:36:45 -0700 (PDT)
+X-Gm-Message-State: bXuVDjVFTAvBX0QlTkWfd2Vgx1808289AA=
+X-Google-Smtp-Source: AKy350ZUlFhjgnglIoYafXPoxlDOutQn4rOsAma6LUGjUwvFzwRX7OlCEgbyqHLMXYRz6fgk9hhxRA==
+X-Received: by 2002:a05:6870:1707:b0:17e:3772:bdd7 with SMTP id h7-20020a056870170700b0017e3772bdd7mr90499oae.46.1680547004506;
+        Mon, 03 Apr 2023 11:36:44 -0700 (PDT)
+X-Received: from robh_at_kernel.org (66-90-144-107.dyn.grandenetworks.net. [66.90.144.107])
+        by smtp.gmail.com with ESMTPSA id xf19-20020a056870cf1300b001724742cfcesm3759713oab.38.2023.04.03.11.36.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Apr 2023 11:36:44 -0700 (PDT)
+X-Received: (nullmailer pid 1340936 invoked by uid 1000);
+	Mon, 03 Apr 2023 18:36:43 -0000
+Date: Mon, 3 Apr 2023 13:36:43 -0500
+From: Rob Herring <robh@kernel.org>
+To: Neil Armstrong <neil.armstrong@linaro.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>, soc@kernel.org, Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, Russell King <linux@armlinux.org.uk>, linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-oxnas@groups.io, Linus Walleij <linus.walleij@linaro.org>, Daniel Golle <daniel@makrotopia.org>, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [linux-oxnas] [PATCH RFC v2 0/4] ARM: oxnas support removal
+Message-ID: <20230403183643.GA1335487-robh@kernel.org>
+References: <20230331-topic-oxnas-upstream-remove-v2-0-e51078376f08@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.7.1
-Subject: Re: [linux-oxnas] [PATCH 00/49] mtd: nand: Convert to platform remove callback returning void
-To: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Vignesh Raghavendra <vigneshr@ti.com>,
- Kyungmin Park <kyungmin.park@samsung.com>,
- Naga Sureshkumar Relli <nagasure@xilinx.com>,
- Nicolas Ferre <nicolas.ferre@microchip.com>,
- Alexandre Belloni <alexandre.belloni@bootlin.com>,
- Claudiu Beznea <claudiu.beznea@microchip.com>,
- Yang Yingliang <yangyingliang@huawei.com>,
- ye xingchen <ye.xingchen@zte.com.cn>,
- Valentin Korenblit <vkorenblit@sequans.com>,
- Wang Weiyang <wangweiyang2@huawei.com>, =?UTF-8?Q?Pali_Roh=c3=a1r?=
- <pali@kernel.org>, =?UTF-8?Q?Marek_Beh=c3=ban?= <kabel@kernel.org>,
- Han Xu <han.xu@nxp.com>, Harvey Hunt <harveyhuntnexus@gmail.com>,
- Paul Cercueil <paul@crapouillou.net>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Vladimir Zapolskiy <vz@mleia.com>, Geert Uytterhoeven
- <geert@linux-m68k.org>, Dmitry Torokhov <dmitry.torokhov@gmail.com>,
- Liang Yang <liang.yang@amlogic.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Kevin Hilman <khilman@baylibre.com>,
- Christophe Leroy <christophe.leroy@csgroup.eu>,
- Phil Edworthy <phil.edworthy@renesas.com>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- Chuanhong Guo <gch981213@gmail.com>, Roger Quadros <rogerq@kernel.org>,
- Christophe JAILLET <christophe.jaillet@wanadoo.fr>,
- Manivannan Sadhasivam <mani@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
- Arnd Bergmann <arnd@arndb.de>, Linus Walleij <linus.walleij@linaro.org>,
- Stephen Boyd <sboyd@kernel.org>, Miaoqian Lin <linmq006@gmail.com>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Christophe Kerello <christophe.kerello@foss.st.com>,
- Jack Wang <jinpu.wang@ionos.com>, Chen-Yu Tsai <wens@csie.org>,
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Samuel Holland <samuel@sholland.org>, Stefan Agner <stefan@agner.ch>,
- Lucas Stach <dev@lynxeye.de>, Thierry Reding <thierry.reding@gmail.com>,
- Jonathan Hunter <jonathanh@nvidia.com>
-Cc: Richard Weinberger <richard@nod.at>, linux-mtd@lists.infradead.org,
- kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org,
- linux-mips@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
- linux-amlogic@lists.infradead.org,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- linux-mediatek@lists.infradead.org, linux-oxnas@groups.io,
- linux-arm-msm@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
- linux-rockchip@lists.infradead.org,
- linux-stm32@st-md-mailman.stormreply.com, linux-sunxi@lists.linux.dev,
- linux-tegra@vger.kernel.org
-References: <20230401161938.2503204-1-u.kleine-koenig@pengutronix.de>
-From: Tudor Ambarus <tudor.ambarus@linaro.org>
-In-Reply-To: <20230401161938.2503204-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20230331-topic-oxnas-upstream-remove-v2-0-e51078376f08@linaro.org>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -84,48 +38,51 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,tudor.ambarus@linaro.org
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Reply-To: linux-oxnas@groups.io,robh@kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1681717327;
- bh=afqKKJRkUdE4+X+SEeOCZzUnm8eUDEq2r3AYRh3DgW8=;
+ q=dns/txt; s=20140610; t=1681717324;
+ bh=Qfsf23tGDi6l41yW0t2zXQKjpz15OQbeD4ede5t55Ec=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=vnflo6dsWB/SeKn8OnKqJ2qtU+rdgiipOOSUGCt3OEYaZneg9eX7irY5fWQkE73CIIQ
- UjxmcmJ/t/lkMJ3Ell2A6sO0qO2mNCpRDJFk35HI4ui16qREsXZfbyU11zaqwdKgK0fV9
- +E34VD8rcJvXwTRhSRm7a+AwNK1KH8uZjxU=
+ b=fMBaSUakXa4RPLcVCBApCA7zp+JoMVwApLHXvVMrQqR223aohS9FInrG5BA8HKyB8TC
+ C0NkvuBHkAMw2jhxGuASGuh4lYSODQ0NZz+SkRYJ3ikJthWbK+x0qlZEdVnoRCFDpcEEU
+ jKpral9iDXAUNOhkbrpaELa/9KueeeVH0JM=
 
-
-
-On 4/1/23 17:18, Uwe Kleine-König wrote:
-> Hello,
+On Mon, Apr 03, 2023 at 09:42:17AM +0200, Neil Armstrong wrote:
+> With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+> associated with a clear lack of maintainance, development and migration to
+> dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
 > 
-> this series adapts the platform drivers below drivers/mtd/nand to use the
-> .remove_new() callback. Compared to the traditional .remove() callback
-> .remove_new() returns no value. This is a good thing because the driver core
-> doesn't (and cannot) cope for errors during remove. The only effect of a
-> non-zero return value in .remove() is that the driver core emits a warning. The
-> device is removed anyhow and an early return from .remove() usually yields a
-> resource leak.
+> In addition, the OX810 hasn't been booted for years and isn't even present
+> in an ARM config file.
 > 
-> By changing the remove callback to return void driver authors cannot
-> reasonably assume any more that there is some kind of cleanup later.
+> For the OX820, lack of USB and SATA support makes the platform not usable
+> in the current Linux support and relies on off-tree drivers hacked from the
+> vendor (defunct for years) sources.
 > 
-> As all drivers already return 0 in their .remove callback, they can be
-> converted trivially.
+> The last users are in the OpenWRT distribution, and today's removal means
+> support will still be in stable 6.1 LTS kernel until end of 2026.
 > 
+> If someone wants to take over the development even with lack of SMP, I'll
+> be happy to hand off maintainance.
+> 
+> The plan is to apply the first 4 patches first, then the drivers
+> followed by bindings. Finally the MAINTAINANCE entry can be removed.
+> 
+> I'm not sure about the process of bindings removal, but perhaps the bindings
+> should be marked as deprecated first then removed later on ?
 
-I'd make a single patch per subsystem for trivial changes, but I don't
-mind having them split per driver either:
+Nah, just remove them. Like the code, we can always bring them back if 
+needed.
 
-Acked-by: Tudor Ambarus <tudor.ambarus@linaro.org>
+Rob
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#236): https://groups.io/g/linux-oxnas/message/236
-Mute This Topic: https://groups.io/mt/98314477/1808289
+View/Reply Online (#237): https://groups.io/g/linux-oxnas/message/237
+Mute This Topic: https://groups.io/mt/98030323/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
