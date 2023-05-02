@@ -1,26 +1,26 @@
-Return-Path: <bounce+16102+260+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+261+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 479726FCB0D
-	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:18:09 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id seEHYY1809624xhnuwDaxlrn; Tue, 09 May 2023 09:18:07 -0700
-X-Received: from mail-lf1-f52.google.com (mail-lf1-f52.google.com [209.85.167.52])
- by mx.groups.io with SMTP id smtpd.web11.5472.1683067947382214206
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A50D6FCB0E
+	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:18:10 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id OQLjYY1809624xuM6Pp8jhOw; Tue, 09 May 2023 09:18:09 -0700
+X-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+ by mx.groups.io with SMTP id smtpd.web10.5840.1683068567700801892
  for <linux-oxnas@groups.io>;
- Tue, 02 May 2023 15:52:27 -0700
-X-Received: by mail-lf1-f52.google.com with SMTP id 2adb3069b0e04-4f0108a7d20so5140715e87.3
-        for <linux-oxnas@groups.io>; Tue, 02 May 2023 15:52:27 -0700 (PDT)
-X-Gm-Message-State: oI8ACD3DY9G01qavZqbhjje6x1808289AA=
-X-Google-Smtp-Source: ACHHUZ6Oo6CNJusINV9/L7Xt1q+0o1hyr6U1jjDYvnM0ZlUDdwA1vrQ5KYtmvDXiiUxPR0FKQ1HT5g==
-X-Received: by 2002:a19:c204:0:b0:4f1:223c:dc83 with SMTP id l4-20020a19c204000000b004f1223cdc83mr355945lfc.48.1683067945539;
-        Tue, 02 May 2023 15:52:25 -0700 (PDT)
-X-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id r16-20020ac24d10000000b004ddaea30ba6sm5607156lfi.235.2023.05.02.15.52.24
+ Tue, 02 May 2023 16:02:47 -0700
+X-Received: by mail-qk1-f180.google.com with SMTP id af79cd13be357-75131c2997bso37715385a.1
+        for <linux-oxnas@groups.io>; Tue, 02 May 2023 16:02:47 -0700 (PDT)
+X-Gm-Message-State: hmnisdavnPyMFG65qmBqOOGNx1808289AA=
+X-Google-Smtp-Source: ACHHUZ4eSB1jw2dhw1LAIzPe/MR5kdc4AoCnBVEG18379hjnfMdu0BtdA7D5r0jmXaGKb3nbIbuwpA==
+X-Received: by 2002:a05:6214:d64:b0:61a:96d3:bd20 with SMTP id 4-20020a0562140d6400b0061a96d3bd20mr380920qvs.10.1683068566677;
+        Tue, 02 May 2023 16:02:46 -0700 (PDT)
+X-Received: from [10.67.48.245] ([192.19.223.252])
+        by smtp.googlemail.com with ESMTPSA id t18-20020a0cea32000000b0061b71220644sm326246qvp.19.2023.05.02.16.02.36
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 02 May 2023 15:52:24 -0700 (PDT)
-Message-ID: <bce93654-fc36-3d12-282d-76fafb8f51ce@linaro.org>
-Date: Wed, 3 May 2023 01:52:24 +0300
+        Tue, 02 May 2023 16:02:45 -0700 (PDT)
+Message-ID: <d4b52074-d11c-4c7a-ad74-b2fce64c6d30@gmail.com>
+Date: Tue, 2 May 2023 16:02:34 -0700
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.10.0
@@ -51,7 +51,7 @@ References: <20220328000915.15041-1-ansuelsmth@gmail.com>
  <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
  <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
  <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
-From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+From: Florian Fainelli <f.fainelli@gmail.com>
 In-Reply-To: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
@@ -61,19 +61,19 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,dmitry.baryshkov@linaro.org
-Content-Language: en-GB
+Reply-To: linux-oxnas@groups.io,f.fainelli@gmail.com
+Content-Language: en-US
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1683649087;
- bh=IZ0x6VfJ9fKQnyCDZZ5P5ljE9Wke7IUw5btlwqxdsBU=;
+ q=dns/txt; s=20140610; t=1683649089;
+ bh=PBt07jR1jpmx+FCQ5nAFTJVmd6kHftIVpqiK1Z17BoI=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=Y2wI/ADqU3xipObCDFoW0jqoc0ievDDQSEI6rjHdcl0yb+Pqoz1Z49uwwUfE624puW+
- rvcgY7X9Fs8gABFYqH3Ri55OtVMCJG32IbZmbqeRRGcX5BxvaRfJ8mgoLEnB8ShZxGH6v
- VGvfyqbsIc4khRF3TlclPzivYPhQX0mOaps=
+ b=dh7GpUFJ5+uQK2EVZwpgp4mqFDmszILAD7FS3bt0Dm8E2uE/S05ISaK5WpO2kWYkUkD
+ 9ImYMbI8tkSlM14PL6UqEjJ27s+U5e6KOKL/upsjgqH8gt9hpujccbDwr1m4GYuGwa+US
+ Zm4SWAfbT6NpHhjdO6JxfrhpGTyyhIBgsM0=
 
-On 02/05/2023 22:40, Rob Herring wrote:
+On 5/2/23 12:40, Rob Herring wrote:
 > On Tue, May 2, 2023 at 3:15 AM Arnd Bergmann <arnd@arndb.de> wrote:
 >>
 >> On Tue, Apr 25, 2023, at 17:57, Rob Herring wrote:
@@ -158,11 +158,6 @@ On 02/05/2023 22:40, Rob Herring wrote:
 >      'pxa2' : 'pxa',
 >      'pxa3' : 'pxa',
 >      'pxa' : 'marvell',
-
-I'd question if it makes sense to split the pxa line. Yes, it was sold 
-by Intel to Marvell, but IIRC the devices still had some inheritance. 
-So, if we have the 'pxa' subdir, I'd move Marvell PXAs to that dir too.
-
 >      'arm-' : 'arm',
 >      'integ' : 'arm',
 >      'mps' : 'arm',
@@ -186,67 +181,18 @@ So, if we have the 'pxa' subdir, I'd move Marvell PXAs to that dir too.
 >      'pm9g45' : 'microchip',
 >      'ge86' : 'microchip',
 >      'bcm' : 'brcm',
->      'exynos' : 'samsung',
->      's3c' : 'samsung',
->      's5p' : 'samsung',
->      'gemini' : 'gemini',
->      'hi3' : 'hisilicon',
->      'hip' : 'hisilicon',
->      'hisi' : 'hisilicon',
->      'sd5' : 'hisilicon',
->      'hpe' : 'hpe',
->      'intel': 'intel',
->      'mt' : 'mediatek',
->      'meson' : 'meson',
->      'moxa' : 'moxa',
->      'mstar' : 'mstar',
->      'nuvo' : 'nuvoton',
->      'lpc' : 'lpc',
->      'lan96' : 'microchip',
->      'owl' : 'actions',
->      'ox8' : 'oxsemi',
->      'rda' : 'rda',
->      'rtd' : 'realtek',
->      'r7' : 'renesas',
->      'r8' : 'renesas',
->      'r9' : 'renesas',
->      'emev2' : 'renesas',
->      'sh73a' : 'renesas',
->      'gr-' : 'renesas',
->      'iwg' : 'renesas',
->      'rk' : 'rockchip',
->      'rv11' : 'rockchip',
->      'rockchip' : 'rockchip',
->      'socfpga' : 'socfpga',
->      'stm' : 'stm32',
->      'sti' : 'sti',
->      'st-pin' : 'sti',
->      'ste' : 'st-ericsson',
->      'spear' : 'spear',
->      'axp' : 'allwinner',
->      'tegra' : 'nvidia',
->      'milbeaut' : 'socionext',
->      'uniph' : 'socionext',
->      'vt8500' : 'vt8500',
->      'wm8' : 'vt8500',
->      'xen' : 'xen',
->      'zx' : 'zte',
->      'zynq' : 'xilinx',
-> }
-> 
-> Rob
-> 
-> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git arm-dts-move-v2
 
+How about we use 'broadcom' here, to follow what arm64 does? I could 
+rename arch/mips/boot/dts/brcm to arch/mips/boot/dts/broadcom for 
+consistency, too?
 -- 
-With best wishes
-Dmitry
+Florian
 
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#260): https://groups.io/g/linux-oxnas/message/260
+View/Reply Online (#261): https://groups.io/g/linux-oxnas/message/261
 Mute This Topic: https://groups.io/mt/98658732/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
