@@ -1,41 +1,42 @@
-Return-Path: <bounce+16102+267+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+268+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 906976FCB1F
-	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:02 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id s8wgYY1809624xPrEnUAohZa; Tue, 09 May 2023 09:19:01 -0700
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FA4D6FCB21
+	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:04 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id 4vAIYY1809624xTNGYisddNo; Tue, 09 May 2023 09:19:03 -0700
 X-Received: from wnew2-smtp.messagingengine.com (wnew2-smtp.messagingengine.com [64.147.123.27])
- by mx.groups.io with SMTP id smtpd.web10.15784.1683110603664994405
+ by mx.groups.io with SMTP id smtpd.web11.16192.1683111757179523667
  for <linux-oxnas@groups.io>;
- Wed, 03 May 2023 03:43:23 -0700
+ Wed, 03 May 2023 04:02:37 -0700
 X-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailnew.west.internal (Postfix) with ESMTP id 15E712B0695A;
-	Wed,  3 May 2023 06:43:21 -0400 (EDT)
+	by mailnew.west.internal (Postfix) with ESMTP id 6C7392B0671E;
+	Wed,  3 May 2023 07:02:32 -0400 (EDT)
 X-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Wed, 03 May 2023 06:43:23 -0400
-X-ME-Sender: <xms:yDpSZPCqsf08zSuGB9S_Yyasjyfw8C7NFU4cOM__vE3LKtp5PZuGng>
-    <xme:yDpSZFiEb6HH6H_58GlixH3G-nv3jp37AdKwTgdBGBFYH0DY8nzkEJ5mgat6Fv9LK
-    KKIIOZPpYqGCV37HyY>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedvkedgfedtucetufdoteggodetrfdotf
+  by compute6.internal (MEProxy); Wed, 03 May 2023 07:02:34 -0400
+X-ME-Sender: <xms:Rj9SZKlTTnbDiHX55Z0zVK4RRHqTtD34Ic0kr9gu8LXRZUd5vW1sNQ>
+    <xme:Rj9SZB2RRbTSlfnvoyCiq-CjuDURcGdNgs5GoDJl4qCHFJ5-ZHoIvp9bWKCYjpXN-
+    ODT0WgrXyw40LeC0sc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfedvkedgfeegucetufdoteggodetrfdotf
     fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
     uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:yDpSZKnB4jWJCZbdAILCLoQ7Tb1JDWaGOQ4QRvtfyLGkz3ZL_6SLDg>
-    <xmx:yDpSZBy3OQb_c4T8ysdY1Cp9Lj863KLs0081WZpxCobqdPOlwPyYug>
-    <xmx:yDpSZETjKdOdSUw3JxfayiFtx-J69d0-e3sxVxrEKYSU1TR-jv4gqw>
-    <xmx:yDpSZAxATWHiqR3-vrO-mZXAs2G96Hf5p2LRUHruhuMW2qX03HsehI4wpP4>
+    cujfgurhepofgfggfkjghffffhvfevufgtgfesthhqredtreerjeenucfhrhhomhepfdet
+    rhhnugcuuegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrg
+    htthgvrhhnpeegfeejhedvledvffeijeeijeeivddvhfeliedvleevheejleetgedukedt
+    gfejveenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grrhhnugesrghrnhgusgdruggv
+X-ME-Proxy: <xmx:Rj9SZIovGybcnhaYiLbWAMPNr2wtxMzL-NEtbKfgejz2jVx79Q3BOw>
+    <xmx:Rj9SZOmlZGrdb2-rGVi2XdPxahue8H13hkdPES4NDGwCeY-jXgd-ew>
+    <xmx:Rj9SZI2--fY13skOLwZ1x9wt_VRgsao0yXJv8XyToKLEhPijWfOSBw>
+    <xmx:SD9SZMJstDJSwk6E9VhGeSPmli8W6KuMDF8H4lCfg1AWmdfP8FfC5WnUfw0>
 Feedback-ID: i56a14606:Fastmail
 X-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 4B4C0B60086; Wed,  3 May 2023 06:43:20 -0400 (EDT)
+	id B77FBB6008D; Wed,  3 May 2023 07:02:30 -0400 (EDT)
 User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
 Mime-Version: 1.0
-Message-Id: <89dfb3e4-4009-4ed1-8cb0-d6ee16928caa@app.fastmail.com>
-In-Reply-To: <20230503011920.GB31464@dragon>
+Message-Id: <99b49e6b-e963-415a-a2c9-72505087833c@app.fastmail.com>
+In-Reply-To: 
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
 References: <20220328000915.15041-1-ansuelsmth@gmail.com>
  <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
  <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
@@ -44,15 +45,13 @@ References: <20220328000915.15041-1-ansuelsmth@gmail.com>
  <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
  <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
  <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
- <2783a3ba-8fcb-7e5f-3147-91d02e573ba4@kernel.org>
- <20230503011920.GB31464@dragon>
-Date: Wed, 03 May 2023 12:43:00 +0200
+Date: Wed, 03 May 2023 13:02:10 +0200
 From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Shawn Guo" <shawnguo@kernel.org>, "Krzysztof Kozlowski" <krzk@kernel.org>
-Cc: "Rob Herring" <robh+dt@kernel.org>,
- "Geert Uytterhoeven" <geert@linux-m68k.org>,
+To: "Rob Herring" <robh+dt@kernel.org>
+Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
  "Olof Johansson" <olof@lixom.net>,
  "Christian Marangi" <ansuelsmth@gmail.com>,
+ "Krzysztof Kozlowski" <krzk@kernel.org>,
  "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
  linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
  linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
@@ -79,42 +78,114 @@ List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
 Reply-To: linux-oxnas@groups.io,arnd@arndb.de
-X-Gm-Message-State: htXwjY0fHue9Uy05DW1xsJ4ex1808289AA=
-Content-Type: text/plain
+X-Gm-Message-State: j7BJrSCLvPJS4TDilw625umZx1808289AA=
+Content-Type: text/plain;charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1683649141;
- bh=iCINsMUctuuwLNskiczsVLKqHgvVE0/uvwT8FGwGv7A=;
+ q=dns/txt; s=20140610; t=1683649143;
+ bh=Iszy/DzsuBRbuDawas0Lsvk5ILpY4JDFTtxuQw1B6iI=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=uthp1h/vUbPYnBXasuvvneCbJng7w25FGFZTdJcdcUAluRkYM46XhNUe2qqDAqq97oJ
- iR7zX2zp4o5lcoyD7IeO2zt/SJjMTgjQgm6vsvAMtdoUQzUfIQoZhw9ZwYUn/Sm3Brkpu
- cdgHq5PCKp+ZJ1zb8s4Q0w1NNUdNd9t+xQU=
+ b=VjDxoLKSTU++USH05V60/yIC3tZ0B6YoyeKP1o6PIgaKo5Uz+Th2v3xnP+U4cR9ul+g
+ PzwMcriJvPUsJGFnMIY7q3PUVsq0pLWPVmCxVC90q8KIovubxQHDkcbEOk2tSbT7HT/Gf
+ eFhmYQx9LvwXnMRerRKE+5sX+a+CXF2dfR8=
 
-On Wed, May 3, 2023, at 03:19, Shawn Guo wrote:
-> On Tue, May 02, 2023 at 10:02:03PM +0200, Krzysztof Kozlowski wrote:
->> On 02/05/2023 21:40, Rob Herring wrote:
->> 
->> If I remember correctly, Vybrid are a bit closer to iMX than to LS
->> (Layerscape), but it should be Shawn's call (+Cc).
->
-> I would suggest to have all Freescale/NXP platforms in a single
-> directory, which includes all mxs, imx, fsl ones.
+On Tue, May 2, 2023, at 21:40, Rob Herring wrote:
+> On Tue, May 2, 2023 at 3:15=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wrot=
+e:
 
-I'd go with 'nxp' for all of those then, and also include the lpc* ones.
+> vendor_map =3D {
+>     'alphascale' : 'alphascale',
+>     'alpine' : 'alpine',
 
-It's fine to stay with historic names if changing it causes problems,
-but if we are going to change anyway, then let's call it the current
-owner's name. It will get messy again soon enough with the next round
-of mergers and acquisitions.
+I would make this one 'amazon' if we go with current manufacturers.
+
+>     'nspire' : 'nspire',
+
+nspire is the name of the end-user product, so that doesn't quite
+fit. The SoC was apparently an LSI logic Zevio, which is now owned
+by Broadcom.
+
+>     'mvebu' : 'marvell',
+>     'mmp' : 'marvell',
+>     'berlin' : 'berlin',
+
+While berlin is related to pxa/mmp, this one is now owned
+by Synaptics, and the 64-bit versions are already in the
+synaptics subdir, so I'd go with teh same here.
+
+>     'openbmc' : 'aspeed',
+>     'en7' : 'airoha',
+
+airoha is a separate company now, but the hardware is still
+shared with mediatek, so we could consider lumping it into
+that subdir, but a separate one may be better long-term.
+
+>     'gemini' : 'gemini',
+
+This one is also a product name, not a company. Apparently,
+gemini was originally made by Storm Semiconductor, and then
+by Cortina, which was subsequently acquired by Inphi, and that ended
+up in Marvell after the product was already discontinued.
+
+Out of the four, I'd probably go with 'cortina' as the
+directory name.
+
+>     'meson' : 'meson',
+
+-> amlogic
+
+>     'moxa' : 'moxa',
+>     'mstar' : 'mstar',
+
+-> sigmastar
+
+>     'nuvo' : 'nuvoton',
+>     'lpc' : 'lpc',
+
+-> nxp
+
+>     'lan96' : 'microchip',
+>     'owl' : 'actions',
+>     'ox8' : 'oxsemi',
+>     'rda' : 'rda',
+
+-> unisoc
+
+>     'rtd' : 'realtek',
+>     'r7' : 'renesas',
+>     'r8' : 'renesas',
+>     'r9' : 'renesas',
+>     'emev2' : 'renesas',
+>     'sh73a' : 'renesas',
+>     'gr-' : 'renesas',
+>     'iwg' : 'renesas',
+>     'rk' : 'rockchip',
+>     'rv11' : 'rockchip',
+>     'rockchip' : 'rockchip',
+>     'socfpga' : 'socfpga',
+
+-> intel
+
+>     'stm' : 'stm32',
+>     'sti' : 'sti',
+>     'st-pin' : 'sti',
+>     'ste' : 'st-ericsson',
+>     'spear' : 'spear',
+
+I would put all five of these into 'st'. The ux500 was developed
+in st-ericsson, but last sold by st, and the other ones are all
+original st products.
 
       Arnd
 
 
--=-=-=-=-=-=-=-=-=-=-=-
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#267): https://groups.io/g/linux-oxnas/message/267
+View/Reply Online (#268): https://groups.io/g/linux-oxnas/message/268
 Mute This Topic: https://groups.io/mt/98658732/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
--=-=-=-=-=-=-=-=-=-=-=-
+Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
+de]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
 
