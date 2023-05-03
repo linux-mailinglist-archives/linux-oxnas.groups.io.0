@@ -1,42 +1,42 @@
-Return-Path: <bounce+16102+262+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+263+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13BF36FCB0F
-	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:18:10 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id BOQpYY1809624xcjO1UIUxFM; Tue, 09 May 2023 09:18:09 -0700
+	by mail.lfdr.de (Postfix) with ESMTPS id D86A06FCB10
+	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:18:12 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id iXxFYY1809624x329iIiZB9d; Tue, 09 May 2023 09:18:11 -0700
 X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
- by mx.groups.io with SMTP id smtpd.web11.8352.1683075874318085512
+ by mx.groups.io with SMTP id smtpd.web11.8578.1683076653744245336
  for <linux-oxnas@groups.io>;
- Tue, 02 May 2023 18:04:34 -0700
+ Tue, 02 May 2023 18:17:33 -0700
 X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
 	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
 	(No client certificate requested)
-	by dfw.source.kernel.org (Postfix) with ESMTPS id 903CA629D9
-	for <linux-oxnas@groups.io>; Wed,  3 May 2023 01:04:33 +0000 (UTC)
-X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 79650C433A4
-	for <linux-oxnas@groups.io>; Wed,  3 May 2023 01:04:32 +0000 (UTC)
-X-Received: by mail-lj1-f177.google.com with SMTP id 38308e7fff4ca-2a8baeac4d1so46313371fa.1
-        for <linux-oxnas@groups.io>; Tue, 02 May 2023 18:04:32 -0700 (PDT)
-X-Gm-Message-State: 8FnHt7rXknahui6vpAU7YXYux1808289AA=
-X-Google-Smtp-Source: ACHHUZ4mSLqb1ExsMkOjNsdZYIFyOMFO5WWfDnvfwZvuM9fv3TyrxmQhN6hT67g4AYdNW/MVo7uZ6IBv6mL14dd4tuc=
-X-Received: by 2002:a2e:8402:0:b0:2a8:d103:dc8 with SMTP id
- z2-20020a2e8402000000b002a8d1030dc8mr4705375ljg.2.1683075870337; Tue, 02 May
- 2023 18:04:30 -0700 (PDT)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 3C128629F5
+	for <linux-oxnas@groups.io>; Wed,  3 May 2023 01:17:33 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1040CC433A7
+	for <linux-oxnas@groups.io>; Wed,  3 May 2023 01:17:32 +0000 (UTC)
+X-Received: by mail-lf1-f48.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so5793406e87.3
+        for <linux-oxnas@groups.io>; Tue, 02 May 2023 18:17:31 -0700 (PDT)
+X-Gm-Message-State: DHkBELrwiXK82P5Sg2ScGqGOx1808289AA=
+X-Google-Smtp-Source: ACHHUZ55e+9yQPQvr0rpIhj0RbrnT2KB6aoc0WjPIM2H1fvT2bLnAwsd1znjwXMKc8qD22lf5irJ3k12RJA0LJgPE6Y=
+X-Received: by 2002:a05:6512:964:b0:4ea:c730:aabe with SMTP id
+ v4-20020a056512096400b004eac730aabemr592385lft.20.1683076649996; Tue, 02 May
+ 2023 18:17:29 -0700 (PDT)
 MIME-Version: 1.0
 References: <20220328000915.15041-1-ansuelsmth@gmail.com> <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
  <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain> <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
  <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
  <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
  <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com> <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
- <d4b52074-d11c-4c7a-ad74-b2fce64c6d30@gmail.com>
-In-Reply-To: <d4b52074-d11c-4c7a-ad74-b2fce64c6d30@gmail.com>
+ <bce93654-fc36-3d12-282d-76fafb8f51ce@linaro.org>
+In-Reply-To: <bce93654-fc36-3d12-282d-76fafb8f51ce@linaro.org>
 From: Rob Herring <robh+dt@kernel.org>
-Date: Tue, 2 May 2023 20:04:17 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKRcMSijAdiP_BpyBGRuMhscZ12QFcLBAeZ+TcaQg7r4g@mail.gmail.com>
-Message-ID: <CAL_JsqKRcMSijAdiP_BpyBGRuMhscZ12QFcLBAeZ+TcaQg7r4g@mail.gmail.com>
+Date: Tue, 2 May 2023 20:17:17 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJXd_EpOQwwNEAn25mzFfkhEvqzur6ui5Ca+dbt2kA8-Q@mail.gmail.com>
+Message-ID: <CAL_JsqJXd_EpOQwwNEAn25mzFfkhEvqzur6ui5Ca+dbt2kA8-Q@mail.gmail.com>
 Subject: Re: [linux-oxnas] [RFC PATCH 0/1] Categorize ARM dts directory
-To: Florian Fainelli <f.fainelli@gmail.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc: Arnd Bergmann <arnd@arndb.de>, Geert Uytterhoeven <geert@linux-m68k.org>, Olof Johansson <olof@lixom.net>, 
 	Christian Marangi <ansuelsmth@gmail.com>, Krzysztof Kozlowski <krzk@kernel.org>, 
 	Krzysztof Kozlowski <krzk+dt@kernel.org>, linux-arm-kernel@lists.infradead.org, 
@@ -63,17 +63,17 @@ Reply-To: linux-oxnas@groups.io,robh+dt@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1683649089;
- bh=8mBQJoLshubIX5kl3Vv758Y/acdGw34m3r1Fs4PsKCc=;
+ q=dns/txt; s=20140610; t=1683649091;
+ bh=rlZRl8dcO+7sIAuwbS4YKAsBYhHsLsC7k6B4+WvcfRI=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=AZXAz3O0FqooY+0sJ9/QnjLG5cpRKeOwRs4z1Buj99ThVhIJ89n0SB8ewiq3PLZ5PHQ
- 3tkQ0xfyJ2B621SvRFxpkBKvF5sN9pMCYxmDPCMloFLtJRtUgEUNwCOxYz7mRrXEdwF9Q
- r1cxJWl73+/GrqcIfcxU3IJCPvyawFCKCgk=
+ b=cmbvgcZGmwXIF0YwRr+onB5pE9laHZBKf/IYULVxcZgAZRnNMnkegbPWB0INW6Qb4nQ
+ rB2kdUUVOu1edz8CugNPVsSzz56glItUwgsgr2qixqInhkAeKEwZdbT4IBlzR2ZeVvg8I
+ +tLKIk4+auE9IoP0XjirGwzVhSyAku6/528=
 
-On Tue, May 2, 2023 at 6:02=E2=80=AFPM Florian Fainelli <f.fainelli@gmail.c=
-om> wrote:
+On Tue, May 2, 2023 at 5:52=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 >
-> On 5/2/23 12:40, Rob Herring wrote:
+> On 02/05/2023 22:40, Rob Herring wrote:
 > > On Tue, May 2, 2023 at 3:15=E2=80=AFAM Arnd Bergmann <arnd@arndb.de> wr=
 ote:
 > >>
@@ -163,44 +163,21 @@ ve
 > >      'pxa2' : 'pxa',
 > >      'pxa3' : 'pxa',
 > >      'pxa' : 'marvell',
-> >      'arm-' : 'arm',
-> >      'integ' : 'arm',
-> >      'mps' : 'arm',
-> >      've' : 'arm',
-> >      'aspeed' : 'aspeed',
-> >      'ast2' : 'aspeed',
-> >      'facebook' : 'aspeed',
-> >      'ibm' : 'aspeed',
-> >      'openbmc' : 'aspeed',
-> >      'en7' : 'airoha',
-> >      'at91' : 'microchip',
-> >      'sama' : 'microchip',
-> >      'sam9' : 'microchip',
-> >      'usb_' : 'microchip',
-> >      'tny_' : 'microchip',
-> >      'mpa1600' : 'microchip',
-> >      'animeo_ip' : 'microchip',
-> >      'aks-cdu' : 'microchip',
-> >      'ethernut5' : 'microchip',
-> >      'evk-pro3' : 'microchip',
-> >      'pm9g45' : 'microchip',
-> >      'ge86' : 'microchip',
-> >      'bcm' : 'brcm',
 >
-> How about we use 'broadcom' here, to follow what arm64 does? I could
-> rename arch/mips/boot/dts/brcm to arch/mips/boot/dts/broadcom for
-> consistency, too?
+> I'd question if it makes sense to split the pxa line. Yes, it was sold
+> by Intel to Marvell, but IIRC the devices still had some inheritance.
+> So, if we have the 'pxa' subdir, I'd move Marvell PXAs to that dir too.
 
-Okay, though if starting clean I'd somewhat prefer to use the vendor
-prefix. I guess since arm and arm64 share dtsi files, they should
-match.
+I think I probably split it because it was different maintainers.
+Though it doesn't look like pxa168 or pxa910 have any maintainer. They
+are a mixture of pxa and mmp I think.
 
 Rob
 
 
 -=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#262): https://groups.io/g/linux-oxnas/message/262
+View/Reply Online (#263): https://groups.io/g/linux-oxnas/message/263
 Mute This Topic: https://groups.io/mt/98658732/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
