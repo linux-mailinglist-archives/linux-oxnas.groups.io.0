@@ -1,74 +1,57 @@
-Return-Path: <bounce+16102+281+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+282+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C9D66FCB2F
-	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:17 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id TJKfYY1809624xn2zSjifyG8; Tue, 09 May 2023 09:19:15 -0700
-X-Received: from new3-smtp.messagingengine.com (new3-smtp.messagingengine.com [66.111.4.229])
- by mx.groups.io with SMTP id smtpd.web10.47586.1683200710473827033
+	by mail.lfdr.de (Postfix) with ESMTPS id 71B7C6FCB2D
+	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:15 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id fPSeYY1809624xLgtURSnVoq; Tue, 09 May 2023 09:19:14 -0700
+X-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+ by mx.groups.io with SMTP id smtpd.web11.20482.1683265658697981980
  for <linux-oxnas@groups.io>;
- Thu, 04 May 2023 04:45:10 -0700
-X-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-	by mailnew.nyi.internal (Postfix) with ESMTP id 7F8E7580E74;
-	Thu,  4 May 2023 07:45:09 -0400 (EDT)
-X-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Thu, 04 May 2023 07:45:09 -0400
-X-ME-Sender: <xms:xJpTZBRFDKFjpUX2zSPaH_4Nc8R2Qpk2no6uSQvOfRDhdZKlcM2S1w>
-    <xme:xJpTZKx9r-aiclDw81Wu7rGAVEGjfn7b8plKzDI0Fm4sbn8ToKgyao_lHGOMzamjl
-    uNZIJ6W5xJhlsHwBQU>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrfeeftddggedvucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvfevufgtsehttdertderredtnecuhfhrohhmpedftehr
-    nhguuceuvghrghhmrghnnhdfuceorghrnhgusegrrhhnuggsrdguvgeqnecuggftrfgrth
-    htvghrnhepffehueegteeihfegtefhjefgtdeugfegjeelheejueethfefgeeghfektdek
-    teffnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprg
-    hrnhgusegrrhhnuggsrdguvg
-X-ME-Proxy: <xmx:xJpTZG1ikd38RTtD1R071POfBXt5S1hFZ6Fml4H3RBTwbc4m3wVYQA>
-    <xmx:xJpTZJBCtHzUiKeZoBrJeZc8fH8Ed5ISfh9DPuxYIqK6axwqLg053Q>
-    <xmx:xJpTZKh7kYU5y_FppCdiasiBdQUPjv6lvIKqgolP6FEiBuWg49SF6g>
-    <xmx:xZpTZKDU9-4LKKK2Ti8y1N5SEny0C66Vm4BJmIaG1feFi_OTmPFchA>
-Feedback-ID: i56a14606:Fastmail
-X-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-	id 5DF60B60089; Thu,  4 May 2023 07:45:08 -0400 (EDT)
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-386-g2404815117-fm-20230425.001-g24048151
-Mime-Version: 1.0
-Message-Id: <6ece505b-1075-48e6-9ff9-1673014e5df1@app.fastmail.com>
-In-Reply-To: <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
-References: <20220328000915.15041-1-ansuelsmth@gmail.com>
- <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
- <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
- <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
- <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
- <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
- <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
- <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
- <ZFOE4wd31hpJh0ro@shell.armlinux.org.uk>
-Date: Thu, 04 May 2023 13:44:37 +0200
-From: "Arnd Bergmann" <arnd@arndb.de>
-To: "Russell King" <linux@armlinux.org.uk>, "Rob Herring" <robh+dt@kernel.org>
-Cc: "Geert Uytterhoeven" <geert@linux-m68k.org>,
- "Olof Johansson" <olof@lixom.net>,
- "Christian Marangi" <ansuelsmth@gmail.com>,
- "Krzysztof Kozlowski" <krzk@kernel.org>,
- "Krzysztof Kozlowski" <krzk+dt@kernel.org>,
- linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-actions@lists.infradead.org,
- linux-sunxi@lists.linux.dev, Linux-OMAP <linux-omap@vger.kernel.org>,
- linux-amlogic@lists.infradead.org, linux-arm-kernel@axis.com,
- linux-aspeed@lists.ozlabs.org, linux-rpi-kernel@lists.infradead.org,
- chrome-platform@lists.linux.dev,
- Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
- linux-samsung-soc@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com, kernel@dh-electronics.com,
- linux-mediatek@lists.infradead.org, openbmc@lists.ozlabs.org,
- linux-tegra@vger.kernel.org,
- "linux-oxnas@groups.io" <linux-oxnas@groups.io>,
- linux-arm-msm@vger.kernel.org, linux-unisoc@lists.infradead.org,
- linux-rockchip@lists.infradead.org,
- linux-realtek-soc@lists.infradead.org
-Subject: Re: [linux-oxnas] [RFC PATCH 0/1] Categorize ARM dts directory
+ Thu, 04 May 2023 22:47:38 -0700
+X-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+	(No client certificate requested)
+	by dfw.source.kernel.org (Postfix) with ESMTPS id 2EBF163B2D
+	for <linux-oxnas@groups.io>; Fri,  5 May 2023 05:47:38 +0000 (UTC)
+X-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 93E9CC4339E
+	for <linux-oxnas@groups.io>; Fri,  5 May 2023 05:47:37 +0000 (UTC)
+X-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2a8ad872ea5so15630631fa.2
+        for <linux-oxnas@groups.io>; Thu, 04 May 2023 22:47:37 -0700 (PDT)
+X-Gm-Message-State: KBEleVUNCuFaidLM7p7QYFgrx1808289AA=
+X-Google-Smtp-Source: ACHHUZ7vjZvoO17O2+xGcjw8YRQwo0MSgi9BtdhaWD+v+3nmuTyY0RrEyW2wbSK+lqJd6C9lcTXOXjjLYHG3jJse7RE=
+X-Received: by 2002:a17:907:1c07:b0:960:ddba:e5c7 with SMTP id
+ nc7-20020a1709071c0700b00960ddbae5c7mr139047ejc.40.1683265634680; Thu, 04 May
+ 2023 22:47:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230327121317.4081816-1-arnd@kernel.org> <20230327121317.4081816-10-arnd@kernel.org>
+In-Reply-To: <20230327121317.4081816-10-arnd@kernel.org>
+From: Guo Ren <guoren@kernel.org>
+Date: Fri, 5 May 2023 13:47:03 +0800
+X-Gmail-Original-Message-ID: <CAJF2gTT2VCVMJs1NvgK66uD+BhObjM2WNxf2RY7wTZsho4sjVA@mail.gmail.com>
+Message-ID: <CAJF2gTT2VCVMJs1NvgK66uD+BhObjM2WNxf2RY7wTZsho4sjVA@mail.gmail.com>
+Subject: Re: [linux-oxnas] [PATCH 09/21] riscv: dma-mapping: skip invalidation before bidirectional DMA
+To: Arnd Bergmann <arnd@kernel.org>, Arnd Bergmann <arnd@arndb.de>, Christoph Hellwig <hch@lst.de>
+Cc: linux-kernel@vger.kernel.org, Vineet Gupta <vgupta@kernel.org>, 
+	Will Deacon <will@kernel.org>, Russell King <linux@armlinux.org.uk>, 
+	Neil Armstrong <neil.armstrong@linaro.org>, Linus Walleij <linus.walleij@linaro.org>, 
+	Catalin Marinas <catalin.marinas@arm.com>, Brian Cain <bcain@quicinc.com>, 
+	Geert Uytterhoeven <geert@linux-m68k.org>, Michal Simek <monstr@monstr.eu>, 
+	Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Dinh Nguyen <dinguyen@kernel.org>, 
+	Stafford Horne <shorne@gmail.com>, Helge Deller <deller@gmx.de>, Michael Ellerman <mpe@ellerman.id.au>, 
+	Christophe Leroy <christophe.leroy@csgroup.eu>, Paul Walmsley <paul.walmsley@sifive.com>, 
+	Palmer Dabbelt <palmer@dabbelt.com>, Rich Felker <dalias@libc.org>, 
+	John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>, "David S. Miller" <davem@davemloft.net>, 
+	Max Filippov <jcmvbkbc@gmail.com>, Robin Murphy <robin.murphy@arm.com>, 
+	Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>, 
+	Conor Dooley <conor.dooley@microchip.com>, linux-snps-arc@lists.infradead.org, 
+	linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io, 
+	linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
+	linux-m68k@lists.linux-m68k.org, linux-mips@vger.kernel.org, 
+	linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org, 
+	linuxppc-dev@lists.ozlabs.org, linux-riscv@lists.infradead.org, 
+	linux-sh@vger.kernel.org, sparclinux@vger.kernel.org, 
+	linux-xtensa@linux-xtensa.org
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -77,49 +60,106 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,arnd@arndb.de
-X-Gm-Message-State: L8x6t8LQHjPRkSvD8JbWvWiUx1808289AA=
-Content-Type: text/plain
+Reply-To: linux-oxnas@groups.io,guoren@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1683649155;
- bh=AE/hO7hnq5abNT3ZFbv8ouhAg4QnBJrh+LdeU7snpUk=;
+ q=dns/txt; s=20140610; t=1683649154;
+ bh=zSUNQZ2IGJ5xZ+UjMgfaCnhbeaVl5hb7Db9I05ghBp4=;
  h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=XUEiIbB36Wc8yYjp35GNtoorfs2xXT8FMAyRvH77TT9BjvpelCEZ+NzLproAQGKyiY+
- kWXrzHKayRLNi9zSgLEnhBjC/IIxIMKmhxRshFBiX4/0zOQcnosWdnLsRk4vNcE+RFJh7
- tJI+MO4zzo/T8L45qaql4UowrpVpncFHdLw=
+ b=kmGEpwm811bOP2g2Qr1cIT5PZ93Fm50/ei5UtkdAIy/fMNiEo889ad4s0R637TbHOvM
+ mBKRQ+p1UhtIqLUSczyrjlAz8e0Zq8ACQ9wVj88GX5n4JQB//lxSBcpbdGlMxxo4FYa16
+ 4/C1cCnC5I5JcpsEp0cEDStMW43JP9Gl0OI=
 
-On Thu, May 4, 2023, at 12:11, Russell King (Oracle) wrote:
-> On Tue, May 02, 2023 at 02:40:19PM -0500, Rob Herring wrote:
->> I think the only issue remaining is finalizing the mapping of
->> platforms to subdirs. What I have currently is a mixture of SoC
->> families and vendors. The most notable are all the Freescale/NXP
->> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
->> either. Once that's finalized, I still need to go update MAINTAINERS.
+On Mon, Mar 27, 2023 at 8:15=E2=80=AFPM Arnd Bergmann <arnd@kernel.org> wro=
+te:
 >
-> I haven't followed this discussion at all, so here's a question.
+> From: Arnd Bergmann <arnd@arndb.de>
 >
-> What does this mean for the _installed_ dtb files? Do they move
-> location? If they do, lots is going to break, because there will
-> be u-boot configurations and other scripts that assume the flat
-> directory structure for the installed dtb files.
+> For a DMA_BIDIRECTIONAL transfer, the caches have to be cleaned
+> first to let the device see data written by the CPU, and invalidated
+> after the transfer to let the CPU see data written by the device.
 >
-> I don't think changing the installed dtb structure is acceptable
-> at this point in time. It's something that _should_ have been
-> thought about when ARM was converted to dtb, it's too late to be
-> changing that now.
+> riscv also invalidates the caches before the transfer, which does
+> not appear to serve any purpose.
+Yes, we can't guarantee the CPU pre-load cache lines randomly during
+dma working.
 
-Rob said earlier that his script does keep a flat directory
-for the output of 'make dtbs_install'.
+But I've two purposes to keep invalidates before dma transfer:
+ - We clearly tell the CPU these cache lines are invalid. The caching
+algorithm would use these invalid slots first instead of replacing
+valid ones.
+ - Invalidating is very cheap. Actually, flush and clean have the same
+performance in our machine.
 
-     Arnd
+So, how about:
+
+diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoheren=
+t.c
+index d919efab6eba..2c52fbc15064 100644
+--- a/arch/riscv/mm/dma-noncoherent.c
++++ b/arch/riscv/mm/dma-noncoherent.c
+@@ -22,8 +22,6 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t s=
+ize,
+                ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+                break;
+        case DMA_FROM_DEVICE:
+-               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+-               break;
+        case DMA_BIDIRECTIONAL:
+                ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
+                break;
+@@ -42,7 +40,7 @@ void arch_sync_dma_for_cpu(phys_addr_t paddr, size_t size=
+,
+                break;
+        case DMA_FROM_DEVICE:
+        case DMA_BIDIRECTIONAL:
+                /* I'm not sure all drivers have guaranteed cacheline
+alignment. If not, this inval would cause problems */
+-               ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
++               ALT_CMO_OP(inval, vaddr, size, riscv_cbom_block_size);
+                break;
+        default:
+                break;
+
+>
+> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+> ---
+>  arch/riscv/mm/dma-noncoherent.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoher=
+ent.c
+> index 640f4c496d26..69c80b2155a1 100644
+> --- a/arch/riscv/mm/dma-noncoherent.c
+> +++ b/arch/riscv/mm/dma-noncoherent.c
+> @@ -25,7 +25,7 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t=
+ size,
+>                 ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+>                 break;
+>         case DMA_BIDIRECTIONAL:
+> -               ALT_CMO_OP(flush, vaddr, size, riscv_cbom_block_size);
+> +               ALT_CMO_OP(clean, vaddr, size, riscv_cbom_block_size);
+>                 break;
+>         default:
+>                 break;
+> --
+> 2.39.2
+>
 
 
--=-=-=-=-=-=-=-=-=-=-=-
+--=20
+Best Regards
+ Guo Ren
+
+
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#281): https://groups.io/g/linux-oxnas/message/281
-Mute This Topic: https://groups.io/mt/98658732/1808289
+View/Reply Online (#282): https://groups.io/g/linux-oxnas/message/282
+Mute This Topic: https://groups.io/mt/97970101/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
--=-=-=-=-=-=-=-=-=-=-=-
+Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
+de]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
 
