@@ -1,135 +1,46 @@
-Return-Path: <bounce+16102+289+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+290+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 714156FCB38
-	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:25 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id ZtjsYY1809624xFN8MA3rkQl; Tue, 09 May 2023 09:19:24 -0700
-X-Received: from mga17.intel.com (mga17.intel.com [192.55.52.151])
- by mx.groups.io with SMTP id smtpd.web10.1190.1683577831527277198
+	by mail.lfdr.de (Postfix) with ESMTPS id 873A96FCB35
+	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:23 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id MDqMYY1809624x1dqpdgCL7b; Tue, 09 May 2023 09:19:22 -0700
+X-Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+ by mx.groups.io with SMTP id smtpd.web10.2851.1683580813676179275
  for <linux-oxnas@groups.io>;
- Mon, 08 May 2023 13:30:31 -0700
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="330110831"
+ Mon, 08 May 2023 14:20:14 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="436079618"
 X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
-   d="scan'208";a="330110831"
-X-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 13:30:30 -0700
+   d="scan'208";a="436079618"
+X-Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2023 14:19:47 -0700
 X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="701556039"
+X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="692727524"
 X-IronPort-AV: E=Sophos;i="5.99,259,1677571200"; 
-   d="scan'208";a="701556039"
-X-Received: from fmsmsx603.amr.corp.intel.com ([10.18.126.83])
-  by fmsmga007.fm.intel.com with ESMTP; 08 May 2023 13:30:30 -0700
-X-Received: from fmsmsx610.amr.corp.intel.com (10.18.126.90) by
- fmsmsx603.amr.corp.intel.com (10.18.126.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23; Mon, 8 May 2023 13:30:29 -0700
-X-Received: from fmsedg602.ED.cps.intel.com (10.1.192.136) by
- fmsmsx610.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.23 via Frontend Transport; Mon, 8 May 2023 13:30:29 -0700
-X-Received: from NAM02-BN1-obe.outbound.protection.outlook.com (104.47.51.42) by
- edgegateway.intel.com (192.55.55.71) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.2507.23; Mon, 8 May 2023 13:30:29 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=FVKvpl2W/oDUDJQhGIwBKR6zokiSmyvXce8TQRp1HXgjuk+USjbbKJfpLz+7w/iHTgJ9qQYSD5g46POUDg/oq6EovXx+EyVFpX7ze8j1237j3nh4KYrFYVyFwQ6BaryNvGbjiGodY8bLbkne9rCxutHcTZTuhbnMi57xqnyk9AbCtbTZzjHmP21tNlQsBh1+nlH5r5OkXQdp2QPWPdFr5l/SzNs6+9MwIZ5Fxbfxt7S9L1tx+aOQYZMrhq7IR8UWaEKlnQps4txm7F03uDEIbAy/G3U5aM3kx961y+TihNrsl8l69xQUby3piFNl+2or5Pi8W/NFIgCqnwU0dQ2uiw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=bAi88FZ9tnR29drvssyhG/EwCeBYiOB/z2DYx32U0/U=;
- b=nxcu87oeFi/ugU24gs+QbVjy5BOzmHfp6r2fLuEtVYs62v/j2ceJRgXh6RxP3kkPVrV4xuLkjvnEPnGq0ZJS4mrLNMRW4aF8Qy5XwzQJJW8nFOrjUuOWk8quq6ULO3Wusy1k/bmwggMpMr56dJYBbD1kQYiGDaWkKTO2rcf2zDk8Bh4xlo7bfpTS1vFdE0BYN5iGVNOuMbdEIaBri8Gv6TI7WtMC9ZaeZqK3i6tRlzFbIDYrpF+o3KW1e/dCBKxBRb+JTEoDLfdRiDpb/A+lKN9ZsTeyyFas/Q4jKv9pmpDbM8mHEzuQMSuYGPgyXHKwSBzI7C8dtq1Gv95HwBenuw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-X-Received: from DM6PR11MB2937.namprd11.prod.outlook.com (2603:10b6:5:62::13) by
- DM4PR11MB6238.namprd11.prod.outlook.com (2603:10b6:8:a8::13) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6363.32; Mon, 8 May 2023 20:30:22 +0000
-X-Received: from DM6PR11MB2937.namprd11.prod.outlook.com
- ([fe80::66f6:544e:665a:9bec]) by DM6PR11MB2937.namprd11.prod.outlook.com
- ([fe80::66f6:544e:665a:9bec%6]) with mapi id 15.20.6363.032; Mon, 8 May 2023
- 20:30:22 +0000
-Date: Mon, 8 May 2023 22:30:12 +0200
-From: Michal Kubiak <michal.kubiak@intel.com>
-To: Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <u.kleine-koenig@pengutronix.de>
-CC: Giuseppe Cavallaro <peppe.cavallaro@st.com>, Alexandre Torgue
-	<alexandre.torgue@foss.st.com>, Jose Abreu <joabreu@synopsys.com>, "David S.
- Miller" <davem@davemloft.net>, Eric Dumazet <edumazet@google.com>, "Jakub
- Kicinski" <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
-	<mcoquelin.stm32@gmail.com>, Shawn Guo <shawnguo@kernel.org>, Sascha Hauer
-	<s.hauer@pengutronix.de>, Vladimir Zapolskiy <vz@mleia.com>, Neil Armstrong
-	<neil.armstrong@linaro.org>, Kevin Hilman <khilman@baylibre.com>, Vinod Koul
-	<vkoul@kernel.org>, Emil Renner Berthing <kernel@esmil.dk>, Samin Guo
-	<samin.guo@starfivetech.com>, Chen-Yu Tsai <wens@csie.org>, Jernej Skrabec
-	<jernej.skrabec@gmail.com>, Samuel Holland <samuel@sholland.org>, "Nobuhiro
- Iwamatsu" <nobuhiro1.iwamatsu@toshiba.co.jp>, Matthias Brugger
-	<matthias.bgg@gmail.com>, Thierry Reding <thierry.reding@gmail.com>,
-	"Jonathan Hunter" <jonathanh@nvidia.com>, Fabio Estevam <festevam@gmail.com>,
-	"NXP Linux Team" <linux-imx@nxp.com>, Jerome Brunet <jbrunet@baylibre.com>,
-	"Martin Blumenstingl" <martin.blumenstingl@googlemail.com>, Bhupesh Sharma
-	<bhupesh.sharma@linaro.org>, AngeloGioacchino Del Regno
-	<angelogioacchino.delregno@collabora.com>, <netdev@vger.kernel.org>,
-	<linux-stm32@st-md-mailman.stormreply.com>,
-	<linux-arm-kernel@lists.infradead.org>, <kernel@pengutronix.de>,
-	<linux-amlogic@lists.infradead.org>, <linux-oxnas@groups.io>,
-	<linux-sunxi@lists.linux.dev>, <linux-mediatek@lists.infradead.org>,
-	<linux-tegra@vger.kernel.org>
-Subject: Re: [linux-oxnas] [PATCH net-next v2 00/11] net: stmmac: Convert to platform remove callback returning void
-Message-ID: <ZFlb1PtnmvAEfwc5@localhost.localdomain>
-References: <20230508142637.1449363-1-u.kleine-koenig@pengutronix.de>
-In-Reply-To: <20230508142637.1449363-1-u.kleine-koenig@pengutronix.de>
-X-ClientProxiedBy: FR0P281CA0076.DEUP281.PROD.OUTLOOK.COM
- (2603:10a6:d10:1e::6) To DM6PR11MB2937.namprd11.prod.outlook.com
- (2603:10b6:5:62::13)
+   d="scan'208";a="692727524"
+X-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
+  by orsmga007.jf.intel.com with ESMTP; 08 May 2023 14:19:42 -0700
+X-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
+	(envelope-from <lkp@intel.com>)
+	id 1pw8Gk-0001QT-02;
+	Mon, 08 May 2023 21:19:42 +0000
+Date: Tue, 9 May 2023 05:19:22 +0800
+From: kernel test robot <lkp@intel.com>
+To: Lizhe <sensor1010@163.com>, marcan@marcan.st, sven@svenpeter.dev,
+	alyssa@rosenzweig.io, linus.walleij@linaro.org,
+	neil.armstrong@linaro.org, mcoquelin.stm32@gmail.com,
+	alexandre.torgue@foss.st.com, daniel@zonque.org,
+	haojian.zhuang@gmail.com, robert.jarzmik@free.fr
+Cc: oe-kbuild-all@lists.linux.dev, asahi@lists.linux.dev,
+	linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+	linux-kernel@vger.kernel.org, linux-oxnas@groups.io,
+	linux-stm32@st-md-mailman.stormreply.com,
+	Lizhe <sensor1010@163.com>
+Subject: Re: [linux-oxnas] [PATCH] dirvers/pinctrl.c : using pinctrl_dev->dev to obtain struct device * dev
+Message-ID: <202305090411.OyJRHVis-lkp@intel.com>
+References: <20230508154043.11859-1-sensor1010@163.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6PR11MB2937:EE_|DM4PR11MB6238:EE_
-X-MS-Office365-Filtering-Correlation-Id: 01bb0c0e-a57f-49b3-7017-08db50030c1a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Message-Info: 0f111XwAUdfmKJ+G4rVAjagSwmuIwoUpPUT2KHWiYSPbp/LwiKsszRDUHE0zvVyU35J8LR+p4H1stDinqO+Ue2Z4Dm3Wnz+aqIcIrSndnlq/0QydHi9eeaT5cnC4r8FVZs8Pr+i2iP2CGr36Y5AUsXIWBBbnNXWc2Ni/baKSN5rguSp+qf3TgRUZhYaRo9aY3rT48L6kuesDUhOahuA3NesIrGXVXWWwLsTFSFwwopNM8rSeNCY5hzBE/9JnoLbjNXvE6fQyLI4zBZzPHZFekP3avEyriFuKZDThWpPBtYVl3lXpVoKfVXS5A1PqIQ/Y0zfehOhfnerqAzpNOWG6ayzuf/h3I4ktYTc2jpZk2P67lPZYDuY6S7cDHCxjRP23j3kLOqbstZPRWoR9mvbM2CjAUlaLQmpPw7EGkJgkj0QCwP+cPFKVQqgIBbkVTPqmqJGL6Q2JJgfuxjAV3zANIxFUgpilb3lTgrBCWStBQw/P6xzDfYI3SnmfkrLs9yQSEUAOb7kdc/uGdn/csSSETsQM8lFkOKKhwSNsrWqCHzE=
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?BJhpx44iT2XLeiY44tFBRb+QuH1hybzpaldxOr2DAj7Gz4S/1Tq5lIWAS9?=
- =?iso-8859-1?Q?Y/UkBdjUfiWrf+8ukDjUM+iBqyJJK8gxEiwNmbqaM/tydn+YLJATMsy5Di?=
- =?iso-8859-1?Q?YDsowhsM0ZZ4Fgy6J+MBcbmTQutX+uzOtt2F0bUM+HEm3d6lF1hfJBE2RV?=
- =?iso-8859-1?Q?yrx9zR0GuK0GW1WRJrUH0ce+maaeBAcl+NOaofX7wy3p8YzZLJ/vzDAJuZ?=
- =?iso-8859-1?Q?848TogZiRAF/IUqD2dn6jGmoUj7BG5+S45rsc8FP3G5RAT7lsleXvZfBoE?=
- =?iso-8859-1?Q?oRb/kwN1Xrzr1QaKPMRM3dsZHaHQGbT8uwx8Gif05J51uT8orj/yiftH5S?=
- =?iso-8859-1?Q?Es3pobuXmGnOYSHBZQCM0kOqIbTWUBuV8Hc2ibkEhPsrnVmYO54xJqkY5z?=
- =?iso-8859-1?Q?k+FaS0qlIK/NVgZGdGHCRlfHhPPcGkqNHCpJb2w36kXnU4vAuPF/qwzCHQ?=
- =?iso-8859-1?Q?bkOgZyFmbEdhpxbuNJMUUQ8wSk2tHkbbKkY3v1L+h4eBH5NvlxQm0HNPIb?=
- =?iso-8859-1?Q?e5fSi0ZToF0igdM06hC+zTTLL5SGP0Gr9m6iHBkIkdFPJx4wXrjSVpXShr?=
- =?iso-8859-1?Q?IIIkNq7kQyBONV2GFATwSa8Qv7BTbRBgkYFv7v0t38wL+hwM2Ru1x870Vz?=
- =?iso-8859-1?Q?Fn/O5nHe5L0+XQCfjPrjHSkYRSNj6Z7zyg37YHwDhQ4gzSikMtnZXd8/EH?=
- =?iso-8859-1?Q?VdFheCCq2nSTc8kzAfeKhNCENM39L8h9pnGk2hGj+yFfjCa0pXKEIa+hDX?=
- =?iso-8859-1?Q?TE2aAJYIdq0tyqgoTvv4+g+qoy3YwuGYczku+MMXbsLVg4Pd9f/Zz0lyIb?=
- =?iso-8859-1?Q?WY/qdPQ9EtbsCzTGnxP8qseK/2tSLqPMdOmmIoqt/hHlvYKSODnSlyLN9U?=
- =?iso-8859-1?Q?3Sue3sK5HKETzZukbKDr8F4XN0kpY05Nvm8bIfdWn8YUt3B9h+rvLwI6ya?=
- =?iso-8859-1?Q?3psgfCpLRxXMUOe1F639kND10SX+y3aupJNdus6dbD1kyqBWusglUoFW50?=
- =?iso-8859-1?Q?qXI2gMxmf2qDaAWOMQ3vjv6F/4wh/EYPqDs+YCKtj1sDbUa/xEqJEDL7Aa?=
- =?iso-8859-1?Q?6T98+CoguAXBax5KzrvBi+ciVPHJd0Ph6WeOt2TzWpRnZMLvlZ9lPsfh/n?=
- =?iso-8859-1?Q?gkxTdz2mF0a3BmLDnnbzLnzyCPY0vQSsk0D6BNPzWovWGBYttepQNYXJSA?=
- =?iso-8859-1?Q?biX94gluBYbMxy0RQvDDlNtAxN8SI2e1lwBcooS5GT+dGl/Fwr0yFEMHYp?=
- =?iso-8859-1?Q?9lYrhgMDX3GHLg9v0lLww322+DzQz94eYQEfrtLW/YvgjUkwByD/SUIFPE?=
- =?iso-8859-1?Q?/n6j0X7vUiJsi0BKbxbCt3ZV4VsMdmqLLmD69pnqNToWpVSXR6oa7TEp92?=
- =?iso-8859-1?Q?/s+YhLo/3p1/M96qwLB5LfHzh7OHmPZXiAYGwx1voHkp4jKAmF/64oavR5?=
- =?iso-8859-1?Q?+cH6rYRr19mUQufUKamBEn3wOpvZdvS/KCEeO+WFVULGuZq5/z0khvnOUi?=
- =?iso-8859-1?Q?r96BF2uUsOcOKA2HtLFZb1MbuNDDDAjVna8+kDOjMOKjhDqQL7Y9QvzNib?=
- =?iso-8859-1?Q?OgRopHIya86Fcho8ACHOgMjmQZ4AyhJ8Ids9IWG+KwZpfJouMat5tqORC5?=
- =?iso-8859-1?Q?DXr+tYDwqGPt5glWc3DEEzjMrYcrSRzpfo/QKivN/bTXMWXeVPZfbpsA?=
- =?iso-8859-1?Q?=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 01bb0c0e-a57f-49b3-7017-08db50030c1a
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB2937.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 May 2023 20:30:22.4456
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3qczG7rgyzbKfUj39NVH1fcs0MrFt6gQv8P0JZpfaS/X4IQE7G/fvUucGe7N3LKzI8F6S8e39IDjW6WWLHcX1g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6238
-X-OriginatorOrg: intel.com
+In-Reply-To: <20230508154043.11859-1-sensor1010@163.com>
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -138,53 +49,232 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,michal.kubiak@intel.com
-X-Gm-Message-State: vaMdU8XQNTNjgbthPLs3cCTXx1808289AA=
-Content-Type: text/plain; charset="iso-8859-1"
+Reply-To: linux-oxnas@groups.io,lkp@intel.com
+X-Gm-Message-State: 0qGBEZpB2lyo9sTiLn8rUmXBx1808289AA=
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1683649164;
- bh=u1Yn/p5zSq0C6BKdjKXRN9gb6c42elb1FibciVc4+4c=;
- h=CC:Content-Type:Date:From:Reply-To:Subject:To;
- b=hjiD52FDogA1lKIBlcbKt6452uZ4iRWIirR4OHHI5Qe1+ocW+RRp+PRSAntfyD2Hkrf
- snGSXSi2h7XwhOYzltw7vcSM4B59Ktzddlytyzd/pgpYCHfJV6NGSuI3LT24GTcOhC9G+
- sgRRsnqSDvS+mqFdSPWZMApXKuh8NI6qLCw=
+ q=dns/txt; s=20140610; t=1683649162;
+ bh=PeY1ZdkXaxeZu0XjvGBDiVPMrzr84pizgz68NB+K1Kk=;
+ h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
+ b=rcMFHijt+gBH1fG+4kWXzi7zKyuDVF4J7484UBqlDidGsKW9terJnbf08KHZTGoK7SP
+ ZlGdR7eqNqJbIK2GHBQuyDw5y6WNCFT5BbZBCMw0TlCN9GWSyQXzg7f2tUAPMik6ZpCrj
+ q15OjRz/I51jf/9ehI5antwCp/G8iQysSvo=
 
-On Mon, May 08, 2023 at 04:26:26PM +0200, Uwe Kleine-König wrote:
-> Hello,
-> 
-> (implicit) v1 of this series is available at
-> https://lore.kernel.org/netdev/20230402143025.2524443-1-u.kleine-koenig@pengutronix.de
-> .
-> 
-> Changes since then:
-> 
->  - Added various Reviewed-by: and Acked-by: tags received for v1
->  - Removed a variable in an earlier patch to make all intermediate steps
->    compilable, spotted by Simon Horman
->  - Rebased to v6.4-rc1 (which needed a slight adaption to cope for
->    4bd3bb7b4526 ("net: stmmac: Add glue layer for StarFive JH7110 SoC"))
-> 
-> Best regards
-> Uwe
-> 
+Hi Lizhe,
 
-For the series:
-Reviewed-by: Michal Kubiak <michal.kubiak@intel.com>
+kernel test robot noticed the following build errors:
 
-(Just a very minor nitpick in the commit message of patch 3).
+[auto build test ERROR on linusw-pinctrl/devel]
+[also build test ERROR on linusw-pinctrl/for-next linus/master v6.4-rc1 next-20230508]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-> -- 
-> 2.39.2
-> 
-> 
+url:    https://github.com/intel-lab-lkp/linux/commits/Lizhe/dirvers-pinctrl-c-using-pinctrl_dev-dev-to-obtain-struct-device-dev/20230508-234502
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
+patch link:    https://lore.kernel.org/r/20230508154043.11859-1-sensor1010%40163.com
+patch subject: [PATCH] dirvers/pinctrl.c : using pinctrl_dev->dev to obtain struct device * dev
+config: m68k-allyesconfig (https://download.01.org/0day-ci/archive/20230509/202305090411.OyJRHVis-lkp@intel.com/config)
+compiler: m68k-linux-gcc (GCC) 12.1.0
+reproduce (this is a W=1 build):
+        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+        chmod +x ~/bin/make.cross
+        # https://github.com/intel-lab-lkp/linux/commit/83751a28d7f5223597b6742300796fb80362dc20
+        git remote add linux-review https://github.com/intel-lab-lkp/linux
+        git fetch --no-tags linux-review Lizhe/dirvers-pinctrl-c-using-pinctrl_dev-dev-to-obtain-struct-device-dev/20230508-234502
+        git checkout 83751a28d7f5223597b6742300796fb80362dc20
+        # save the config file
+        mkdir build_dir && cp config build_dir/.config
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k olddefconfig
+        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-12.1.0 make.cross W=1 O=build_dir ARCH=m68k SHELL=/bin/bash drivers/
+
+If you fix the issue, kindly add following tag where applicable
+| Reported-by: kernel test robot <lkp@intel.com>
+| Link: https://lore.kernel.org/oe-kbuild-all/202305090411.OyJRHVis-lkp@intel.com/
+
+All errors (new ones prefixed by >>):
+
+   In file included from include/linux/device.h:15,
+                    from include/linux/platform_device.h:13,
+                    from drivers/pinctrl/pinctrl-stmfx.c:12:
+   drivers/pinctrl/pinctrl-stmfx.c: In function 'stmfx_pinctrl_probe':
+>> drivers/pinctrl/pinctrl-stmfx.c:714:25: error: 'pctldev' undeclared (first use in this function); did you mean 'pci_dev'?
+     714 |                 dev_err(pctldev->dev, "gpio_chip registration failed\n");
+         |                         ^~~~~~~
+   include/linux/dev_printk.h:110:25: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                         ^~~
+   drivers/pinctrl/pinctrl-stmfx.c:714:17: note: in expansion of macro 'dev_err'
+     714 |                 dev_err(pctldev->dev, "gpio_chip registration failed\n");
+         |                 ^~~~~~~
+   drivers/pinctrl/pinctrl-stmfx.c:714:25: note: each undeclared identifier is reported only once for each function it appears in
+     714 |                 dev_err(pctldev->dev, "gpio_chip registration failed\n");
+         |                         ^~~~~~~
+   include/linux/dev_printk.h:110:25: note: in definition of macro 'dev_printk_index_wrap'
+     110 |                 _p_func(dev, fmt, ##__VA_ARGS__);                       \
+         |                         ^~~
+   drivers/pinctrl/pinctrl-stmfx.c:714:17: note: in expansion of macro 'dev_err'
+     714 |                 dev_err(pctldev->dev, "gpio_chip registration failed\n");
+         |                 ^~~~~~~
+--
+   In file included from include/linux/printk.h:564,
+                    from include/asm-generic/bug.h:22,
+                    from arch/m68k/include/asm/bug.h:32,
+                    from include/linux/bug.h:5,
+                    from include/linux/io.h:11,
+                    from drivers/pinctrl/pxa/pinctrl-pxa2xx.c:9:
+   drivers/pinctrl/pxa/pinctrl-pxa2xx.c: In function 'pxa2xx_pmx_gpio_set_direction':
+>> drivers/pinctrl/pxa/pinctrl-pxa2xx.c:94:24: error: invalid use of undefined type 'struct pinctrl_dev'
+      94 |         dev_dbg(pctldev->dev, "set_direction(pin=%d): dir=%d\n",
+         |                        ^~
+   include/linux/dynamic_debug.h:222:29: note: in definition of macro '__dynamic_func_call_cls'
+     222 |                 func(&id, ##__VA_ARGS__);                       \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:248:9: note: in expansion of macro '_dynamic_func_call_cls'
+     248 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:271:9: note: in expansion of macro '_dynamic_func_call'
+     271 |         _dynamic_func_call(fmt, __dynamic_dev_dbg,              \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:155:9: note: in expansion of macro 'dynamic_dev_dbg'
+     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~
+   drivers/pinctrl/pxa/pinctrl-pxa2xx.c:94:9: note: in expansion of macro 'dev_dbg'
+      94 |         dev_dbg(pctldev->dev, "set_direction(pin=%d): dir=%d\n",
+         |         ^~~~~~~
+   drivers/pinctrl/pxa/pinctrl-pxa2xx.c: In function 'pxa2xx_pmx_set_mux':
+   drivers/pinctrl/pxa/pinctrl-pxa2xx.c:159:24: error: invalid use of undefined type 'struct pinctrl_dev'
+     159 |         dev_dbg(pctldev->dev, "set_mux(pin=%d): af=%d dir=%d\n",
+         |                        ^~
+   include/linux/dynamic_debug.h:222:29: note: in definition of macro '__dynamic_func_call_cls'
+     222 |                 func(&id, ##__VA_ARGS__);                       \
+         |                             ^~~~~~~~~~~
+   include/linux/dynamic_debug.h:248:9: note: in expansion of macro '_dynamic_func_call_cls'
+     248 |         _dynamic_func_call_cls(_DPRINTK_CLASS_DFLT, fmt, func, ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~~~~~~~~
+   include/linux/dynamic_debug.h:271:9: note: in expansion of macro '_dynamic_func_call'
+     271 |         _dynamic_func_call(fmt, __dynamic_dev_dbg,              \
+         |         ^~~~~~~~~~~~~~~~~~
+   include/linux/dev_printk.h:155:9: note: in expansion of macro 'dynamic_dev_dbg'
+     155 |         dynamic_dev_dbg(dev, dev_fmt(fmt), ##__VA_ARGS__)
+         |         ^~~~~~~~~~~~~~~
+   drivers/pinctrl/pxa/pinctrl-pxa2xx.c:159:9: note: in expansion of macro 'dev_dbg'
+     159 |         dev_dbg(pctldev->dev, "set_mux(pin=%d): af=%d dir=%d\n",
+         |         ^~~~~~~
+
+
+vim +714 drivers/pinctrl/pinctrl-stmfx.c
+
+   638	
+   639	static int stmfx_pinctrl_probe(struct platform_device *pdev)
+   640	{
+   641		struct stmfx *stmfx = dev_get_drvdata(pdev->dev.parent);
+   642		struct device_node *np = pdev->dev.of_node;
+   643		struct stmfx_pinctrl *pctl;
+   644		struct gpio_irq_chip *girq;
+   645		int irq, ret;
+   646	
+   647		pctl = devm_kzalloc(stmfx->dev, sizeof(*pctl), GFP_KERNEL);
+   648		if (!pctl)
+   649			return -ENOMEM;
+   650	
+   651		platform_set_drvdata(pdev, pctl);
+   652	
+   653		pctl->dev = &pdev->dev;
+   654		pctl->stmfx = stmfx;
+   655	
+   656		if (!of_property_present(np, "gpio-ranges")) {
+   657			dev_err(pctl->dev, "missing required gpio-ranges property\n");
+   658			return -EINVAL;
+   659		}
+   660	
+   661		irq = platform_get_irq(pdev, 0);
+   662		if (irq <= 0)
+   663			return -ENXIO;
+   664	
+   665		mutex_init(&pctl->lock);
+   666	
+   667		/* Register pin controller */
+   668		pctl->pctl_desc.name = "stmfx-pinctrl";
+   669		pctl->pctl_desc.pctlops = &stmfx_pinctrl_ops;
+   670		pctl->pctl_desc.confops = &stmfx_pinconf_ops;
+   671		pctl->pctl_desc.pins = stmfx_pins;
+   672		pctl->pctl_desc.npins = ARRAY_SIZE(stmfx_pins);
+   673		pctl->pctl_desc.owner = THIS_MODULE;
+   674		pctl->pctl_desc.link_consumers = true;
+   675	
+   676		ret = devm_pinctrl_register_and_init(pctl->dev, &pctl->pctl_desc,
+   677						     pctl, &pctl->pctl_dev);
+   678		if (ret) {
+   679			dev_err(pctl->dev, "pinctrl registration failed\n");
+   680			return ret;
+   681		}
+   682	
+   683		ret = pinctrl_enable(pctl->pctl_dev);
+   684		if (ret) {
+   685			dev_err(pctl->dev, "pinctrl enable failed\n");
+   686			return ret;
+   687		}
+   688	
+   689		/* Register gpio controller */
+   690		pctl->gpio_chip.label = "stmfx-gpio";
+   691		pctl->gpio_chip.parent = pctl->dev;
+   692		pctl->gpio_chip.get_direction = stmfx_gpio_get_direction;
+   693		pctl->gpio_chip.direction_input = stmfx_gpio_direction_input;
+   694		pctl->gpio_chip.direction_output = stmfx_gpio_direction_output;
+   695		pctl->gpio_chip.get = stmfx_gpio_get;
+   696		pctl->gpio_chip.set = stmfx_gpio_set;
+   697		pctl->gpio_chip.set_config = gpiochip_generic_config;
+   698		pctl->gpio_chip.base = -1;
+   699		pctl->gpio_chip.ngpio = pctl->pctl_desc.npins;
+   700		pctl->gpio_chip.can_sleep = true;
+   701	
+   702		girq = &pctl->gpio_chip.irq;
+   703		gpio_irq_chip_set_chip(girq, &stmfx_pinctrl_irq_chip);
+   704		/* This will let us handle the parent IRQ in the driver */
+   705		girq->parent_handler = NULL;
+   706		girq->num_parents = 0;
+   707		girq->parents = NULL;
+   708		girq->default_type = IRQ_TYPE_NONE;
+   709		girq->handler = handle_bad_irq;
+   710		girq->threaded = true;
+   711	
+   712		ret = devm_gpiochip_add_data(pctl->dev, &pctl->gpio_chip, pctl);
+   713		if (ret) {
+ > 714			dev_err(pctldev->dev, "gpio_chip registration failed\n");
+   715			return ret;
+   716		}
+   717	
+   718		ret = stmfx_pinctrl_gpio_function_enable(pctl);
+   719		if (ret)
+   720			return ret;
+   721	
+   722		ret = devm_request_threaded_irq(pctl->dev, irq, NULL,
+   723						stmfx_pinctrl_irq_thread_fn,
+   724						IRQF_ONESHOT,
+   725						dev_name(pctl->dev), pctl);
+   726		if (ret) {
+   727			dev_err(pctldev->dev, "cannot request irq%d\n", irq);
+   728			return ret;
+   729		}
+   730	
+   731		dev_info(pctldev->dev,
+   732			 "%ld GPIOs available\n", hweight_long(pctl->gpio_valid_mask));
+   733	
+   734		return 0;
+   735	}
+   736	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests
 
 
 -=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#289): https://groups.io/g/linux-oxnas/message/289
-Mute This Topic: https://groups.io/mt/98787607/1808289
+View/Reply Online (#290): https://groups.io/g/linux-oxnas/message/290
+Mute This Topic: https://groups.io/mt/98787606/1808289
 Group Owner: linux-oxnas+owner@groups.io
 Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
 -=-=-=-=-=-=-=-=-=-=-=-
