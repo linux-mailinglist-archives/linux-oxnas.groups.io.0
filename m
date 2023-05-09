@@ -1,46 +1,73 @@
-Return-Path: <bounce+16102+291+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+292+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 605E86FCB37
-	for <lists+linux-oxnas@lfdr.de>; Tue,  9 May 2023 18:19:25 +0200 (CEST)
-X-Received: by 127.0.0.2 with SMTP id rJGtYY1809624xJkV9fFlDps; Tue, 09 May 2023 09:19:23 -0700
-X-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
- by mx.groups.io with SMTP id smtpd.web10.28921.1683630032844666575
+	by mail.lfdr.de (Postfix) with ESMTPS id A479D702982
+	for <lists+linux-oxnas@lfdr.de>; Mon, 15 May 2023 11:50:33 +0200 (CEST)
+X-Received: by 127.0.0.2 with SMTP id 4cBCYY1809624xmn9qO3bfer; Mon, 15 May 2023 02:50:31 -0700
+X-Received: from mout.gmx.net (mout.gmx.net [212.227.17.22])
+ by mx.groups.io with SMTP id smtpd.web11.3424.1683672890015604373
  for <linux-oxnas@groups.io>;
- Tue, 09 May 2023 04:00:33 -0700
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="349929596"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; 
-   d="scan'208";a="349929596"
-X-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 May 2023 04:00:14 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10704"; a="945243629"
-X-IronPort-AV: E=Sophos;i="5.99,261,1677571200"; 
-   d="scan'208";a="945243629"
-X-Received: from lkp-server01.sh.intel.com (HELO dea6d5a4f140) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 09 May 2023 04:00:09 -0700
-X-Received: from kbuild by dea6d5a4f140 with local (Exim 4.96)
-	(envelope-from <lkp@intel.com>)
-	id 1pwL4j-00026e-27;
-	Tue, 09 May 2023 11:00:09 +0000
-Date: Tue, 9 May 2023 18:59:19 +0800
-From: kernel test robot <lkp@intel.com>
-To: Lizhe <sensor1010@163.com>, marcan@marcan.st, sven@svenpeter.dev,
-	alyssa@rosenzweig.io, linus.walleij@linaro.org,
-	neil.armstrong@linaro.org, mcoquelin.stm32@gmail.com,
-	alexandre.torgue@foss.st.com, daniel@zonque.org,
-	haojian.zhuang@gmail.com, robert.jarzmik@free.fr
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-	asahi@lists.linux.dev, linux-arm-kernel@lists.infradead.org,
-	linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
-	linux-oxnas@groups.io, linux-stm32@st-md-mailman.stormreply.com,
-	Lizhe <sensor1010@163.com>
-Subject: Re: [linux-oxnas] [PATCH] dirvers/pinctrl.c : using pinctrl_dev->dev to obtain struct device * dev
-Message-ID: <202305091858.pJaUy3Gt-lkp@intel.com>
-References: <20230508154043.11859-1-sensor1010@163.com>
+ Tue, 09 May 2023 15:54:50 -0700
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+X-Received: from probook ([95.223.44.193]) by mail.gmx.net (mrgmx104
+ [212.227.17.168]) with ESMTPSA (Nemesis) id 1Ml6m4-1qdIgl1tr2-00lTxs; Wed, 10
+ May 2023 00:54:31 +0200
+Date: Wed, 10 May 2023 00:54:29 +0200
+From: Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To: Rob Herring <robh+dt@kernel.org>
+Cc: Arnd Bergmann <arnd@arndb.de>, linux-aspeed@lists.ozlabs.org,
+	linux-realtek-soc@lists.infradead.org, linux-arm-kernel@axis.com,
+	linux-stm32@st-md-mailman.stormreply.com,
+	chrome-platform@lists.linux.dev, linux-samsung-soc@vger.kernel.org,
+	openbmc@lists.ozlabs.org, Krzysztof Kozlowski <krzk@kernel.org>,
+	linux-rockchip@lists.infradead.org,
+	Geert Uytterhoeven <geert@linux-m68k.org>,
+	linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+	linux-arm-msm@vger.kernel.org, linux-actions@lists.infradead.org,
+	linux-unisoc@lists.infradead.org,
+	linux-mediatek@lists.infradead.org,
+	linux-rpi-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+	linux-amlogic@lists.infradead.org,
+	Linux-OMAP <linux-omap@vger.kernel.org>,
+	linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+	Christian Marangi <ansuelsmth@gmail.com>,
+	Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+	kernel@dh-electronics.com, Olof Johansson <olof@lixom.net>,
+	Krzysztof Kozlowski <krzk+dt@kernel.org>,
+	"linux-oxnas@groups.io" <linux-oxnas@groups.io>
+Subject: Re: [linux-oxnas] [RFC PATCH 0/1] Categorize ARM dts directory
+Message-ID: <ZFrPJQdwoxqFpzUO@probook>
+References: <20220328000915.15041-1-ansuelsmth@gmail.com>
+ <85eb14ec-f465-7447-ad77-a3dabc666f47@kernel.org>
+ <YkKRYnN84D9VZhGj@Ansuel-xps.localdomain>
+ <CAL_Jsq+RQQ-ADMxLPUFwk6S6kGmb6oNDy4k52fnU0EtbUvqmSA@mail.gmail.com>
+ <CAMuHMdWNTE48MFy6fqxAsfMWz9b6E7dVNXtXtESP95sxk2PGwA@mail.gmail.com>
+ <CAL_JsqJthKTm8bhRF2B=ae1tvtPeYYXx_Tm76qQtSwLtH5C6VA@mail.gmail.com>
+ <720a2829-b6b5-411c-ac69-9a53e881f48d@app.fastmail.com>
+ <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20230508154043.11859-1-sensor1010@163.com>
+In-Reply-To: <CAL_JsqKCtmkwzKa01gyG65fH8ye6R3KhR41PJbJhOJ4X9j=znA@mail.gmail.com>
+X-Provags-ID: V03:K1:aR+k41JkL+Jax7RkQK1pXFPVqGsXbknpTCCf601eNGl3xQsbw4B
+ lW4IptIuDnFJb+jaCScKg4f1qDLjuoiDEqEJsUWT/Ek6YzDXkULOeXYq9EqgQyN8A6axbG1
+ JRKm5mq+iW4e1K1v2w2BOTrGSmAwegcfBLrzES8HGqnWOqrguxalKWu6+fqbhobKFkw7JNy
+ qeUuaRpvcFFSSatMddRDg==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:NarrxlSjiwo=;5z5rCQykqX1e+FbZ2ba6e5Rh6DH
+ bfvBGeIXFywNjKNr0Tn58UPG96wezZLM4+H12pkCrjAC7Mqwg2PXJ70aoM1kBI8o+tAa0/419
+ 3XnQYa+XRlKna2zFjBCJKWpZoYii5XtCMCKO105lV0P6vMHckC89sxCK/LdwCvu0lF7OfocC+
+ 2ouaaWRHCt4YshSvfh5z/Ja+IC5J4jOv8eNZ6b4Ga79LPwxkC/RJjnB/nQ4E0edaxrobbRSOn
+ Mpc/31AKJOkyrRi41IgtGWTEODyE2XZV00pU1y5sHoF3JU/eGsc2doa+Rrzh30STHQZStIaTS
+ 0sulR/BBWHEsrZf3LZvhDzOcbQ+0mpl9BfQXNLiDuCZay2ePoIqaUwts7JSoeIsxQHjZrbVOf
+ h75oej0aNqoFhgx0M6WDh9xZydkRj4bbDxKZdwcWTSlHLDLbE26jSZC/2Oe+gjXSYJFSqcTIo
+ y61XXOKn0w6OleXfF53iuFeaDOuP15yxKD4yYijJGDa3gETH/hjoY9RV4RF3njrNZ9cpp0pyL
+ Wt5sq1md9IKuXv5zDNciEDB062aPPEfIdiuOL3ekvbmUkb/y0X/5vyJogDfXW1s/BcAt1Lw7O
+ 3fGQXfFWHtWSvKoTsdKwCQNoGLoqEX0ymmlOjO2H6zmOGgpDD61I3NBO058aLG0Ir0rXeho5F
+ meMuCSguMavkm9x2cC+ehI31nsDXo/+BF4SlfWoDxIdTlxFojtrUwUJw55+y8lR/UsTKS8nM4
+ UfuLe8Un7sHRz/mdblkfo8MYekpfSGy5OF1q4F6ySdpHLnN9/KLwguD2QRIXgxNbN+S3apSzh
+ 3RdOKnqeNprc0VYDcOdrgnL7BqsQDF2Rl2MSPh0TxeAydGQ6S6Uk6WUGWH/J/uB0ZIvQUETeq
+ 5wpcXi+kJF8q+LL66lQwIIQV2De+d1d5U2u4IhbVKY+H63H0/8T+2HkkllmX/vS+xMdVykkpc
+ +lGd2EXuA+PHYRD1FvmkNVjxg7g=
 Precedence: Bulk
 List-Unsubscribe: <mailto:linux-oxnas+unsubscribe@groups.io>
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
@@ -49,177 +76,99 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,lkp@intel.com
-X-Gm-Message-State: UuZTrU92tTRAbibVlMFnMBbfx1808289AA=
+Reply-To: linux-oxnas@groups.io,j.neuschaefer@gmx.net
+X-Gm-Message-State: rGWw00vQup76ep9SVxCd6D5Kx1808289AA=
+Content-Type: multipart/mixed; boundary="Groupsio=hQYSUSMWES4U9JNyHoMf"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
+ q=dns/txt; s=20140610; t=1684144231;
+ bh=XM5QnZTxyirX2rORlFybvfnRXhpHWO0+XL+rt/Ln9OY=;
+ h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
+ b=PlS0ddHYiJOWpkRtNaF/mwNrQfM5+bdWhFCuQK6r6tJE7okYxZ8xRbB5EEnZWluNC8F
+ KNqawLocqoi5BAhHfrZRLlUaLBjVVQLqvD8vryS5B5SQ+kdTxezVrUlebNm4F1RUpWGqp
+ 76soscZh7mgpvSmeOuFYTyjrK8uPWwJCPzM=
+
+--Groupsio=hQYSUSMWES4U9JNyHoMf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=groups.io;
- q=dns/txt; s=20140610; t=1683649163;
- bh=305d7zNbNo5LQB1rIKhvcs/H8+zh8QEkp+2/effYMLI=;
- h=Cc:Content-Type:Date:From:Reply-To:Subject:To;
- b=YezGXDqL4OXa1sOZPeJV3236Hxcd3cmifuauSzokF4vKXDn5zMldvZehT43agST+SYy
- ZbU/Cxc+WbFDC7eNhM5lI5N5nlEK2GKUvK0rkCUa0Ti5QU+jdUrz2IdULuvHzMP+5+5sI
- EnuOz4AFW98BjY3OYz5GXToq2SIBFpcJxPw=
+Content-Transfer-Encoding: quoted-printable
 
-Hi Lizhe,
+On Tue, May 02, 2023 at 02:40:19PM -0500, Rob Herring wrote:
+[...]
+> I've dusted off my script and made a branch[1] with the result.
+> There's just a couple of fixes needed after the script is run (see the
+> top commit). The cross arch includes are all fixed up by the script.
+> dtbs_install maintains a flat install. I compared the number of .dtbs
+> before and after to check the script.
+>=20
+> I think the only issue remaining is finalizing the mapping of
+> platforms to subdirs. What I have currently is a mixture of SoC
+> families and vendors. The most notable are all the Freescale/NXP
+> platforms, pxa, socfpga, and stm32. It's not consistent with arm64
+> either. Once that's finalized, I still need to go update MAINTAINERS.
+>=20
+> Here's the current mapping:
+>=20
+> vendor_map =3D {
+[...]
+>     'aspeed' : 'aspeed',
+>     'ast2' : 'aspeed',
+>     'facebook' : 'aspeed',
+>     'ibm' : 'aspeed',
 
-kernel test robot noticed the following build errors:
+>     'openbmc' : 'aspeed',
 
-[auto build test ERROR on linusw-pinctrl/devel]
-[also build test ERROR on linusw-pinctrl/for-next linus/master v6.4-rc1 next-20230509]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+The openbmc flash layouts are currently only used by aspeed devicetrees,
+but they don't really depend on any aspeed details. It would be possible
+to reuse them in Nuvoton BMC devicetrees in the future, for example.
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Lizhe/dirvers-pinctrl-c-using-pinctrl_dev-dev-to-obtain-struct-device-dev/20230508-234502
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/linusw/linux-pinctrl.git devel
-patch link:    https://lore.kernel.org/r/20230508154043.11859-1-sensor1010%40163.com
-patch subject: [PATCH] dirvers/pinctrl.c : using pinctrl_dev->dev to obtain struct device * dev
-config: i386-randconfig-a001-20230508 (https://download.01.org/0day-ci/archive/20230509/202305091858.pJaUy3Gt-lkp@intel.com/config)
-compiler: clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1)
-reproduce (this is a W=1 build):
-        wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
-        chmod +x ~/bin/make.cross
-        # https://github.com/intel-lab-lkp/linux/commit/83751a28d7f5223597b6742300796fb80362dc20
-        git remote add linux-review https://github.com/intel-lab-lkp/linux
-        git fetch --no-tags linux-review Lizhe/dirvers-pinctrl-c-using-pinctrl_dev-dev-to-obtain-struct-device-dev/20230508-234502
-        git checkout 83751a28d7f5223597b6742300796fb80362dc20
-        # save the config file
-        mkdir build_dir && cp config build_dir/.config
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 olddefconfig
-        COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross W=1 O=build_dir ARCH=i386 SHELL=/bin/bash
-
-If you fix the issue, kindly add following tag where applicable
-| Reported-by: kernel test robot <lkp@intel.com>
-| Link: https://lore.kernel.org/oe-kbuild-all/202305091858.pJaUy3Gt-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
->> drivers/pinctrl/pinctrl-stmfx.c:714:11: error: use of undeclared identifier 'pctldev'
-                   dev_err(pctldev->dev, "gpio_chip registration failed\n");
-                           ^
-   drivers/pinctrl/pinctrl-stmfx.c:727:11: error: use of undeclared identifier 'pctldev'
-                   dev_err(pctldev->dev, "cannot request irq%d\n", irq);
-                           ^
-   drivers/pinctrl/pinctrl-stmfx.c:731:11: error: use of undeclared identifier 'pctldev'
-           dev_info(pctldev->dev,
-                    ^
-   3 errors generated.
+In that sense, I think putting them in a separate "openbmc" directory
+would be slightly better.
 
 
-vim +/pctldev +714 drivers/pinctrl/pinctrl-stmfx.c
-
-   638	
-   639	static int stmfx_pinctrl_probe(struct platform_device *pdev)
-   640	{
-   641		struct stmfx *stmfx = dev_get_drvdata(pdev->dev.parent);
-   642		struct device_node *np = pdev->dev.of_node;
-   643		struct stmfx_pinctrl *pctl;
-   644		struct gpio_irq_chip *girq;
-   645		int irq, ret;
-   646	
-   647		pctl = devm_kzalloc(stmfx->dev, sizeof(*pctl), GFP_KERNEL);
-   648		if (!pctl)
-   649			return -ENOMEM;
-   650	
-   651		platform_set_drvdata(pdev, pctl);
-   652	
-   653		pctl->dev = &pdev->dev;
-   654		pctl->stmfx = stmfx;
-   655	
-   656		if (!of_property_present(np, "gpio-ranges")) {
-   657			dev_err(pctl->dev, "missing required gpio-ranges property\n");
-   658			return -EINVAL;
-   659		}
-   660	
-   661		irq = platform_get_irq(pdev, 0);
-   662		if (irq <= 0)
-   663			return -ENXIO;
-   664	
-   665		mutex_init(&pctl->lock);
-   666	
-   667		/* Register pin controller */
-   668		pctl->pctl_desc.name = "stmfx-pinctrl";
-   669		pctl->pctl_desc.pctlops = &stmfx_pinctrl_ops;
-   670		pctl->pctl_desc.confops = &stmfx_pinconf_ops;
-   671		pctl->pctl_desc.pins = stmfx_pins;
-   672		pctl->pctl_desc.npins = ARRAY_SIZE(stmfx_pins);
-   673		pctl->pctl_desc.owner = THIS_MODULE;
-   674		pctl->pctl_desc.link_consumers = true;
-   675	
-   676		ret = devm_pinctrl_register_and_init(pctl->dev, &pctl->pctl_desc,
-   677						     pctl, &pctl->pctl_dev);
-   678		if (ret) {
-   679			dev_err(pctl->dev, "pinctrl registration failed\n");
-   680			return ret;
-   681		}
-   682	
-   683		ret = pinctrl_enable(pctl->pctl_dev);
-   684		if (ret) {
-   685			dev_err(pctl->dev, "pinctrl enable failed\n");
-   686			return ret;
-   687		}
-   688	
-   689		/* Register gpio controller */
-   690		pctl->gpio_chip.label = "stmfx-gpio";
-   691		pctl->gpio_chip.parent = pctl->dev;
-   692		pctl->gpio_chip.get_direction = stmfx_gpio_get_direction;
-   693		pctl->gpio_chip.direction_input = stmfx_gpio_direction_input;
-   694		pctl->gpio_chip.direction_output = stmfx_gpio_direction_output;
-   695		pctl->gpio_chip.get = stmfx_gpio_get;
-   696		pctl->gpio_chip.set = stmfx_gpio_set;
-   697		pctl->gpio_chip.set_config = gpiochip_generic_config;
-   698		pctl->gpio_chip.base = -1;
-   699		pctl->gpio_chip.ngpio = pctl->pctl_desc.npins;
-   700		pctl->gpio_chip.can_sleep = true;
-   701	
-   702		girq = &pctl->gpio_chip.irq;
-   703		gpio_irq_chip_set_chip(girq, &stmfx_pinctrl_irq_chip);
-   704		/* This will let us handle the parent IRQ in the driver */
-   705		girq->parent_handler = NULL;
-   706		girq->num_parents = 0;
-   707		girq->parents = NULL;
-   708		girq->default_type = IRQ_TYPE_NONE;
-   709		girq->handler = handle_bad_irq;
-   710		girq->threaded = true;
-   711	
-   712		ret = devm_gpiochip_add_data(pctl->dev, &pctl->gpio_chip, pctl);
-   713		if (ret) {
- > 714			dev_err(pctldev->dev, "gpio_chip registration failed\n");
-   715			return ret;
-   716		}
-   717	
-   718		ret = stmfx_pinctrl_gpio_function_enable(pctl);
-   719		if (ret)
-   720			return ret;
-   721	
-   722		ret = devm_request_threaded_irq(pctl->dev, irq, NULL,
-   723						stmfx_pinctrl_irq_thread_fn,
-   724						IRQF_ONESHOT,
-   725						dev_name(pctl->dev), pctl);
-   726		if (ret) {
-   727			dev_err(pctldev->dev, "cannot request irq%d\n", irq);
-   728			return ret;
-   729		}
-   730	
-   731		dev_info(pctldev->dev,
-   732			 "%ld GPIOs available\n", hweight_long(pctl->gpio_valid_mask));
-   733	
-   734		return 0;
-   735	}
-   736	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests
+Jonathan
 
 
--=-=-=-=-=-=-=-=-=-=-=-
+
+[...]
+>     'nuvo' : 'nuvoton',
+[...]
+> }
+>=20
+> Rob
+>=20
+> [1] git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git arm-dts-=
+move-v2
+
+
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#291): https://groups.io/g/linux-oxnas/message/291
-Mute This Topic: https://groups.io/mt/98787606/1808289
+View/Reply Online (#292): https://groups.io/g/linux-oxnas/message/292
+Mute This Topic: https://groups.io/mt/98658732/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.de]
--=-=-=-=-=-=-=-=-=-=-=-
+Unsubscribe: https://groups.io/g/linux-oxnas/unsub [lists+linux-oxnas@lfdr.=
+de]
+-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
 
 
+
+--Groupsio=hQYSUSMWES4U9JNyHoMf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAmRazv0ACgkQCDBEmo7z
+X9tB/A//Y5MU9b+r/mxCUuxjsa0CB4Ewu8xmc+YTd1pdMEIrJYfgdpXFskBmzFsg
+QFYR1gBnq7P4mhusW4RaYWxpzD3M45B2vIuhgL6t8lqIWae0UuNbPEO4rbCIbvGZ
+PCx1dTAGZ2vg+mxRK0OYouuCE9EvgrC9PGmOcgDkqCLngGsr11gXz0GMNebggmie
+TX8iauQHnzfGaSQWtwIdQRu1gj2d/VO5NSn4CrgvMIuLCSwhTwY+e9H9/+CcrqHK
+wNiMG0W8yY5CMO7ZSYf7EkEidunJ0htwqJmUoLfpqN4NZ/21yno69v+L36ZRu/lq
++KrZJeaXC3Ar39R2x75Pns5em46uwJJdI5aXumj9xPU3A3rgWCQcrECZJ7i/HEoK
+hzhnsQhJNP4jAPVxdiaWJTYUXHRwafI6/GVvj1BvfgqZ9VHE28iGdDcgVvOfmkDx
+eRZQxcJzFaWZeWTOeM05/dHUDUJXFrYvDsj0+FgneBU/oqEc+H4bR9AP2ttU24hU
+4jBq2I2FlDyKlC0ARS22oRQlZG6KS50d1Nvx6cLr7lxeOHmcW09dPCqHijQVtX3V
+f/Z7MYrDEXgTK8r1wJk6PuvVN+jFX/l/Ali5L/OJqUsZB4bgteXKEWXWMmgik1/I
+d3nr3gTYEaykVkjCJORFKu4G2FHrzWgWpFYsl8Mu+safGLa+rdA=
+=Jzyt
+-----END PGP SIGNATURE-----
+
+--Groupsio=hQYSUSMWES4U9JNyHoMf--
