@@ -1,66 +1,68 @@
-Return-Path: <bounce+16102+318+1808289+3934443@groups.io>
+Return-Path: <bounce+16102+319+1808289+3934443@groups.io>
 X-Original-To: lists+linux-oxnas@lfdr.de
 Delivered-To: lists+linux-oxnas@lfdr.de
 Received: from mail02.groups.io (mail02.groups.io [66.175.222.108])
-	by mail.lfdr.de (Postfix) with ESMTPS id 690D377B3B2
-	for <lists+linux-oxnas@lfdr.de>; Mon, 14 Aug 2023 10:16:52 +0200 (CEST)
-DKIM-Signature: a=rsa-sha256; bh=SnStTQS6M9UGVU0hL+JWRquFLqy2e8y4wZfHDt4GZww=;
+	by mail.lfdr.de (Postfix) with ESMTPS id 9A2FD77B3BA
+	for <lists+linux-oxnas@lfdr.de>; Mon, 14 Aug 2023 10:17:17 +0200 (CEST)
+DKIM-Signature: a=rsa-sha256; bh=DmHx8tDjhT3Ul1KnHNTFpu6pWPhuHD+81R/Xfoo6G3E=;
  c=relaxed/simple; d=groups.io;
- h=From:Date:Subject:MIME-Version:Message-Id:References:In-Reply-To:To:Cc:Precedence:List-Subscribe:List-Help:Sender:List-Id:Mailing-List:Delivered-To:Reply-To:List-Unsubscribe-Post:List-Unsubscribe:Content-Type:Content-Transfer-Encoding;
- s=20140610; t=1692001011; v=1;
- b=HpfR0gqPxEms/OflI+GuePtM44m1b1mTq+uE3kULXUfTW9Crbf01h8rKOtbtocVpU7KA+ZnW
- 5kKWalUAhUuv3+W3ZfsFivOMIv3B0b3lKaREfoAjDa0n6taT82xeTXqB2suZAR7BkrtvLi2Bnz1
- WVCfB4HPXTz+NArszX7ZTF14=
-X-Received: by 127.0.0.2 with SMTP id GK3KYY1809624xbEeq9zTaPU; Mon, 14 Aug 2023 01:16:51 -0700
-X-Received: from mail-wm1-f48.google.com (mail-wm1-f48.google.com [209.85.128.48])
- by mx.groups.io with SMTP id smtpd.web11.102965.1692001010607699613
+ h=Message-ID:Date:MIME-Version:User-Agent:From:Reply-To:Subject:To:Cc:References:Organization:In-Reply-To:Precedence:List-Subscribe:List-Help:Sender:List-Id:Mailing-List:Delivered-To:List-Unsubscribe-Post:List-Unsubscribe:Content-Language:Content-Type:Content-Transfer-Encoding;
+ s=20140610; t=1692001036; v=1;
+ b=v7pb0dAbTXWHlWhyfoT8L2Cr7ehjM0vDuNs+h52NTge4NfIJqMzaSV7ogPmxnfJ5Y8rAP1br
+ eqFeFR8j0RrRRq5JB+jLvNn2yM57LpAzvwyi2hn4WYsc4wqSXEP2UjcwPANdiVggVYacWAxzFJi
+ cuVgafX26ysRPdW8bjCkIY0Q=
+X-Received: by 127.0.0.2 with SMTP id wjv2YY1809624xwTQRAGnkSZ; Mon, 14 Aug 2023 01:17:16 -0700
+X-Received: from mail-wr1-f44.google.com (mail-wr1-f44.google.com [209.85.221.44])
+ by mx.groups.io with SMTP id smtpd.web10.103238.1692001035800555144
  for <linux-oxnas@groups.io>;
- Mon, 14 Aug 2023 01:16:50 -0700
-X-Received: by mail-wm1-f48.google.com with SMTP id 5b1f17b1804b1-3fe167d4a18so37577815e9.0
-        for <linux-oxnas@groups.io>; Mon, 14 Aug 2023 01:16:50 -0700 (PDT)
-X-Gm-Message-State: rUkSkL7oMdgJpFwzQhpSU2Z5x1808289AA=
-X-Google-Smtp-Source: AGHT+IFxoZYypMWMApyftvpZB+eRWVc7nLZT8b8RmwQysm55SPF8kxFmUC8yXR5M66sqVwKCaSHESw==
-X-Received: by 2002:a1c:ed15:0:b0:3fb:e206:ca5f with SMTP id l21-20020a1ced15000000b003fbe206ca5fmr7168108wmh.31.1692001008961;
-        Mon, 14 Aug 2023 01:16:48 -0700 (PDT)
-X-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id k1-20020a5d4281000000b00317a29af4b2sm13542994wrq.68.2023.08.14.01.16.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Aug 2023 01:16:48 -0700 (PDT)
-From: "Neil Armstrong" <neil.armstrong@linaro.org>
-Date: Mon, 14 Aug 2023 10:16:39 +0200
-Subject: [linux-oxnas] [PATCH v3 3/3] dt-bindings: gpio: gpio_oxnas: remove obsolete bindings
+ Mon, 14 Aug 2023 01:17:16 -0700
+X-Received: by mail-wr1-f44.google.com with SMTP id ffacd0b85a97d-318015ade49so3679065f8f.0
+        for <linux-oxnas@groups.io>; Mon, 14 Aug 2023 01:17:15 -0700 (PDT)
+X-Gm-Message-State: AF0bOFoDRRcocH02LsuX4KKAx1808289AA=
+X-Google-Smtp-Source: AGHT+IEXbvgn6LW0yU+nkhHkcfkiCGwjUBAMcP+fKEDjyEF9E2V8kNEM6NVC/BjPKkIdX0hZ6fKCKg==
+X-Received: by 2002:adf:f24e:0:b0:319:7b50:cf5e with SMTP id b14-20020adff24e000000b003197b50cf5emr880096wrp.19.1692001034196;
+        Mon, 14 Aug 2023 01:17:14 -0700 (PDT)
+X-Received: from ?IPV6:2a01:e0a:982:cbb0:a3d8:b217:d82c:9bc0? ([2a01:e0a:982:cbb0:a3d8:b217:d82c:9bc0])
+        by smtp.gmail.com with ESMTPSA id x13-20020a5d444d000000b00317f29ad113sm13580045wrr.32.2023.08.14.01.17.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Aug 2023 01:17:13 -0700 (PDT)
+Message-ID: <ff999018-8490-0f58-0a50-e82f1effce5c@linaro.org>
+Date: Mon, 14 Aug 2023 10:17:12 +0200
 MIME-Version: 1.0
-Message-Id: <20230814-topic-oxnas-upstream-remove-v3-3-04a0c5cdda52@linaro.org>
-References: <20230814-topic-oxnas-upstream-remove-v3-0-04a0c5cdda52@linaro.org>
-In-Reply-To: <20230814-topic-oxnas-upstream-remove-v3-0-04a0c5cdda52@linaro.org>
-To: Linus Walleij <linus.walleij@linaro.org>, 
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Rob Herring <robh+dt@kernel.org>, 
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>, 
- Conor Dooley <conor+dt@kernel.org>, Bartosz Golaszewski <brgl@bgdev.pl>, 
- Andy Shevchenko <andy@kernel.org>
-Cc: linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-oxnas@groups.io, 
- devicetree@vger.kernel.org, 
- Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>, 
- Arnd Bergmann <arnd@arndb.de>, Daniel Golle <daniel@makrotopia.org>, 
- Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2444;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=jE6ByQZPyn94kajLMkmmnkKqcK01TK88XsXfpl+GUMQ=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBk2eLrjDbTfAEmzdlc5+OVy72+nkloYG/jlpD4hbXa
- p3OXVuyJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZNni6wAKCRB33NvayMhJ0XR6EA
- CgJ78xhOK89ymzp6lmIQDll16C4q2KKUwZpYLi19PkP5CHYpod1KfImzp6DZMipWgeNV5BXID4vbFc
- QmdNIQkTjkK9dA8Hf5Qz5Eg4OEOBW5AtBRZqaYxTEZY7lAAx10WH6ykM9DJ1JsvrjqvefO1PunTVKo
- ebeaG0C7j/zmILuEyedPLzWe9pRbSJ0YAeitBmOl2m7NzBdEo9T5foRIK2tp7tWfOrsagovPAiE2cq
- LQeNLBsZuhVYSmoeexUC9oTAq8A0DJBD03OtYj7ypPFc0SKyxvsZ7VDXpj07abZAvv7X1tHKyPfBoD
- KL09HCmsLKWO8qqR0F3JjoVv8L9T7MpfdXbbxtWJWCjVYghU4gN4g9M9yoez6+cz9mB9YFmwlrhDJz
- 0SY3yGvAWAi2GGQeJRPWzs4bm7a3LTsQpvi/w1F9/6vdoTdbdf4DbWNpnxa3/0R9j4X8Nn6ZBkh0b/
- TyDymJbacbClLxEvtE4KyVzDjEbbLXYZK9DhhQ3v/5jQetF6u1P0Cq00antay22GdXUDJu4tpo8kg6
- OAs+/3tH4J6VdE7bVpxEobtPrbVIvRn3Rf7CYOJsFlb53iKgcTQwe7sMQa9r94rRtZgWBnlHhdSzfA
- 6qH0uQAbjStD4KwG92omB0aHYoteiIuTHrJOW/JCQcTtwvbIgmtNltRr1vGQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+From: "Neil Armstrong" <neil.armstrong@linaro.org>
+Reply-To: linux-oxnas@groups.io,neil.armstrong@linaro.org
+Subject: Re: [linux-oxnas] [PATCH v2 09/15] pinctrl: pinctrl-oxnas: remove obsolete pinctrl driver
+To: Linus Walleij <linus.walleij@linaro.org>
+Cc: Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Conor Dooley <conor+dt@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@linaro.org>,
+ Thomas Gleixner <tglx@linutronix.de>,
+ Miquel Raynal <miquel.raynal@bootlin.com>,
+ Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
+ Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Jose Abreu <joabreu@synopsys.com>, "David S. Miller" <davem@davemloft.net>,
+ Eric Dumazet <edumazet@google.com>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, Maxime Coquelin
+ <mcoquelin.stm32@gmail.com>, Bartosz Golaszewski <brgl@bgdev.pl>,
+ Andy Shevchenko <andy@kernel.org>, Sebastian Reichel <sre@kernel.org>,
+ Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+ linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+ linux-pm@vger.kernel.org, linux-oxnas@groups.io,
+ Arnd Bergmann <arnd@arndb.de>, Daniel Golle <daniel@makrotopia.org>
+References: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
+ <20230630-topic-oxnas-upstream-remove-v2-9-fb6ab3dea87c@linaro.org>
+ <a9074f2d-ffa2-477f-e3b5-2c7d213ec72c@linaro.org>
+ <CACRpkdbMy=JWAgybtimQXJRQ7jsVZ1g-DfqjryjP31JT9f=Prg@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CACRpkdbMy=JWAgybtimQXJRQ7jsVZ1g-DfqjryjP31JT9f=Prg@mail.gmail.com>
 Precedence: Bulk
 List-Subscribe: <mailto:linux-oxnas+subscribe@groups.io>
 List-Help: <mailto:linux-oxnas+help@groups.io>
@@ -68,96 +70,43 @@ Sender: linux-oxnas@groups.io
 List-Id: <linux-oxnas.groups.io>
 Mailing-List: list linux-oxnas@groups.io; contact linux-oxnas+owner@groups.io
 Delivered-To: mailing list linux-oxnas@groups.io
-Reply-To: linux-oxnas@groups.io,neil.armstrong@linaro.org
 List-Unsubscribe-Post: List-Unsubscribe=One-Click
 List-Unsubscribe: <https://groups.io/g/linux-oxnas/leave/3934443/1808289/401299499/plugh>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Due to lack of maintenance and stall of development for a few years now,
-and since no new features will ever be added upstream, remove the
-OX810 and OX820 gpio bindings.
+On 07/08/2023 15:44, Linus Walleij wrote:
+> On Mon, Jul 31, 2023 at 4:44 PM Neil Armstrong
+> <neil.armstrong@linaro.org> wrote:
+>> On 30/06/2023 18:58, Neil Armstrong wrote:
+>>> Due to lack of maintenance and stall of development for a few years now,
+>>> and since no new features will ever be added upstream, remove support
+>>> for OX810 and OX820 pinctrl & gpio.
+>>
+>> Do you plan to take patches 9, 10 & 11 or should I funnel them via a final SoC PR ?
+> 
+> I tried to apply them to the pinctrl tree but that fails ...
+> Could you rebase patches 9,10,11 onto my "devel" branch
+> and send separately? Then I will apply them right away.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Arnd Bergmann <arnd@arndb.de>
-Acked-by: Daniel Golle <daniel@makrotopia.org>
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/gpio/gpio_oxnas.txt        | 47 ------------------=
-----
- 1 file changed, 47 deletions(-)
+Sure, sent them right now!
 
-diff --git a/Documentation/devicetree/bindings/gpio/gpio_oxnas.txt b/Docume=
-ntation/devicetree/bindings/gpio/gpio_oxnas.txt
-deleted file mode 100644
-index 966514744df4..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio_oxnas.txt
-+++ /dev/null
-@@ -1,47 +0,0 @@
--* Oxford Semiconductor OXNAS SoC GPIO Controller
--
--Please refer to gpio.txt for generic information regarding GPIO bindings.
--
--Required properties:
-- - compatible: "oxsemi,ox810se-gpio" or "oxsemi,ox820-gpio"
-- - reg: Base address and length for the device.
-- - interrupts: The port interrupt shared by all pins.
-- - gpio-controller: Marks the port as GPIO controller.
-- - #gpio-cells: Two. The first cell is the pin number and
--   the second cell is used to specify the gpio polarity as defined in
--   defined in <dt-bindings/gpio/gpio.h>:
--      0 =3D GPIO_ACTIVE_HIGH
--      1 =3D GPIO_ACTIVE_LOW
-- - interrupt-controller: Marks the device node as an interrupt controller.
-- - #interrupt-cells: Two. The first cell is the GPIO number and second cel=
-l
--   is used to specify the trigger type as defined in
--   <dt-bindings/interrupt-controller/irq.h>:
--      IRQ_TYPE_EDGE_RISING
--      IRQ_TYPE_EDGE_FALLING
--      IRQ_TYPE_EDGE_BOTH
-- - gpio-ranges: Interaction with the PINCTRL subsystem, it also specifies =
-the
--   gpio base and count, should be in the format of numeric-gpio-range as
--   specified in the gpio.txt file.
--
--Example:
--
--gpio0: gpio@0 {
--	compatible =3D "oxsemi,ox810se-gpio";
--	reg =3D <0x000000 0x100000>;
--	interrupts =3D <21>;
--	#gpio-cells =3D <2>;
--	gpio-controller;
--	interrupt-controller;
--	#interrupt-cells =3D <2>;
--	gpio-ranges =3D <&pinctrl 0 0 32>;
--};
--
--keys {
--	...
--
--	button-esc {
--		label =3D "ESC";
--		linux,code =3D <1>;
--		gpios =3D <&gpio0 12 0>;
--	};
--};
+Thx,
+Neil
 
---=20
-2.34.1
+> 
+> Yours,
+> Linus Walleij
 
 
 
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+-=-=-=-=-=-=-=-=-=-=-=-
 Groups.io Links: You receive all messages sent to this group.
-View/Reply Online (#318): https://groups.io/g/linux-oxnas/message/318
-Mute This Topic: https://groups.io/mt/100732981/1808289
+View/Reply Online (#319): https://groups.io/g/linux-oxnas/message/319
+Mute This Topic: https://groups.io/mt/99877138/1808289
 Group Owner: linux-oxnas+owner@groups.io
-Unsubscribe: https://groups.io/g/linux-oxnas/leave/3934443/1808289/40129949=
-9/xyzzy [lists+linux-oxnas@lfdr.de]
--=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-=3D-
+Unsubscribe: https://groups.io/g/linux-oxnas/leave/3934443/1808289/401299499/xyzzy [lists+linux-oxnas@lfdr.de]
+-=-=-=-=-=-=-=-=-=-=-=-
 
 
